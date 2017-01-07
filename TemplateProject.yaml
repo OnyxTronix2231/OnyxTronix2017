@@ -88,7 +88,7 @@ Children:
           validators: [RobotDrive4, ChildDropdownSelected]
           value: DriveTrain FirstLeft
       Base: Robot Drive 4
-      Name: Robot Drive 4 1
+      Name: Robot Drive
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
