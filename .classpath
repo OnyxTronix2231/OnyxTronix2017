@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="C:/Users/2231/wpilib/user/java/lib/TalonSRXLibJava.jar"/>
 	<classpathentry kind="lib" path="C:/Users/2231/wpilib/java/current/lib/cscore.jar"/>
 	<classpathentry kind="lib" path="C:/Users/2231/wpilib/java/current/lib/opencv.jar"/>
+	<classpathentry kind="lib" path="C:/Users/2231/wpilib/java/current/lib/NetworkTables.jar"/>
 	<classpathentry kind="output" path="OnyxTronix2017/bin"/>
 </classpath>
