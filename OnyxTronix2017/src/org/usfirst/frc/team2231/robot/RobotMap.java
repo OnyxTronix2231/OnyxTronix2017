@@ -58,10 +58,10 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
 
-        shooterWheel = new CANTalon(5);
+        shooterWheel = new CANTalon(7);
         LiveWindow.addActuator("Shooter", "Wheel ", shooterWheel);
         
-        loaderWheel = new CANTalon(4);
+        loaderWheel = new CANTalon(6);
         LiveWindow.addActuator("Loader", "Wheel", loaderWheel);
         
 
