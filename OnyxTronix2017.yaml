@@ -169,7 +169,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: Joystick Button 1
+      Name: openingPiston
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
@@ -198,7 +198,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: Joystick Button 2
+      Name: closePiston
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: ['0', '1', '2', '3', '4', '5']
@@ -276,10 +276,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id006 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id006
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command

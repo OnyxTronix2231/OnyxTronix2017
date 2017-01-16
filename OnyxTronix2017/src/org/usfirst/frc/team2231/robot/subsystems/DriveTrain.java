@@ -55,9 +55,10 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    
-    public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
-    }
+
+	public void arcadeDrive(Joystick getbuttonStick) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
