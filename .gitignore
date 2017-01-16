@@ -13,3 +13,4 @@ hs_err_pid*
 *.java~
 TemplateProject/BSD_License_for_WPILib_code.txt
 *.txt~
+/bin/
