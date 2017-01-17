@@ -11,7 +11,9 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 
 /**
  *
@@ -39,6 +41,7 @@ public class PushBall extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	RobotMap.storageBallPusher.set(m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
