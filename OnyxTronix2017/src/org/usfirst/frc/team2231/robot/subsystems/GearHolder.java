@@ -46,13 +46,13 @@ public class GearHolder extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    public void changePosition(double m_maxPosition) {
+    public void changePosition(double maxPosition) {
     	if(RobotMap.gearHolderLeftServo.get() != 0 && RobotMap.gearHolderRightServo.get() != 0){
     		RobotMap.gearHolderLeftServo.set(0);
     		RobotMap.gearHolderRightServo.set(0);
     	} else if(RobotMap.gearHolderLeftServo.get() == 0 && RobotMap.gearHolderRightServo.get() == 0){
-    		RobotMap.gearHolderLeftServo.set(m_maxPosition);
-    		RobotMap.gearHolderRightServo.set(m_maxPosition);
+    		RobotMap.gearHolderLeftServo.set(maxPosition);
+    		RobotMap.gearHolderRightServo.set(maxPosition);
     	}
     }
 }
