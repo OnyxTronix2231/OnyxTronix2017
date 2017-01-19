@@ -63,7 +63,7 @@ public class OI {
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("ClimbWheel", new ClimbWheel());
+        SmartDashboard.putData("ClimbRope", new ClimbRope());
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveByJoystick", new DriveByJoystick());
 

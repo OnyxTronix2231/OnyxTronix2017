@@ -11,8 +11,10 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.*;
+
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -45,6 +47,10 @@ public class Climbe extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    }
+    public void climbeRope() {
+    	RobotMap.climbeFirst.set(Robot.oi.getbuttonStick().getRawAxis(1));
+    	RobotMap.climbeSecond.set(Robot.oi.getbuttonStick().getRawAxis(1));
     }
 }
 
