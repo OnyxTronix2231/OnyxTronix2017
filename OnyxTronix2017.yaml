@@ -307,7 +307,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Conditional Command
-    Name: StartOrStop
+    Name: ToggleShoot
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty
