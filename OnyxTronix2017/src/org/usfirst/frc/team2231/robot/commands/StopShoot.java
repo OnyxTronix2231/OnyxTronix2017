@@ -38,7 +38,7 @@ public class StopShoot extends InstantCommand {
 
     // Called once when this command runs
     protected void initialize() {
-    	RobotMap.shooterWheel.set(0);
+    	Robot.shooter.stopShoot();
     }
 
 }

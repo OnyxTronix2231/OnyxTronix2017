@@ -39,7 +39,7 @@ public class StartShoot extends InstantCommand {
 
     // Called once when this command runs
     protected void initialize() {
-    	RobotMap.shooterWheel.set(StaticFields.SHOOTER_SPEED);
+    	Robot.shooter.startShoot();
     }
 
 }

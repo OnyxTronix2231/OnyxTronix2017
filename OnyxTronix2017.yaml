@@ -114,7 +114,17 @@ Children:
           validators: *id002
           value: '7'
       Base: CAN Talon
-      Name: 'Wheel '
+      Name: FirstWheel
+    - Children: []
+      Properties:
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: '2'
+          name: CAN ID
+          validators: *id002
+          value: '4'
+      Base: CAN Talon
+      Name: SecondWheel
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
