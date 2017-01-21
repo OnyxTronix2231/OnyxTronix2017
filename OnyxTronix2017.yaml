@@ -114,17 +114,7 @@ Children:
           validators: *id002
           value: '9'
       Base: CAN Talon
-      Name: First
-    - Children: []
-      Properties:
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '2'
-          name: CAN ID
-          validators: *id002
-          value: '8'
-      Base: CAN Talon
-      Name: Second
+      Name: Motor
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -134,12 +124,12 @@ Children:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: ClimbRope}
       Constants: !!robotbuilder.data.properties.ConstantsProperty
-        default: &id003 []
+        default: []
         name: Constants
         validators: null
-        value: *id003
+        value: []
     Base: Subsystem
-    Name: Climbe
+    Name: Climber
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -202,12 +192,12 @@ Children:
         validators: null
         value: []
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Climbe}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id004 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id004
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
