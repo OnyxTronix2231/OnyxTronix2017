@@ -207,14 +207,14 @@ Children:
   - Children: []
     Properties:
       On True Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: On True Command, type: Command, validators: null, value: OpenPiston}
+        name: On True Command, type: Command, validators: null, value: None}
       Parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
         name: Parameters
         validators: null
         value: []
       On False Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: On False Command, type: Command, validators: null, value: ClosePiston}
+        name: On False Command, type: Command, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Conditional Command
@@ -236,7 +236,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Instant Command
-    Name: OpenPiston
+    Name: OpenGearBlockerPiston
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -254,7 +254,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Instant Command
-    Name: ClosePiston
+    Name: CloseGearBlockerPiston
   Properties: {}
   Base: Commands
   Name: Commands
