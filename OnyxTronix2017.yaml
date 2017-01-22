@@ -183,13 +183,13 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '7'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
           type: Command
           validators: &id012 [TypeDropdownSelected]
-          value: OpenPiston
+          value: OpenShifters
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id013 [whileHeld, whenPressed, whenReleased]
           default: whileHeld
@@ -197,7 +197,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: openPiston
+      Name: openShifters
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
@@ -212,13 +212,13 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '8'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
           type: Command
           validators: *id012
-          value: ClosePiston
+          value: CloseShifters
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id013
           default: whileHeld
@@ -226,7 +226,7 @@ Children:
           validators: null
           value: whenPressed
       Base: Joystick Button
-      Name: closePiston
+      Name: closeShifters
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: ['0', '1', '2', '3', '4', '5']
@@ -286,14 +286,14 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id014 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id014
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Instant Command
-    Name: OpenPiston
+    Name: OpenShifters
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -304,14 +304,14 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id015 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id015
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Instant Command
-    Name: ClosePiston
+    Name: CloseShifters
   Properties: {}
   Base: Commands
   Name: Commands
