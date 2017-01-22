@@ -65,7 +65,7 @@ public class OI {
         load = new JoystickButton(buttonStick, 6);
         load.whileHeld(new Load(1));
         shoot = new JoystickButton(buttonStick, 5);
-        shoot.whenPressed(new StartShoot(1));
+        shoot.whenPressed(new StartShoot());
 
 
         // SmartDashboard Buttons
