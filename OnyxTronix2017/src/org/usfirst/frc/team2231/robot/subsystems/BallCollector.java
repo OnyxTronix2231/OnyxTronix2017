@@ -46,8 +46,8 @@ public class BallCollector extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
-    public void startBallCollector() {
-    	wheel.set(1);
+    public void startBallCollector(double speed) {
+    	wheel.set(speed);
     }
     
     public void stopBallCollector() {
