@@ -45,8 +45,13 @@ public class BallCollector extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    
     public void startBallCollector() {
     	RobotMap.ballCollectorwheel.set(1);
+    }
+    
+    public void stopBallCollector() {
+    	RobotMap.ballCollectorwheel.set(0);
     }
 }
 
