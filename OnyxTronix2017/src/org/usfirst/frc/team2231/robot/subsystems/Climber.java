@@ -48,7 +48,7 @@ public class Climber extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    public void climbeRope() {
+    public void climbRope() {
     	RobotMap.climberMotor.set(Robot.oi.getbuttonStick().getRawAxis(1));
     }
 }
