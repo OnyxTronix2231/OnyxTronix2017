@@ -53,4 +53,10 @@ public class Shooter extends Subsystem {
     	RobotMap.shooterFirstWheel.set(0);
     	RobotMap.shooterSecondWheel.set(0);
 	}
+	public double getFirstWheel() {
+		return RobotMap.shooterFirstWheel.get();
+	}
+	public double getSecondWheel() {
+		return RobotMap.shooterSecondWheel.get();
+	}
 }

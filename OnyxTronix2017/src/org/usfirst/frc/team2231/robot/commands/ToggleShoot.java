@@ -30,6 +30,6 @@ public class ToggleShoot extends ConditionalCommand {
     }
 
     protected boolean condition(){
-        return (RobotMap.shooterFirstWheel.get() == 0) && (RobotMap.shooterSecondWheel.get() == 0);
+        return (Robot.shooter.getFirstWheel() == 0) && (Robot.shooter.getSecondWheel() == 0);
     }
 }
