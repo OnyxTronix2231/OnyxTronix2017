@@ -166,11 +166,21 @@ Children:
   Base: Subsystems
   Name: Subsystems
 - Children:
+  - Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: &id014 ['0', '1', '2', '3', '4', '5']
+        default: 1
+        name: Number
+        validators: &id015 [Joystick]
+        value: '0'
+    Base: Joystick
+    Name: buttonStick
   - Children:
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: buttonStick}
+          name: Joystick, validators: null, value: driveStick}
         Parameters: !!robotbuilder.data.properties.ParametersProperty
           default: []
           name: Parameters
@@ -201,7 +211,7 @@ Children:
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: buttonStick}
+          name: Joystick, validators: null, value: driveStick}
         Parameters: !!robotbuilder.data.properties.ParametersProperty
           default: []
           name: Parameters
@@ -229,13 +239,13 @@ Children:
       Name: closeShifters
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: ['0', '1', '2', '3', '4', '5']
+        choices: *id014
         default: 1
         name: Number
-        validators: [Joystick]
-        value: '0'
+        validators: *id015
+        value: '1'
     Base: Joystick
-    Name: buttonStick
+    Name: driveStick
   Properties: {}
   Base: OI
   Name: Operator Interface
