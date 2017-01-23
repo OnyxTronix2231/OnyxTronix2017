@@ -47,11 +47,11 @@ public class BallCollector extends Subsystem {
     }
     
     public void startBallCollector() {
-    	RobotMap.ballCollectorwheel.set(1);
+    	wheel.set(1);
     }
     
     public void stopBallCollector() {
-    	RobotMap.ballCollectorwheel.set(0);
+    	wheel.set(0);
     }
 }
 
