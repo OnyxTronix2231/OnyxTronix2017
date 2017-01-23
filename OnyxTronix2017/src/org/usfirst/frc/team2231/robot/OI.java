@@ -63,7 +63,7 @@ public class OI {
         buttonStick = new Joystick(0);
         
         load = new JoystickButton(buttonStick, 6);
-        load.whenPressed(new Load(1, 0));
+        load.whileHeld(new Load(1));
         shoot = new JoystickButton(buttonStick, 5);
         shoot.whenPressed(new ToggleShoot());
 

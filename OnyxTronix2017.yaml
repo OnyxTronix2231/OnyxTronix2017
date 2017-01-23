@@ -213,8 +213,6 @@ Children:
           value:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: maxSpeed,
             type: double, value: '1'}
-          - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: minSpeed,
-            type: double, value: '0'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id004
           default: '1'
@@ -232,7 +230,7 @@ Children:
           default: whileHeld
           name: When to Run
           validators: null
-          value: whenPressed
+          value: whileHeld
       Base: Joystick Button
       Name: load
     Properties:
@@ -292,7 +290,6 @@ Children:
         validators: null
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: maxSpeed, type: double}
-        - !!robotbuilder.data.properties.ParameterDescriptor {name: minSpeed, type: double}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Loader}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
