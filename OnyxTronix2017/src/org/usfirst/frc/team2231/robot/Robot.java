@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team2231.robot.commands.*;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
+import org.usfirst.frc.team2231.robot.subsystems.*;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Loader;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
     public static GearBlocker gearBlocker;
     public static DriveTrain driveTrain;
     public static Climber climber;
+    public static GearHolder gearHolder;
     public static Shooter shooter;
     public static Loader loader;
 
@@ -54,6 +56,7 @@ public class Robot extends IterativeRobot {
         gearBlocker = new GearBlocker();
         driveTrain = new DriveTrain();
         climber = new Climber();
+        gearHolder = new GearHolder();
         shooter = new Shooter();
         loader = new Loader();
 
