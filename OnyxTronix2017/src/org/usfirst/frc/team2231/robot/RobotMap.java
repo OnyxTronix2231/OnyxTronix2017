@@ -33,6 +33,7 @@ public class RobotMap {
     public static CANTalon driveTrainFirstRight;
     public static CANTalon driveTrainSecondRight;
     public static RobotDrive driveTrainRobotDrive;
+    public static DoubleSolenoid gearHolderPiston;
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon loaderWheel;
@@ -64,6 +65,8 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
 
+        gearHolderPiston = new DoubleSolenoid(0, 0, 1);
+        LiveWindow.addActuator("Gear Holder", "Piston", gearHolderPiston);
         shooterUpperWheel = new CANTalon(7);
         LiveWindow.addActuator("Shooter", "UpperWheel", shooterUpperWheel);
         
