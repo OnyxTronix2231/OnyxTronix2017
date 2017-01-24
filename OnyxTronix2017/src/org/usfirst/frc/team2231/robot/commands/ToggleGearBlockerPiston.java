@@ -11,11 +11,10 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 
+import org.usfirst.frc.team2231.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
-
-import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
 
 /**
  *

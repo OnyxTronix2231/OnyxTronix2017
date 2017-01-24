@@ -11,19 +11,19 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.subsystems.BallCollector;
+import org.usfirst.frc.team2231.robot.subsystems.Climber;
+import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
+import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
+import org.usfirst.frc.team2231.robot.subsystems.Loader;
+import org.usfirst.frc.team2231.robot.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-import org.usfirst.frc.team2231.robot.commands.*;
-import org.usfirst.frc.team2231.robot.subsystems.*;
-import org.usfirst.frc.team2231.robot.subsystems.Climber;
-import org.usfirst.frc.team2231.robot.subsystems.*;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2231.robot.subsystems.Loader;
-import org.usfirst.frc.team2231.robot.subsystems.Shooter;
-import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
 /**
  * The VM is configured to automatically run this class, and to call the

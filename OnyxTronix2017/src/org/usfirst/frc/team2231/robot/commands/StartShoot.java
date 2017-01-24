@@ -10,11 +10,9 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
-import edu.wpi.first.wpilibj.command.InstantCommand;
-
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.StaticFields;
+
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *

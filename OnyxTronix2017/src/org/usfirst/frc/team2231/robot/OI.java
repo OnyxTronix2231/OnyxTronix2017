@@ -10,14 +10,23 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import org.usfirst.frc.team2231.robot.commands.*;
+import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
+import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.CloseShifters;
+import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
+import org.usfirst.frc.team2231.robot.commands.Load;
+import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
+import org.usfirst.frc.team2231.robot.commands.OpenGearHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.OpenShifters;
+import org.usfirst.frc.team2231.robot.commands.StartShoot;
+import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
+import org.usfirst.frc.team2231.robot.commands.ToggleShoot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.*;
-import org.usfirst.frc.team2231.robot.subsystems.*;
 
 
 /**
