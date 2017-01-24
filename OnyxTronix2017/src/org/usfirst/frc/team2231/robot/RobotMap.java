@@ -33,6 +33,7 @@ public class RobotMap {
     public static CANTalon driveTrainFirstRight;
     public static CANTalon driveTrainSecondRight;
     public static RobotDrive driveTrainRobotDrive;
+    public static CANTalon climberMotor;
     public static DoubleSolenoid driveTrainShifterRight;
     public static DoubleSolenoid driveTrainShifterLeft;
     public static DoubleSolenoid gearHolderPiston;
@@ -66,6 +67,9 @@ public class RobotMap {
         driveTrainRobotDrive.setExpiration(0.1);
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
+
+        climberMotor = new CANTalon(9);
+        LiveWindow.addActuator("Climber", "Motor", climberMotor);
 
         driveTrainShifterRight = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("DriveTrain", "ShifterRight", driveTrainShifterRight);
