@@ -103,11 +103,11 @@ public class OI {
         SmartDashboard.putData("CloseGearBlockerPiston", new CloseGearBlockerPiston());
     }
 
-    public Joystick getbuttonStick() {
+    public Joystick getButtonStick() {
         return buttonStick;
     }
 
-    public Joystick getdriveStick() {
+    public Joystick getDriveStick() {
         return driveStick;
     }
 }

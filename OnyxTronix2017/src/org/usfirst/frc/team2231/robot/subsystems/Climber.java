@@ -35,7 +35,7 @@ public class Climber extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     public void climbRope() {
-    	RobotMap.climberMotor.set(Robot.oi.getbuttonStick().getRawAxis(1));
+    	RobotMap.climberMotor.set(Robot.oi.getButtonStick().getRawAxis(1));
     }
 }
 
