@@ -12,7 +12,7 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team2231.robot.subsystems.BallCollector;
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static GearBlocker gearBlocker;
     public static DriveTrain driveTrain;
-    public static BallCollector ballCollector;
+    public static Collector collector;
     public static Climber climber;
     public static GearHolder gearHolder;
     public static Shooter shooter;
@@ -54,7 +54,7 @@ public class Robot extends IterativeRobot {
     	
         gearBlocker = new GearBlocker();
         driveTrain = new DriveTrain();
-        ballCollector = new BallCollector();
+        collector = new Collector();
         climber = new Climber();
         gearHolder = new GearHolder();
         shooter = new Shooter();

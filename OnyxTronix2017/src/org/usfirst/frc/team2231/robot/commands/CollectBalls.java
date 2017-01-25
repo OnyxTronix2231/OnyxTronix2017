@@ -23,12 +23,12 @@ public class CollectBalls extends Command {
     public CollectBalls(double maxSpeed) {
         m_maxSpeed = maxSpeed;
 
-        requires(Robot.ballCollector);
+        requires(Robot.collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.ballCollector.startBallCollector(m_maxSpeed);
+    	Robot.collector.startBallCollector(m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,7 +42,7 @@ public class CollectBalls extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ballCollector.stopBallCollector();
+    	Robot.collector.stopBallCollector();
     }
 
     // Called when another command which requires one or more of the same

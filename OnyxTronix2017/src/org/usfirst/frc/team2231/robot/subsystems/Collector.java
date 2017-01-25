@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class BallCollector extends Subsystem {
-    private final CANTalon wheel = RobotMap.ballCollectorwheel;
+public class Collector extends Subsystem {
+    private final CANTalon wheel = RobotMap.collectorWheel;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
