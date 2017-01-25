@@ -16,7 +16,7 @@ import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseShifters;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
-import org.usfirst.frc.team2231.robot.commands.Load;
+import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenShifters;
@@ -86,7 +86,7 @@ public class OI {
         toggleGearHold = new JoystickButton(buttonStick, 3);
         toggleGearHold.whenPressed(new ToggleGearHold());
         load = new JoystickButton(buttonStick, 6);
-        load.whileHeld(new Load(1));
+        load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, 5);
         shoot.whenPressed(new ToggleShoot());
 

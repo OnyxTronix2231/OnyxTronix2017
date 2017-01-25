@@ -38,7 +38,7 @@ public class RobotMap {
     public static DoubleSolenoid gearHolderPiston;
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
-    public static CANTalon loaderWheel;
+    public static CANTalon triggerWheel;
 
     public static void init() {
         gearBlockerPiston = new DoubleSolenoid(0, 0, 1);
@@ -85,7 +85,7 @@ public class RobotMap {
         shooterLowerWheel = new CANTalon(4);
         LiveWindow.addActuator("Shooter", "LowerWheel", shooterLowerWheel);
         
-        loaderWheel = new CANTalon(6);
-        LiveWindow.addActuator("Loader", "Wheel", loaderWheel);        
+        triggerWheel = new CANTalon(6);
+        LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
     }
 }
