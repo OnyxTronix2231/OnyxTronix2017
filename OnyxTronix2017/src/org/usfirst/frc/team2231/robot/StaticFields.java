@@ -1,6 +1,9 @@
 package org.usfirst.frc.team2231.robot;
 
-public class StaticFields {
+public interface StaticFields {
 
-	public static final double SHOOTER_SPEED = 1;
+	double SHOOTER_SPEED = 1;
+	double P_PID_SHOOT = 10;
+	double D_PID_SHOOT = 0.4;
+	double SHOOTER_ABSOLUTE_TOLERANCE = 5;
 }
