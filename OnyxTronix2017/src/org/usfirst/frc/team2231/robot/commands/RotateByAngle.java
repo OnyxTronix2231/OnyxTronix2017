@@ -10,14 +10,11 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
-import javax.lang.model.SourceVersion;
 
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.StaticField;
 
 /**
  *
@@ -45,11 +42,10 @@ public class RotateByAngle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.driveTrainGyro.reset();
+    	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.changeControlModeToFollow();
-    	RobotMap.driveTrainRightPIDController.init(m_setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
-    	RobotMap.driveTrainLeftPIDController.init(m_setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+    	Robot.driveTrain.pidInit(m_setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -58,13 +54,12 @@ public class RotateByAngle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return RobotMap.driveTrainRightPIDController.onTarget() && RobotMap.driveTrainLeftPIDController.onTarget();
+        return Robot.driveTrain.isOnTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.driveTrainRightPIDController.stop();
-    	RobotMap.driveTrainLeftPIDController.stop();
+    	Robot.driveTrain.stopPID();
     	Robot.driveTrain.resetTalonControlMode();
     }
 
