@@ -59,14 +59,16 @@ public class RobotMap {
         
         driveTrainRobotDrive = new RobotDrive(driveTrainFirstLeft, driveTrainSecondLeft,
               driveTrainFirstRight, driveTrainSecondRight);
-        
-        driveTrainRightPIDController = new OnyxTronixPIDController(StaticField.PID_P_ROTATION, StaticField.PID_I_ROTATION, StaticField.PID_D_ROTATION, StaticField.PID_F_ROTATION, driveTrainGyro, driveTrainFirstRight, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
-        driveTrainLeftPIDController = new OnyxTronixPIDController(StaticField.PID_P_ROTATION, StaticField.PID_I_ROTATION, StaticField.PID_D_ROTATION, StaticField.PID_F_ROTATION, driveTrainGyro, driveTrainFirstLeft, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
-
         driveTrainRobotDrive.setSafetyEnabled(true);
         driveTrainRobotDrive.setExpiration(0.1);
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
+        
+        driveTrainRightPIDController = new OnyxTronixPIDController(StaticField.PID_P_ROTATION, StaticField.PID_I_ROTATION, StaticField.PID_D_ROTATION, StaticField.PID_F_ROTATION, driveTrainGyro, driveTrainFirstRight, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+        driveTrainRightPIDController.setOutputRange(-1, 1);
+        
+        driveTrainLeftPIDController = new OnyxTronixPIDController(StaticField.PID_P_ROTATION, StaticField.PID_I_ROTATION, StaticField.PID_D_ROTATION, StaticField.PID_F_ROTATION, driveTrainGyro, driveTrainFirstLeft, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+        driveTrainLeftPIDController.setOutputRange(-1, 1);      
 
         driveTrainGyro = new AnalogGyro(0);
         LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);

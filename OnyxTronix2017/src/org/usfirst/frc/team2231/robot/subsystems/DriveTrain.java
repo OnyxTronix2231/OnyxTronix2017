@@ -68,15 +68,13 @@ public class DriveTrain extends Subsystem {
     public void changeControlModeToFollow(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
-    	firstLeft.changeControlMode(TalonControlMode.Follower);
     	
-    	secondLeft.set(firstRight.getDeviceID());
+    	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
-    	firstLeft.set(firstRight.getDeviceID());
     }
     public void setPIDSourceType(PIDSourceType sourceType){ 
-    	secondLeft.setPIDSourceType(sourceType);
-    	secondRight.setPIDSourceType(sourceType);
+    	firstLeft.setPIDSourceType(sourceType);
+    	firstRight.setPIDSourceType(sourceType);
     }
     public void resetTalonControlMode(){
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
@@ -85,9 +83,9 @@ public class DriveTrain extends Subsystem {
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
 
     }
-    public void PIDInit(double m_setPoint) {
-    	pidControllerRight.init(m_setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
-    	pidControllerLeft.init(m_setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+    public void PIDInit(double setPoint) {
+    	pidControllerRight.init(setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+    	pidControllerLeft.init(setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
     }
     public void resetGyro() {
     	gyro.reset();
