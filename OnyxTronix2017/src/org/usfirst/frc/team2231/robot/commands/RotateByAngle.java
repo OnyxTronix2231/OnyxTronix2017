@@ -45,7 +45,7 @@ public class RotateByAngle extends Command {
     	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.changeControlModeToFollow();
-    	Robot.driveTrain.pidInit(m_setPoint);
+    	Robot.driveTrain.PIDInit(m_setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -85,7 +85,7 @@ public class DriveTrain extends Subsystem {
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
 
     }
-    public void pidInit(double m_setPoint) {
+    public void PIDInit(double m_setPoint) {
     	pidControllerRight.init(m_setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
     	pidControllerLeft.init(m_setPoint, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
     }
