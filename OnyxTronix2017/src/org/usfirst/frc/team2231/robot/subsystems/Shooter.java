@@ -57,11 +57,6 @@ public class Shooter extends Subsystem {
 		lowerWheel.set(StaticFields.SHOOTER_SPEED);
 	}
 	
-	public void stopShoot() {
-		upperWheel.set(0);
-		lowerWheel.set(0);
-	}
-	
 	public boolean isShooting() {
 		return (upperWheel.get() == 0) && (lowerWheel.get() == 0);
 	}
@@ -77,11 +72,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void disablePIDController() {
-		PIDController.disable();
-	}
-	
-	public void enablePIDController() {
-		PIDController.enable();
+		PIDController.stop();
 	}
 	
 	public void resetTalonControl() {

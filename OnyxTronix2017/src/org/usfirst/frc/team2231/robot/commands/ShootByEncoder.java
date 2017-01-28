@@ -23,7 +23,6 @@ public class ShootByEncoder extends Command {
     protected void initialize() {
     	Robot.shooter.changeShooterTalonToFollow();
     	Robot.shooter.shooterPIDInit(m_setPoint);
-    	Robot.shooter.enablePIDController();
     }
 
     // Called repeatedly when this Command is scheduled to run

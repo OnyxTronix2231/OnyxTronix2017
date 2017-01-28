@@ -19,7 +19,6 @@ public class StopShoot extends InstantCommand {
     protected void initialize() {
     	Robot.shooter.resetTalonControl();
     	Robot.shooter.disablePIDController();
-    	Robot.shooter.stopShoot();
     }
 
 }
