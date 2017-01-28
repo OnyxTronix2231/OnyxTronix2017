@@ -11,6 +11,8 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import onyxNiVision.OnyxTronixPIDController;
+
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -39,6 +41,8 @@ public class RobotMap {
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
+    public static OnyxTronixPIDController driveTrainPIDControllerRight;
+    public static OnyxTronixPIDController driveTrainPIDControllerLeft;
 
     public static void init() {
         gearBlockerPiston = new DoubleSolenoid(0, 0, 1);
@@ -87,5 +91,15 @@ public class RobotMap {
         
         triggerWheel = new CANTalon(6);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
+        
+        driveTrainPIDControllerRight = new OnyxTronixPIDController(StaticFields.driveP, StaticFields.driveI, StaticFields.driveD, StaticFields.driveF, driveTrainFirstLeft, driveTrainFirstLeft, StaticFields.driveAbsoluteTolerance);
+        driveTrainPIDControllerRight.setContinuous(false);
+        driveTrainPIDControllerRight.setAbsoluteTolerance(StaticFields.driveAbsoluteTolerance);
+        driveTrainPIDControllerRight.setOutputRange(StaticFields.outPutRangeMin, StaticFields.outPutRangeMax);
+        
+        driveTrainPIDControllerLeft = new OnyxTronixPIDController(StaticFields.driveP, StaticFields.driveI, StaticFields.driveD, StaticFields.driveF, driveTrainFirstLeft, driveTrainFirstLeft, StaticFields.driveAbsoluteTolerance);
+        driveTrainPIDControllerLeft.setContinuous(false);
+        driveTrainPIDControllerLeft.setAbsoluteTolerance(StaticFields.driveAbsoluteTolerance);
+        driveTrainPIDControllerLeft.setOutputRange(StaticFields.outPutRangeMin, StaticFields.outPutRangeMax);  
     }
 }
