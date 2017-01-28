@@ -98,11 +98,11 @@ public class DriveTrain extends Subsystem {
     	return RobotMap.driveTrainRightPIDController.onTarget() && RobotMap.driveTrainLeftPIDController.onTarget();
     }
     
-    public double getEfficientAngle(double angel) {
-    	if (angel >= 180) {
-    		angel = angel - 360;
+    public double getEfficientAngle(double angle) {
+    	if (angle >= 180) {
+    		angle -= 360;
     	} 
-    	return angel;
+    	return angle;
     }
 }
 
