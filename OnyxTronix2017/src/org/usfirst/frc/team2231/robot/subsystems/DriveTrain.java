@@ -68,13 +68,13 @@ public class DriveTrain extends Subsystem {
     public void changeControlModeToFollow(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
-    	firstLeft.changeControlMode(TalonControlMode.Follower);// TODO : Remove Line when there are 2 encoders
+    	firstLeft.changeControlMode(TalonControlMode.Follower);
     	
-    	secondLeft.set(firstRight.getDeviceID()); // TODO : When there are 2 encoders change to firstLeft.getDeviceID()
+    	secondLeft.set(firstRight.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     	firstLeft.set(firstRight.getDeviceID());
     }
-    public void setPIDSourceType(PIDSourceType sourceType){ // TODO: Add encoder
+    public void setPIDSourceType(PIDSourceType sourceType){ 
     	secondLeft.setPIDSourceType(sourceType);
     	secondRight.setPIDSourceType(sourceType);
     }
