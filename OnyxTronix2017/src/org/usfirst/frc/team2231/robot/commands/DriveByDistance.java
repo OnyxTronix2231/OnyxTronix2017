@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,7 +21,8 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.driveTrain.changeToFollower();
+    	Robot.driveTrain.driveByPID(m_setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,11 +31,12 @@ public class DriveByDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.driveTrain.isOnTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.resetControlType();
     }
 
     // Called when another command which requires one or more of the same

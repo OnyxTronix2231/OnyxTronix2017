@@ -11,14 +11,19 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import onyxNiVision.OnyxTronixPIDController;
+
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.StaticFields;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -34,6 +39,7 @@ public class DriveTrain extends Subsystem {
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
     private final DoubleSolenoid shifterLeft = RobotMap.driveTrainShifterLeft;
+    private final OnyxTronixPIDController pidController = RobotMap.driveTrainPIDController;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -54,6 +60,27 @@ public class DriveTrain extends Subsystem {
     public void openShifters() {
     	RobotMap.driveTrainShifterLeft.set(Value.kForward);
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
+    }
+    public void driveByPID(double m_setPoint) {
+    	pidController.init(m_setPoint, StaticFields.driveAbsoluteTolerance);
+    }
+    public void changeToFollower() {
+    	firstLeft.setPIDSourceType(PIDSourceType.kDisplacement);
+    	firstRight.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	firstRight.set(firstLeft.getDeviceID());
+    	secondRight.set(firstLeft.getDeviceID());
+    	secondLeft.set(firstLeft.getDeviceID());
+    }
+    public void resetControlType() {
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
+    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
+    }
+    public boolean isOnTarget() {
+    	return RobotMap.driveTrainPIDController.onTarget();
     }
 }
 
