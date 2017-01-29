@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
     private final CANTalon motor = RobotMap.climberMotor;
-    
+    private static final double SENSITIVITY_VALUE = 1 * 0.2;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -35,7 +35,11 @@ public class Climber extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     public void climbRope() {
-    	RobotMap.climberMotor.set(Robot.oi.getButtonStick().getRawAxis(1));
+    	if(Math.abs(Robot.oi.getButtonStick().getRawAxis(1)) > SENSITIVITY_VALUE){
+    		motor.set(Robot.oi.getButtonStick().getRawAxis(1));
+    	} else {
+    		motor.set(0);
+    	}
     }
 }
 
