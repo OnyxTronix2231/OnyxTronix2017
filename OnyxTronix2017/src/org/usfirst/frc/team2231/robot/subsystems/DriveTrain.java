@@ -14,7 +14,6 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import onyxNiVision.OnyxTronixPIDController;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.StaticFields;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
 import com.ctre.CANTalon;
@@ -32,6 +31,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
+	public static final double driveP = 0.5;
+	public static final double driveI = 0;
+	public static final double driveD = 0;
+	public static final double driveF = 0;
+	public static final double driveAbsoluteTolerance = 5;
+	public static final double outPutRangeMin = -1;
+	public static final double outPutRangeMax = 1;
+
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
@@ -62,7 +69,7 @@ public class DriveTrain extends Subsystem {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
     }
     public void driveByPID(double setPoint) {
-    	pidController.init(setPoint, StaticFields.driveAbsoluteTolerance);
+    	pidController.init(setPoint, driveAbsoluteTolerance);
     }
     public void changeToFollowerMode() {
     	firstRight.changeControlMode(TalonControlMode.Follower);

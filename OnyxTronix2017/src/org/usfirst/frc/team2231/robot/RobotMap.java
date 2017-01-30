@@ -13,6 +13,8 @@ package org.usfirst.frc.team2231.robot;
 
 import onyxNiVision.OnyxTronixPIDController;
 
+import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -91,9 +93,9 @@ public class RobotMap {
         triggerWheel = new CANTalon(6);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
         
-        driveTrainPIDController = new OnyxTronixPIDController(StaticFields.driveP, StaticFields.driveI, StaticFields.driveD, StaticFields.driveF, driveTrainFirstLeft, driveTrainFirstLeft, StaticFields.driveAbsoluteTolerance);
+        driveTrainPIDController = new OnyxTronixPIDController(DriveTrain.driveP, DriveTrain.driveI, DriveTrain.driveD, DriveTrain.driveF, driveTrainFirstLeft, driveTrainFirstLeft, DriveTrain.driveAbsoluteTolerance);
         driveTrainPIDController.setContinuous(false);
-        driveTrainPIDController.setAbsoluteTolerance(StaticFields.driveAbsoluteTolerance);
-        driveTrainPIDController.setOutputRange(StaticFields.outPutRangeMin, StaticFields.outPutRangeMax);
+        driveTrainPIDController.setAbsoluteTolerance(DriveTrain.driveAbsoluteTolerance);
+        driveTrainPIDController.setOutputRange(DriveTrain.outPutRangeMin, DriveTrain.outPutRangeMax);
     }
 }
