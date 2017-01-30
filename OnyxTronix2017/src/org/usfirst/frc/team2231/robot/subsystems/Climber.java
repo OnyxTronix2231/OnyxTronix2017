@@ -15,7 +15,6 @@ import onyxNiVision.OnyxTronixPIDController;
 
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.StaticFields;
 import org.usfirst.frc.team2231.robot.commands.ClimbRope;
 
 import com.ctre.CANTalon;
@@ -30,6 +29,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Climber extends Subsystem {
+	public static final double SETPOINT_ANGLE = 90;
+	public static final double PID_P = 0.5;
+	public static final double PID_I = 0;
+	public static final double PID_D = 0;
+	public static final double PID_TOLERNCE = 0.2;
+	public static final double PID_F = 0;
+	public static final double UTPUT_RANGE = 1;
+	
 	private final double maxMotorRate = 1000;
     private final CANTalon motor = RobotMap.climberMotor;
     private static final double SENSITIVITY_VALUE = 1 * 0.2;
@@ -55,7 +62,7 @@ public class Climber extends Subsystem {
     }
     
     public void initPID(double setPoint) {
-    	PIDController.init(setPoint, StaticFields.PID_TOLERNCE);
+    	PIDController.init(setPoint, PID_TOLERNCE);
     }
     
     public void disablePID() {
@@ -63,7 +70,7 @@ public class Climber extends Subsystem {
     }
     
     public double getSetPointByRobotAngle() {
-    	return maxMotorRate / StaticFields.SETPOINT_ANGLE * (StaticFields.SETPOINT_ANGLE - gyro.getAngle());
+    	return maxMotorRate / SETPOINT_ANGLE * (SETPOINT_ANGLE - gyro.getAngle());
     }
 }
 

@@ -3,7 +3,6 @@ package org.usfirst.frc.team2231.robot;
 public interface StaticFields {
 
 	/*************Shooter************/
-	double SPEED = 1;
 	/*************Climber************/
 	double SETPOINT_ANGLE = 90;
 	double PID_P = 0.5;

@@ -11,7 +11,6 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.StaticFields;
 
 import com.ctre.CANTalon;
 
@@ -21,6 +20,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Shooter extends Subsystem {
+	public static final	double SPEED = 1;
+	
     private final CANTalon upperWheel = RobotMap.shooterUpperWheel;
     private final CANTalon lowerWheel = RobotMap.shooterLowerWheel;
     
@@ -33,8 +34,8 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void startShoot() {
-		upperWheel.set(-StaticFields.SPEED);
-		lowerWheel.set(StaticFields.SPEED);
+		upperWheel.set(-SPEED);
+		lowerWheel.set(SPEED);
 	}
 	
 	public void stopShoot() {
