@@ -15,6 +15,8 @@ package org.usfirst.frc.team2231.robot;
 
 import onyxNiVision.OnyxTronixPIDController;
 
+import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -64,10 +66,10 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
         
-        driveTrainRightPIDController = new OnyxTronixPIDController(StaticField.PID_P_ROTATION, StaticField.PID_I_ROTATION, StaticField.PID_D_ROTATION, StaticField.PID_F_ROTATION, driveTrainGyro, driveTrainFirstRight, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+        driveTrainRightPIDController = new OnyxTronixPIDController(DriveTrain.PID_P_ROTATION, DriveTrain.PID_I_ROTATION, DriveTrain.PID_D_ROTATION, DriveTrain.PID_F_ROTATION, driveTrainGyro, driveTrainFirstRight, DriveTrain.ABSOLUTE_TOLERANCE_ROTATION);
         driveTrainRightPIDController.setOutputRange(-1, 1);
         
-        driveTrainLeftPIDController = new OnyxTronixPIDController(StaticField.PID_P_ROTATION, StaticField.PID_I_ROTATION, StaticField.PID_D_ROTATION, StaticField.PID_F_ROTATION, driveTrainGyro, driveTrainFirstLeft, StaticField.ABSOLUTE_TOLERANCE_ROTATION);
+        driveTrainLeftPIDController = new OnyxTronixPIDController(DriveTrain.PID_P_ROTATION, DriveTrain.PID_I_ROTATION, DriveTrain.PID_D_ROTATION, DriveTrain.PID_F_ROTATION, driveTrainGyro, driveTrainFirstLeft, DriveTrain.ABSOLUTE_TOLERANCE_ROTATION);
         driveTrainLeftPIDController.setOutputRange(-1, 1);      
 
         driveTrainGyro = new AnalogGyro(0);
