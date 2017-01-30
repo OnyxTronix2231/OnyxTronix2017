@@ -34,7 +34,6 @@ public class RobotMap {
     public static CANTalon collectorWheel;
     public static CANTalon climberMotor;
     public static DoubleSolenoid driveTrainShifterRight;
-    public static DoubleSolenoid driveTrainShifterLeft;
     public static DoubleSolenoid gearHolderPiston;
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;

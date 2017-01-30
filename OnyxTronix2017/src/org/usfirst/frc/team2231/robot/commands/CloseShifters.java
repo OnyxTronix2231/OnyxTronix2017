@@ -24,7 +24,7 @@ public class CloseShifters extends InstantCommand {
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.driveTrain.closeShifters();
+    	Robot.driveTrain.closeShifter();
     }
 
 }

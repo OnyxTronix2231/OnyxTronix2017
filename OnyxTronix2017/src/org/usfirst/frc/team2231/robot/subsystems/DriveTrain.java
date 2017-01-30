@@ -33,7 +33,6 @@ public class DriveTrain extends Subsystem {
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
-    private final DoubleSolenoid shifterLeft = RobotMap.driveTrainShifterLeft;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -47,12 +46,10 @@ public class DriveTrain extends Subsystem {
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
     }
-    public void closeShifters() {
-    	RobotMap.driveTrainShifterLeft.set(Value.kReverse);
+    public void closeShifter() {
     	RobotMap.driveTrainShifterRight.set(Value.kReverse);
     }
-    public void openShifters() {
-    	RobotMap.driveTrainShifterLeft.set(Value.kForward);
+    public void openShifter() {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
     }
 }
