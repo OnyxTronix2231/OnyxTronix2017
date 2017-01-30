@@ -64,7 +64,7 @@ public class DriveTrain extends Subsystem {
     public void driveByPID(double setPoint) {
     	pidController.init(setPoint, StaticFields.driveAbsoluteTolerance);
     }
-    public void changeToFollower() {
+    public void changeToFollowerMode() {
     	firstRight.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
     	secondLeft.changeControlMode(TalonControlMode.Follower);
@@ -72,7 +72,7 @@ public class DriveTrain extends Subsystem {
     	secondRight.set(firstLeft.getDeviceID());
     	secondLeft.set(firstLeft.getDeviceID());
     }
-    public void resetControlType() {
+    public void resetControlMode() {
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	firstRight.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
