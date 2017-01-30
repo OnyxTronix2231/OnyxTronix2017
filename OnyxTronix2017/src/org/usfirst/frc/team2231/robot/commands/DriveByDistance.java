@@ -21,7 +21,7 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.changePIDTypeToSpeed();
+    	Robot.driveTrain.changePIDType();
     	Robot.driveTrain.changeToFollower();
     	Robot.driveTrain.driveByPID(m_setPoint);
     }

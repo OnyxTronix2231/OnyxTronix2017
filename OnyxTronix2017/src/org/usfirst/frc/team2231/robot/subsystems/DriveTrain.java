@@ -84,7 +84,7 @@ public class DriveTrain extends Subsystem {
     public void stopPID() {
     	pidController.stop();
     }
-    public void changePIDTypeToSpeed() {
+    public void changePIDType() {
     	firstLeft.setPIDSourceType(PIDSourceType.kDisplacement);
 	}
 }
