@@ -33,8 +33,8 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void startShoot() {
-		upperWheel.set(-StaticFields.SHOOTER_SPEED);
-		lowerWheel.set(StaticFields.SHOOTER_SPEED);
+		upperWheel.set(-StaticFields.SPEED);
+		lowerWheel.set(StaticFields.SPEED);
 	}
 	
 	public void stopShoot() {

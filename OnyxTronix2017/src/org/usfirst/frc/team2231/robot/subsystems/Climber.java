@@ -11,12 +11,18 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import onyxNiVision.OnyxTronixPIDController;
+
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.StaticFields;
 import org.usfirst.frc.team2231.robot.commands.ClimbRope;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -24,8 +30,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Climber extends Subsystem {
+	private final double maxMotorRate = 1000;
     private final CANTalon motor = RobotMap.climberMotor;
     private static final double SENSITIVITY_VALUE = 1 * 0.2;
+    private final OnyxTronixPIDController PIDController= RobotMap.PIDClimberContoller;
+    private final ADXRS450_Gyro gyro = RobotMap.gyro;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -40,6 +49,21 @@ public class Climber extends Subsystem {
     	} else {
     		motor.set(0);
     	}
+    }
+    public boolean isOnAngle(double angle) {
+    	return gyro.getAngle() == angle;	
+    }
+    
+    public void initPID(double setPoint) {
+    	PIDController.init(setPoint, StaticFields.PID_TOLERNCE);
+    }
+    
+    public void disablePID() {
+    	PIDController.stop();
+    }
+    
+    public double getSetPointByRobotAngle() {
+    	return maxMotorRate / StaticFields.SETPOINT_ANGLE * (StaticFields.SETPOINT_ANGLE - gyro.getAngle());
     }
 }
 
