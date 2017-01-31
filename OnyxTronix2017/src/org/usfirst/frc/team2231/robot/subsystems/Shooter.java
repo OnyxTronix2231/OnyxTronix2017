@@ -57,7 +57,7 @@ public class Shooter extends Subsystem {
 		lowerWheel.set(upperWheel.getDeviceID());
 	}
 	
-	public void shooterPIDInit(double m_setPoint) {
+	public void PIDInit(double m_setPoint) {
 		upperWheel.setPIDSourceType(PIDSourceType.kRate);
 		PIDController.init(m_setPoint, ABSOLUTE_TOLERANCE);
 	}

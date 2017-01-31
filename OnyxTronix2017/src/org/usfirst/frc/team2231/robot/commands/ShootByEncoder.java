@@ -22,7 +22,7 @@ public class ShootByEncoder extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.shooter.changeShooterTalonToFollow();
-    	Robot.shooter.shooterPIDInit(m_setPoint);
+    	Robot.shooter.PIDInit(m_setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
