@@ -33,6 +33,15 @@ public class DriveTrain extends Subsystem {
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
+    public static final double angleToFloor = 31;
+    public static final double cameraHeight = 40;//The height  is by meter
+    public static final double targetHeight = 70;//the height is by meter
+    public static final double verticalApertureAngle = 35;
+    public static final double PID_P = 5;
+    public static final double PID_I = 0;
+    public static final double PID_D = 0;
+    public static final double PID_F = 0;
+    public static final double PID_TOLERNCE = 20;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
