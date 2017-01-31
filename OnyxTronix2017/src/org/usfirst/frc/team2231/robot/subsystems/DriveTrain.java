@@ -63,6 +63,7 @@ public class DriveTrain extends Subsystem {
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
     }
+    
     public void changeControlModeToFollow(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
@@ -70,10 +71,12 @@ public class DriveTrain extends Subsystem {
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     }
+    
     public void setPIDSourceType(PIDSourceType sourceType){ 
     	firstLeft.setPIDSourceType(sourceType);
     	firstRight.setPIDSourceType(sourceType);
     }
+    
     public void resetTalonControlMode(){
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
@@ -81,17 +84,21 @@ public class DriveTrain extends Subsystem {
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
 
     }
+    
     public void PIDInit(double setPoint) {
     	pidControllerRight.init(setPoint, ABSOLUTE_TOLERANCE_ROTATION);
     	pidControllerLeft.init(setPoint, ABSOLUTE_TOLERANCE_ROTATION);
     }
+    
     public void resetGyro() {
     	gyro.reset();
     }
+    
     public void stopPID() {
     	pidControllerLeft.stop();
     	pidControllerRight.stop();
     }
+    
     public boolean isOnTarget(){
     	return RobotMap.driveTrainRightPIDController.onTarget() && RobotMap.driveTrainLeftPIDController.onTarget();
     }
