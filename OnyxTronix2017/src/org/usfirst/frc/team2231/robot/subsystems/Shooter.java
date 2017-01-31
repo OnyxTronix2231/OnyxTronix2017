@@ -58,7 +58,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void PIDInit(double m_setPoint) {
-		upperWheel.setPIDSourceType(PIDSourceType.kRate);
+		Robot.shooter.changePIDSourceType();
 		PIDController.init(m_setPoint, ABSOLUTE_TOLERANCE);
 	}
 	
@@ -68,5 +68,9 @@ public class Shooter extends Subsystem {
 	
 	public void resetTalonControl() {
 		lowerWheel.changeControlMode(TalonControlMode.PercentVbus);
+	}
+	
+	public void changePIDSourceType() {
+		upperWheel.setPIDSourceType(PIDSourceType.kRate);
 	}
 }
