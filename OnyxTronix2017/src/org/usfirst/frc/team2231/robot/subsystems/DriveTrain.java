@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import onyx.OnyxCANTalon;
 import onyxNiVision.OnyxTronixPIDController;
 
 
