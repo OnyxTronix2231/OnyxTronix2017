@@ -93,9 +93,11 @@ public class RobotMap {
         triggerWheel = new CANTalon(6);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
         
-        driveTrainPIDController = new OnyxTronixPIDController(DriveTrain.driveP, DriveTrain.driveI, DriveTrain.driveD, DriveTrain.driveF, driveTrainFirstLeft, driveTrainFirstLeft, DriveTrain.driveAbsoluteTolerance);
+        driveTrainPIDController = new OnyxTronixPIDController(DriveTrain.PID_P, DriveTrain.PID_I, DriveTrain.PID_D, 
+        													  DriveTrain.PID_F, driveTrainFirstLeft, driveTrainFirstLeft,
+        													  DriveTrain.PID_TOLEEANCE);
         driveTrainPIDController.setContinuous(false);
-        driveTrainPIDController.setAbsoluteTolerance(DriveTrain.driveAbsoluteTolerance);
-        driveTrainPIDController.setOutputRange(DriveTrain.outPutRangeMin, DriveTrain.outPutRangeMax);
+        driveTrainPIDController.setAbsoluteTolerance(DriveTrain.PID_TOLEEANCE);
+        driveTrainPIDController.setOutputRange(DriveTrain.PID_OUTPUTRANGE, DriveTrain.outPutRangeMax);
     }
 }

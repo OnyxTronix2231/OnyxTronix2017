@@ -31,12 +31,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double driveP = 0.5;
-	public static final double driveI = 0;
-	public static final double driveD = 0;
-	public static final double driveF = 0;
-	public static final double driveAbsoluteTolerance = 5;
-	public static final double outPutRangeMin = -1;
+	public static final double PID_P = 0.5;
+	public static final double PID_I = 0;
+	public static final double PID_D = 0;
+	public static final double PID_F = 0;
+	public static final double PID_TOLEEANCE = 5;
+	public static final double PID_OUTPUTRANGE = -1;
 	public static final double outPutRangeMax = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
@@ -69,7 +69,7 @@ public class DriveTrain extends Subsystem {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
     }
     public void driveByPID(double setPoint) {
-    	pidController.init(setPoint, driveAbsoluteTolerance);
+    	pidController.init(setPoint, PID_TOLEEANCE);
     }
     public void changeToFollowerMode() {
     	firstRight.changeControlMode(TalonControlMode.Follower);
