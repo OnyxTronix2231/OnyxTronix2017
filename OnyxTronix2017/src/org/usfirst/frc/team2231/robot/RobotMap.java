@@ -98,6 +98,6 @@ public class RobotMap {
         													  DriveTrain.PID_TOLEEANCE);
         driveTrainPIDController.setContinuous(false);
         driveTrainPIDController.setAbsoluteTolerance(DriveTrain.PID_TOLEEANCE);
-        driveTrainPIDController.setOutputRange(DriveTrain.PID_OUTPUTRANGE, DriveTrain.outPutRangeMax);
+        driveTrainPIDController.setOutputRange(-DriveTrain.PID_OUTPUTRANGE, DriveTrain.PID_OUTPUTRANGE);
     }
 }

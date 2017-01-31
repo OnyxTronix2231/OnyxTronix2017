@@ -36,8 +36,7 @@ public class DriveTrain extends Subsystem {
 	public static final double PID_D = 0;
 	public static final double PID_F = 0;
 	public static final double PID_TOLEEANCE = 5;
-	public static final double PID_OUTPUTRANGE = -1;
-	public static final double outPutRangeMax = 1;
+	public static final double PID_OUTPUTRANGE = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
