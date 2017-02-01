@@ -11,6 +11,7 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseShifters;
@@ -70,6 +71,7 @@ public class OI {
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
     public Joystick driveStick;
+    public JoystickButton centerByVision;
 
     public OI() {
         driveStick = new Joystick(1);
@@ -89,6 +91,9 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, 5);
         shoot.whenPressed(new ToggleShoot());
+        centerByVision = new JoystickButton(buttonStick, 2);
+        centerByVision.whenPressed(new CenterByVision(1));
+        
 
 
         // SmartDashboard Buttons

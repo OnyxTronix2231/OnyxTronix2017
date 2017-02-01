@@ -50,7 +50,7 @@ public class RobotMap {
     public static VisionSensor visionSensor;
     public static AxisCamera axisCamera;
     public static FieldConfiguration fieldConfig;
-    public static OnyxTronixPIDController visionPIDControllerRigth;
+    public static OnyxTronixPIDController visionPIDControllerRight;
     public static OnyxTronixPIDController visionPIDControllerLeft;
     
     public static void init() {
@@ -104,7 +104,7 @@ public class RobotMap {
         
         visionSensor = new VisionSensorGrip(axisCamera, fieldConfig);
         
-        visionPIDControllerRigth = new OnyxTronixPIDController(DriveTrain.PID_P, DriveTrain.PID_I, DriveTrain.PID_D, DriveTrain.PID_F
+        visionPIDControllerRight = new OnyxTronixPIDController(DriveTrain.PID_P, DriveTrain.PID_I, DriveTrain.PID_D, DriveTrain.PID_F
         		                                               , visionSensor, driveTrainFirstRight, DriveTrain.PID_TOLERNCE);
         
         visionPIDControllerLeft = new OnyxTronixPIDController(DriveTrain.PID_P, DriveTrain.PID_I, DriveTrain.PID_D, DriveTrain.PID_F,

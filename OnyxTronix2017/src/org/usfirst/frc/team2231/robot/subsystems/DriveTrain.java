@@ -20,6 +20,7 @@ import vision.PIDVisionSourceType;
 import vision.VisionSensor;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -47,7 +48,7 @@ public class DriveTrain extends Subsystem {
     public static final double PID_D = 0;
     public static final double PID_F = 0;
     public static final double PID_TOLERNCE = 20;
-    private final OnyxTronixPIDController visionPIDControllerRigth= RobotMap.visionPIDControllerRigth;
+    private final OnyxTronixPIDController visionPIDControllerRight= RobotMap.visionPIDControllerRight;
     private final OnyxTronixPIDController visionPIDControllerLeft= RobotMap.visionPIDControllerLeft;
     private final VisionSensor visionSensor = RobotMap.visionSensor;
     
@@ -72,10 +73,30 @@ public class DriveTrain extends Subsystem {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
     }
     
-    public void CenterByinit(double setPoint) {
+    public void centerByinit(double setPoint) {
     	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
     	visionPIDControllerLeft.init(setPoint, PID_TOLERNCE);
-    	visionPIDControllerRigth.init(setPoint, PID_TOLERNCE);
+    	visionPIDControllerRight.init(setPoint, PID_TOLERNCE);
+    }
+    public void changeTalonsToFollower() {
+    	firstLeft.changeControlMode(TalonControlMode.Follower);
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);
+    	firstLeft.set(firstRight.getDeviceID());
+    	secondLeft.set(firstRight.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
+    }
+    public boolean isOnTarget() {
+    	return visionPIDControllerRight.onTarget() && visionPIDControllerLeft.onTarget();
+    }
+    public void resetTalons() {
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+    }
+    public void pidStop() {
+    	visionPIDControllerLeft.stop();
+    	visionPIDControllerRight.stop();
     }
 }
 
