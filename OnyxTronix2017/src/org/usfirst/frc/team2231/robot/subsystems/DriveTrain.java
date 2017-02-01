@@ -11,8 +11,13 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import onyxNiVision.OnyxTronixPIDController;
+
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
+
+import vision.PIDVisionSourceType;
+import vision.VisionSensor;
 
 import com.ctre.CANTalon;
 
@@ -42,6 +47,9 @@ public class DriveTrain extends Subsystem {
     public static final double PID_D = 0;
     public static final double PID_F = 0;
     public static final double PID_TOLERNCE = 20;
+    private final OnyxTronixPIDController visionPIDControllerRigth= RobotMap.visionPIDControllerRigth;
+    private final OnyxTronixPIDController visionPIDControllerLeft= RobotMap.visionPIDControllerLeft;
+    private final VisionSensor visionSensor = RobotMap.visionSensor;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -55,11 +63,19 @@ public class DriveTrain extends Subsystem {
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
     }
+    
     public void closeShifter() {
     	RobotMap.driveTrainShifterRight.set(Value.kReverse);
     }
+    
     public void openShifter() {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
+    }
+    
+    public void CenterByinit(double setPoint) {
+    	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
+    	visionPIDControllerLeft.init(setPoint, PID_TOLERNCE);
+    	visionPIDControllerRigth.init(setPoint, PID_TOLERNCE);
     }
 }
 
