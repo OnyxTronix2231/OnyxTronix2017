@@ -22,7 +22,7 @@ public class ShootByEncoder extends Command {
     protected void initialize() {
     	Robot.shooter.setSlaveTalon();
 		Robot.shooter.setPIDSourceType(PIDSourceType.kRate);
-    	Robot.shooter.PIDInit();
+    	Robot.shooter.initPID();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -44,7 +44,7 @@ public class ShootByEncoder extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.shooter.PIDDisable();
+    	Robot.shooter.disablePID();
     	Robot.shooter.resetTalonControl();
     }
 }

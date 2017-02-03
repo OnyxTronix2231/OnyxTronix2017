@@ -59,11 +59,11 @@ public class Shooter extends Subsystem {
 		lowerWheel.reverseOutput(true);
 	}
 	
-	public void PIDInit() {
+	public void initPID() {
 		PIDController.init(PID_SET_POINT, ABSOLUTE_TOLERANCE);
 	}
 	
-	public void PIDDisable() {
+	public void disablePID() {
 		PIDController.stop();
 	}
 	
