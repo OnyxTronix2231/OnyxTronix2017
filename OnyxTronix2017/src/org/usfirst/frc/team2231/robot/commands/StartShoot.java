@@ -11,13 +11,15 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class StartShoot extends InstantCommand {
+public class StartShoot extends Command {
 
     public StartShoot() {
         requires(Robot.shooter);
@@ -27,5 +29,18 @@ public class StartShoot extends InstantCommand {
     protected void initialize() {
     	Robot.shooter.startShoot();
     }
-
+    
+    protected void execute() {
+    }
+    
+    protected boolean isFinished() {
+    	return false;
+    }
+    
+    protected void end() {
+    }
+    
+    protected void interrupted(){
+    	Robot.shooter.stopShoot();
+    }
 }
