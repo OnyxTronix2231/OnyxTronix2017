@@ -35,8 +35,8 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_I = 0;
 	public static final double DRIVE_PID_D = 0;
 	public static final double DRIVE_PID_F = 0;
-	public static final double PID_TOLEEANCE = 5;
-	public static final double PID_OUTPUTRANGE = 1;
+	public static final double DRIVE_PID_TOLEEANCE = 5;
+	public static final double DRIVE_PID_OUTPUTRANGE = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
@@ -45,7 +45,7 @@ public class DriveTrain extends Subsystem {
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
     private final DoubleSolenoid shifterLeft = RobotMap.driveTrainShifterLeft;
-    private final OnyxTronixPIDController pidController = RobotMap.driveTrainPIDController;
+    private final OnyxTronixPIDController drivePIDController = RobotMap.driveTrainDrivePIDController;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -70,7 +70,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void initPID(double setPoint) {
-    	pidController.init(setPoint, PID_TOLEEANCE);
+    	drivePIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
     }
     
     public void setSlaveTalons() {
@@ -90,11 +90,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isOnTarget() {
-    	return RobotMap.driveTrainPIDController.onTarget();
+    	return RobotMap.driveTrainDrivePIDController.onTarget();
     }
     
     public void stopPID() {
-    	pidController.stop();
+    	drivePIDController.stop();
     }
     
     public void changePIDType() {

@@ -43,7 +43,7 @@ public class RobotMap {
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
-    public static OnyxTronixPIDController driveTrainPIDController;
+    public static OnyxTronixPIDController driveTrainDrivePIDController;
 
     public static void init() {
         gearBlockerPiston = new DoubleSolenoid(0, 0, 1);
@@ -93,11 +93,11 @@ public class RobotMap {
         triggerWheel = new CANTalon(6);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
         
-        driveTrainPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, 
+        driveTrainDrivePIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, 
         													  DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft,
-        													  DriveTrain.PID_TOLEEANCE);
-        driveTrainPIDController.setContinuous(false);
-        driveTrainPIDController.setAbsoluteTolerance(DriveTrain.PID_TOLEEANCE);
-        driveTrainPIDController.setOutputRange(-DriveTrain.PID_OUTPUTRANGE, DriveTrain.PID_OUTPUTRANGE);
+        													  DriveTrain.DRIVE_PID_TOLEEANCE);
+        driveTrainDrivePIDController.setContinuous(false);
+        driveTrainDrivePIDController.setAbsoluteTolerance(DriveTrain.DRIVE_PID_TOLEEANCE);
+        driveTrainDrivePIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
     }
 }
