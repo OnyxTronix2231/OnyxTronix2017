@@ -45,6 +45,6 @@ public class ShootByEncoder extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.shooter.disablePID();
-    	Robot.shooter.resetTalonControl();
+    	Robot.shooter.resetSlaveTalon();
     }
 }

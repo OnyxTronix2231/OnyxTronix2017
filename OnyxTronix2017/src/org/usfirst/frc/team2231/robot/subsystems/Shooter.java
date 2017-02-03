@@ -67,7 +67,7 @@ public class Shooter extends Subsystem {
 		PIDController.stop();
 	}
 	
-	public void resetTalonControl() {
+	public void resetSlaveTalon() {
 		lowerWheel.changeControlMode(TalonControlMode.PercentVbus);
 		lowerWheel.reverseOutput(false);
 	}
