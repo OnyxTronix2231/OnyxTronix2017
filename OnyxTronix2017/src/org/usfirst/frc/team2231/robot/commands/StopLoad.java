@@ -7,18 +7,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class StopShoot extends InstantCommand {
+public class StopLoad extends InstantCommand {
 
-    public StopShoot() {
+    public StopLoad() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.shooter);
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.shooter.resetTalonControl();
-    	Robot.shooter.PIDDisable();
+    	Robot.loader.stopLoad();
     }
 
 }

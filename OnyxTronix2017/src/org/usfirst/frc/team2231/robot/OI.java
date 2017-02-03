@@ -11,6 +11,7 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.*;
+import org.usfirst.frc.team2231.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -63,9 +64,9 @@ public class OI {
         buttonStick = new Joystick(0);
         
         load = new JoystickButton(buttonStick, 6);
-        load.whileHeld(new Load(1));
+        load.whileHeld(new ToggleLoad(new Load(), new StopLoad()));
         shoot = new JoystickButton(buttonStick, 5);
-        shoot.whenPressed(new ToggleShoot());
+        shoot.whenPressed(new ToggleShoot(new ShootByEncoder(), new StopShoot()));
 
 
         // SmartDashboard Buttons

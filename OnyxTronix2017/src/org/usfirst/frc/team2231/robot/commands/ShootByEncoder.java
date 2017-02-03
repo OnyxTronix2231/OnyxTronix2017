@@ -4,16 +4,15 @@ import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
 
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class ShootByEncoder extends Command {
-	private double m_setPoint;
-
-    public ShootByEncoder(double setPoint) {
-    	m_setPoint = setPoint;
+	
+    public ShootByEncoder() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
@@ -21,12 +20,16 @@ public class ShootByEncoder extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.changeShooterTalonToFollow();
-    	Robot.shooter.PIDInit(m_setPoint);
+    	Robot.shooter.setSlaveTalon();
+		Robot.shooter.setPIDSourceType(PIDSourceType.kRate);
+    	Robot.shooter.PIDInit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Error: " + RobotMap.shooterPIDController.getError());
+    	System.out.println("OutPut: " + RobotMap.shooterPIDController.get());
+    	System.out.println("PID get: " + RobotMap.shooterLowerWheel.pidGet());    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -41,5 +44,7 @@ public class ShootByEncoder extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.shooter.PIDDisable();
+    	Robot.shooter.resetTalonControl();
     }
 }

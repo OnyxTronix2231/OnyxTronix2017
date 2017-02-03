@@ -27,7 +27,8 @@ import onyxNiVision.OnyxTronixPIDController;
  */
 public class Shooter extends Subsystem {
 	public static  final double SPEED = 1;
-	public static final double PID_P = 10;
+	public static final double PID_SET_POINT = 1000;
+	public static final double PID_P = 0.0001;
 	public static final double PID_I = 0;
 	public static final double PID_D = 0;
 	public static final double PID_F = 0;
@@ -52,25 +53,30 @@ public class Shooter extends Subsystem {
 		return (upperWheel.get() == 0) && (lowerWheel.get() == 0);
 	}
 	
-	public void changeShooterTalonToFollow() {
+	public void setSlaveTalon() {
 		lowerWheel.changeControlMode(TalonControlMode.Follower);
 		lowerWheel.set(upperWheel.getDeviceID());
+		lowerWheel.reverseOutput(true);
 	}
 	
-	public void PIDInit(double m_setPoint) {
-		Robot.shooter.changePIDSourceType();
-		PIDController.init(m_setPoint, ABSOLUTE_TOLERANCE);
+	public void PIDInit() {
+		PIDController.init(PID_SET_POINT, ABSOLUTE_TOLERANCE);
 	}
 	
-	public void disablePIDController() {
+	public void PIDDisable() {
 		PIDController.stop();
 	}
 	
 	public void resetTalonControl() {
 		lowerWheel.changeControlMode(TalonControlMode.PercentVbus);
+		lowerWheel.reverseOutput(false);
 	}
 	
-	public void changePIDSourceType() {
-		upperWheel.setPIDSourceType(PIDSourceType.kRate);
+	public void setPIDSourceType(PIDSourceType PIDSourceType) {
+		upperWheel.setPIDSourceType(PIDSourceType);
+	}
+	
+	public boolean isReady(){
+		return PIDController.isEnabled() && PIDController.onTarget();
 	}
 }
