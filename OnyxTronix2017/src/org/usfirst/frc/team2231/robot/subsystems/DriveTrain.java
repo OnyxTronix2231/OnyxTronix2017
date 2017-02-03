@@ -64,7 +64,7 @@ public class DriveTrain extends Subsystem {
     	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
     }
     
-    public void changeControlModeToFollow(){
+    public void setSlaveTalons(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
     	
@@ -77,7 +77,7 @@ public class DriveTrain extends Subsystem {
     	firstRight.setPIDSourceType(sourceType);
     }
     
-    public void resetTalonControlMode(){
+    public void resetSlaveTalons(){
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	firstRight.changeControlMode(TalonControlMode.PercentVbus);

@@ -45,7 +45,7 @@ public class RotateByAngle extends Command {
     protected void initialize() {
     	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
-    	Robot.driveTrain.changeControlModeToFollow();
+    	Robot.driveTrain.setSlaveTalons();
     	Robot.driveTrain.PIDInit(m_setPoint);
     }
 
@@ -61,11 +61,12 @@ public class RotateByAngle extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.driveTrain.stopPID();
-    	Robot.driveTrain.resetTalonControlMode();
+    	Robot.driveTrain.resetSlaveTalons();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
