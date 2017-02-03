@@ -31,6 +31,7 @@ public class StartShoot extends Command {
     }
     
     protected void execute() {
+    	System.out.println("Encoder rate: " + RobotMap.collectorWheel.getSpeed());
     }
     
     protected boolean isFinished() {
