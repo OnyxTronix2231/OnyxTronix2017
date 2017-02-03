@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
 	public static final double ROTATION_PID_I = 0;
 	public static final double ROTATION_PID_D = 0;
 	public static final double ROTATION_PID_F = 0;
-	public static final double ABSOLUTE_TOLERANCE_ROTATION = 5;
+	public static final double ROTATION_ABSOLUTE_TOLERANCE = 5;
 	
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
@@ -86,8 +86,8 @@ public class DriveTrain extends Subsystem {
     }
     
     public void PIDInit(double setPoint) {
-    	rotationPidControllerLeft.init(setPoint, ABSOLUTE_TOLERANCE_ROTATION);
-    	rotationPidControllerRight.init(setPoint, ABSOLUTE_TOLERANCE_ROTATION);
+    	rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
+    	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
     }
     
     public void resetGyro() {
