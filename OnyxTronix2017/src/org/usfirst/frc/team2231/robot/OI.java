@@ -15,6 +15,7 @@ import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseShifters;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
@@ -69,6 +70,7 @@ public class OI {
     public Joystick buttonStick;
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
+    public JoystickButton driveByDistance;
     public Joystick driveStick;
 
     public OI() {
@@ -78,6 +80,8 @@ public class OI {
         closeShifters.whenPressed(new CloseShifters());
         openShifters = new JoystickButton(driveStick, 7);
         openShifters.whenPressed(new OpenShifters());
+        driveByDistance = new JoystickButton(driveStick, 1);
+        driveByDistance.whenPressed(new DriveByDistance(2));
         
         buttonStick = new Joystick(0);
         
