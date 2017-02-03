@@ -69,11 +69,11 @@ public class DriveTrain extends Subsystem {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
     }
     
-    public void driveByPID(double setPoint) {
+    public void initPID(double setPoint) {
     	pidController.init(setPoint, PID_TOLEEANCE);
     }
     
-    public void changeToFollowerMode() {
+    public void setSlaveTalons() {
     	firstRight.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
     	secondLeft.changeControlMode(TalonControlMode.Follower);
@@ -82,7 +82,7 @@ public class DriveTrain extends Subsystem {
     	secondLeft.set(firstLeft.getDeviceID());
     }
     
-    public void resetControlMode() {
+    public void resetSlaveTalons() {
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	firstRight.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
