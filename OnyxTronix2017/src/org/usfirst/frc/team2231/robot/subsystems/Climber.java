@@ -29,19 +29,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Climber extends Subsystem {
-	public static final double SETPOINT_ANGLE = 90;
 	public static final double PID_P = 0.5;
 	public static final double PID_I = 0;
 	public static final double PID_D = 0;
-	public static final double PID_TOLERNCE = 0.2;
 	public static final double PID_F = 0;
-	public static final double UTPUT_RANGE = 1;
-	
-	private final double maxMotorRate = 1000;
+	public static final double SET_POINT_ANGLE = 90;
+	public static final double PID_TOLERNCE = 0.2;
+	public static final double OUTPUT_RANGE = 1;
+	private static final double MOTOR_SPEED = 1000;
+    private static final double SENSITIVITY_VALUE = 0.2;
+    
     private final CANTalon motor = RobotMap.climberMotor;
-    private static final double SENSITIVITY_VALUE = 1 * 0.2;
-    private final OnyxTronixPIDController PIDController= RobotMap.PIDClimberContoller;
     private final ADXRS450_Gyro gyro = RobotMap.gyro;
+    private final OnyxTronixPIDController PIDController= RobotMap.PIDClimberContoller;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -70,7 +70,7 @@ public class Climber extends Subsystem {
     }
     
     public double getSetPointByRobotAngle() {
-    	return maxMotorRate / SETPOINT_ANGLE * (SETPOINT_ANGLE - gyro.getAngle());
+    	return MOTOR_SPEED / SET_POINT_ANGLE * (SET_POINT_ANGLE - gyro.getAngle());
     }
 }
 

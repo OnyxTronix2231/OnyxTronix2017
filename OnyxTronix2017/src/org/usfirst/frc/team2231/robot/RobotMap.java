@@ -11,6 +11,8 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.subsystems.Climber;
+
 import onyxNiVision.OnyxTronixPIDController;
 
 import com.ctre.CANTalon;
@@ -89,9 +91,9 @@ public class RobotMap {
         triggerWheel = new CANTalon(5);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
     
-        PIDClimberContoller = new OnyxTronixPIDController(StaticFields.PID_P, StaticFields.PID_I ,
-        													StaticFields.PID_D, StaticFields.PID_F, climberMotor,
-        														climberMotor, StaticFields.PID_TOLERNCE );
-        PIDClimberContoller.setOutputRange(-StaticFields.UTPUT_RANGE, StaticFields.UTPUT_RANGE );
+        PIDClimberContoller = new OnyxTronixPIDController(Climber.PID_P, Climber.PID_I ,
+        												  Climber.PID_D, Climber.PID_F, climberMotor,
+        														climberMotor, Climber.PID_TOLERNCE );
+        PIDClimberContoller.setOutputRange(-Climber.OUTPUT_RANGE, Climber.OUTPUT_RANGE);
     }
 }

@@ -31,7 +31,7 @@ public class ClimbByGyro extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.climber.isOnAngle(StaticFields.SETPOINT_ANGLE);
+        return Robot.climber.isOnAngle(Climber.SET_POINT_ANGLE);
     }
 
     // Called once after isFinished returns true
