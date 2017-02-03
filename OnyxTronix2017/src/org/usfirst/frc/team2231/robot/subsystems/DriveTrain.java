@@ -31,10 +31,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double PID_P = 0.5;
-	public static final double PID_I = 0;
-	public static final double PID_D = 0;
-	public static final double PID_F = 0;
+	public static final double DRIVE_PID_P = 0.5;
+	public static final double DRIVE_PID_I = 0;
+	public static final double DRIVE_PID_D = 0;
+	public static final double DRIVE_PID_F = 0;
 	public static final double PID_TOLEEANCE = 5;
 	public static final double PID_OUTPUTRANGE = 1;
 
