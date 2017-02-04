@@ -44,13 +44,13 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
     }
     public void closeShifter() {
-    	RobotMap.driveTrainShifterRight.set(Value.kReverse);
+    	shifterRight.set(Value.kReverse);
     }
     public void openShifter() {
-    	RobotMap.driveTrainShifterRight.set(Value.kForward);
+    	shifterRight.set(Value.kForward);
     }
 }
 

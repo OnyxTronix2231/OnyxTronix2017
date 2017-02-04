@@ -20,7 +20,6 @@ import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenShifters;
-import org.usfirst.frc.team2231.robot.commands.StartShoot;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
 import org.usfirst.frc.team2231.robot.commands.ToggleShoot;
 
@@ -66,6 +65,7 @@ public class OI {
     public JoystickButton toggleGearHold;
     public JoystickButton shoot;
     public JoystickButton load;
+    public JoystickButton test;
     public Joystick buttonStick;
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
@@ -98,7 +98,6 @@ public class OI {
         SmartDashboard.putData("CloseShifters", new CloseShifters());
         SmartDashboard.putData("OpenGearHolderPiston", new OpenGearHolderPiston());
         SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolderPiston());
-        SmartDashboard.putData("StartShoot", new StartShoot());
         SmartDashboard.putData("OpenGearBlockerPiston", new OpenGearBlockerPiston());
         SmartDashboard.putData("CloseGearBlockerPiston", new CloseGearBlockerPiston());
     }
