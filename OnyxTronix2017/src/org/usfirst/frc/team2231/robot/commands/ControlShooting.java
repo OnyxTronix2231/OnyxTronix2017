@@ -10,36 +10,42 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
+import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class AutonomousCommand extends Command {
+public class ControlShooting extends Command {
 
-    public AutonomousCommand() {
+    public ControlShooting() {
+        requires(Robot.shooter);
     }
 
-    // Called just before this Command runs the first time
+    // Called once when this command runs
     protected void initialize() {
-    }
 
-    // Called repeatedly when this Command is scheduled to run
+    }
+    
+    @Override
     protected void execute() {
+    	Robot.shooter.toggleShooting();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+	
+	protected void end() {
+		Robot.shooter.stopShoot();
+		Robot.shooter.isShooting = false;
+	}
+	
+	@Override
+	protected void interrupted() {
+		end();
+	}
 }

@@ -10,25 +10,21 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
-
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2231.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ToggleShoot extends Command {
+public class CloseShifters extends InstantCommand {
 
-    public ToggleShoot() {
+    public CloseShifters() {
     }
 
-    @Override
-    protected void initialize(){
-       Robot.shooter.toggleIsShooting(); 
+    // Called once when this command runs
+    protected void initialize() {
+    	Robot.driveTrain.closeShifter();
     }
 
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
 }

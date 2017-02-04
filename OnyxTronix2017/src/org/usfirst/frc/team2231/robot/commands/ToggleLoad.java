@@ -16,6 +16,6 @@ public class ToggleLoad extends ConditionalCommand {
 
 	@Override
 	protected boolean condition() {
-		return Robot.loader.getCurrentCommand() instanceof Load;
+		return Robot.trigger.getCurrentCommand() instanceof ToggleLoad;
 	}
 }

@@ -16,7 +16,7 @@ public class StopLoad extends InstantCommand {
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.loader.stopLoad();
+    	Robot.trigger.stopLoad();
     }
 
 }

@@ -9,26 +9,25 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc.team2231.robot.commands;
+package org.usfirst.frc.team2231.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
 
 /**
  *
  */
-public class ToggleShoot extends Command {
+public class GearHolder extends Subsystem {
+    private final DoubleSolenoid piston = RobotMap.gearHolderPiston;
 
-    public ToggleShoot() {
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
     }
-
-    @Override
-    protected void initialize(){
-       Robot.shooter.toggleIsShooting(); 
-    }
-
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
 }
+

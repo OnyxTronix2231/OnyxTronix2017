@@ -11,24 +11,22 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
 /**
  *
  */
-public class ToggleShoot extends Command {
+public class ToggleGearHold extends ConditionalCommand {
 
-    public ToggleShoot() {
+
+    public ToggleGearHold() {
+    	super(new OpenGearHolderPiston(), new CloseGearHolderPiston());
     }
 
-    @Override
-    protected void initialize(){
-       Robot.shooter.toggleIsShooting(); 
+    protected boolean condition(){
+        return RobotMap.gearHolderPiston.get() != Value.kForward;
     }
-
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
 }
