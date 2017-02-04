@@ -10,18 +10,16 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import org.usfirst.frc.team2231.robot.commands.*;
-import org.usfirst.frc.team2231.robot.subsystems.Shooter;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseShifters;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
-import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenShifters;
+import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
 import org.usfirst.frc.team2231.robot.commands.ToggleShoot;
 

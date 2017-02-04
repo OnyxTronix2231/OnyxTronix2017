@@ -10,6 +10,8 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import onyxNiVision.OnyxTronixPIDController;
+
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.ControlShooting;
@@ -19,7 +21,6 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import onyxNiVision.OnyxTronixPIDController;
 
 /**
  *

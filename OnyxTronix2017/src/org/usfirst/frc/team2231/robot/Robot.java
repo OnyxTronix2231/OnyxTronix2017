@@ -12,13 +12,13 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
-import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
+import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
