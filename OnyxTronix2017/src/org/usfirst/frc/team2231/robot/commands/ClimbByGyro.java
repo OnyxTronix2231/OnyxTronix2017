@@ -20,18 +20,18 @@ public class ClimbByGyro extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.gyro.reset();
+    	Robot.climber.resetGyro();
     	Robot.climber.initPID(Robot.climber.getSetPointByRobotAngle());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.PIDClimberContoller.setSetpoint(Robot.climber.getSetPointByRobotAngle());
+    	Robot.climber.setPIDSetpoint(Robot.climber.getSetPointByRobotAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.climber.isOnAngle(Climber.SET_POINT_ANGLE);
+        return Robot.climber.isOnAngle(Climber.SETPOINT_ANGLE);
     }
 
     // Called once after isFinished returns true

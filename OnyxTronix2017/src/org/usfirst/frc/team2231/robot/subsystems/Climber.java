@@ -33,7 +33,7 @@ public class Climber extends Subsystem {
 	public static final double PID_I = 0;
 	public static final double PID_D = 0;
 	public static final double PID_F = 0;
-	public static final double SET_POINT_ANGLE = 90;
+	public static final double SETPOINT_ANGLE = 90;
 	public static final double PID_TOLERNCE = 0.2;
 	public static final double OUTPUT_RANGE = 1;
 	private static final double MOTOR_SPEED = 1000;
@@ -70,7 +70,15 @@ public class Climber extends Subsystem {
     }
     
     public double getSetPointByRobotAngle() {
-    	return MOTOR_SPEED / SET_POINT_ANGLE * (SET_POINT_ANGLE - gyro.getAngle());
+    	return MOTOR_SPEED / SETPOINT_ANGLE * (SETPOINT_ANGLE - gyro.getAngle());
     }
+    
+	public void resetGyro() {
+		gyro.reset();
+	}
+	
+	public void setPIDSetpoint(double setpoint) {
+		PIDController.setSetpoint(setpoint);
+	}
 }
 

@@ -11,6 +11,7 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.ClimbByGyro;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseShifters;
@@ -66,6 +67,7 @@ public class OI {
     public JoystickButton toggleGearHold;
     public JoystickButton shoot;
     public JoystickButton load;
+    public JoystickButton climbByGyro;
     public Joystick buttonStick;
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
@@ -81,6 +83,8 @@ public class OI {
         
         buttonStick = new Joystick(0);
         
+        climbByGyro = new JoystickButton(buttonStick, 2);
+        climbByGyro.whenPressed(new ClimbByGyro());
         collectBalls = new JoystickButton(buttonStick, 1);
         collectBalls.whileHeld(new CollectBalls(1));
         toggleGearHold = new JoystickButton(buttonStick, 3);
