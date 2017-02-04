@@ -88,10 +88,9 @@ public class OI {
         toggleGearHold = new JoystickButton(buttonStick, 3);
         toggleGearHold.whenPressed(new ToggleGearHold());
         load = new JoystickButton(buttonStick, 6);
-        load.whileHeld(new ToggleLoad(new Load(), new StopLoad()));
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, 5);
-        shoot.whenPressed(new ToggleShoot(new ShootByEncoder(), new StopShoot()));
+        shoot.whenPressed(new ToggleShoot());
 
 
         // SmartDashboard Buttons
