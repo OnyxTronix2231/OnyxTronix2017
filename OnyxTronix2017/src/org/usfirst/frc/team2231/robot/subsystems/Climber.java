@@ -41,7 +41,7 @@ public class Climber extends Subsystem {
     
     private final CANTalon motor = RobotMap.climberMotor;
     private final ADXRS450_Gyro gyro = RobotMap.gyro;
-    private final OnyxTronixPIDController PIDController= RobotMap.PIDClimberContoller;
+    private final OnyxTronixPIDController PIDController= RobotMap.climberPIDContoller;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

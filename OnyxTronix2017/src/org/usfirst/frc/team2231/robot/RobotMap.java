@@ -44,7 +44,7 @@ public class RobotMap {
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
     public static ADXRS450_Gyro gyro;
-    public static OnyxTronixPIDController PIDClimberContoller;
+    public static OnyxTronixPIDController climberPIDContoller;
     
     public static void init() {
         gearBlockerPiston = new DoubleSolenoid(0, 2, 3);
@@ -91,9 +91,9 @@ public class RobotMap {
         triggerWheel = new CANTalon(5);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
     
-        PIDClimberContoller = new OnyxTronixPIDController(Climber.PID_P, Climber.PID_I ,
+        climberPIDContoller = new OnyxTronixPIDController(Climber.PID_P, Climber.PID_I ,
         												  Climber.PID_D, Climber.PID_F, climberMotor,
         														climberMotor, Climber.PID_TOLERNCE );
-        PIDClimberContoller.setOutputRange(-Climber.OUTPUT_RANGE, Climber.OUTPUT_RANGE);
+        climberPIDContoller.setOutputRange(-Climber.OUTPUT_RANGE, Climber.OUTPUT_RANGE);
     }
 }
