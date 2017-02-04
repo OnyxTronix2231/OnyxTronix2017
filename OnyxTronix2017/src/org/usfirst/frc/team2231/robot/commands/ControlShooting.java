@@ -12,20 +12,40 @@
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class StopShoot extends InstantCommand {
+public class ControlShooting extends Command {
 
-    public StopShoot() {
+    public ControlShooting() {
         requires(Robot.shooter);
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.shooter.stopShoot();
+
+    }
+    
+    @Override
+    protected void execute() {
+    	Robot.shooter.toggleShooting();
     }
 
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+	
+	protected void end() {
+		Robot.shooter.stopShoot();
+		Robot.shooter.isShooting = false;
+	}
+	
+	@Override
+	protected void interrupted() {
+		end();
+	}
 }
