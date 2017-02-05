@@ -11,10 +11,16 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import onyxNiVision.OnyxTronixPIDController;
+
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
+import vision.PIDVisionSourceType;
+import vision.VisionSensor;
+
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -33,6 +39,18 @@ public class DriveTrain extends Subsystem {
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
+    private final OnyxTronixPIDController visionPIDController = RobotMap.visionPIDController;
+    private final VisionSensor visionSensor = RobotMap.visionSensor;
+    public static final double PID_P = 0.5;
+    public static final double PID_I = 0;
+    public static final double PID_D = 0;
+    public static final double PID_F = 0;
+    public static final double PID_TOLERANCE = 10;
+    public static final double angleToFloor = 10;
+    public static final double cameraHeight = 20;//meters
+    public static final double targetHeight = 60;//meters
+    public static final double verticalApertureAngle = 20;
+    
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -51,6 +69,42 @@ public class DriveTrain extends Subsystem {
     }
     public void openShifter() {
     	shifterRight.set(Value.kForward);
+    }
+    
+    public boolean  isOnTarget() {
+    	return visionPIDController.onTarget() ;
+    }
+    
+    public void stopPID() {
+	    visionPIDController.stop();
+    }
+    
+    public void setSlaveTalons() {
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);
+    	secondLeft.set(firstLeft.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
+    }
+    
+    public void setSlaveAfterFirstRight() {
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);
+    	firstLeft.changeControlMode(TalonControlMode.Follower);
+    	secondLeft.set(firstRight.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.set(firstRight.getDeviceID());
+    	
+    }
+    
+    public void resetSlaveTalons() {
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+    }
+    
+    public void initPID(double setPoint) {
+    	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
+    	visionPIDController.init(setPoint, PID_TOLERANCE);
     }
 }
 
