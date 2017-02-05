@@ -21,6 +21,7 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.resetEncoders();
     	Robot.driveTrain.changePIDType();
     	Robot.driveTrain.setSlaveTalons();
     	Robot.driveTrain.initPID(m_setPoint);

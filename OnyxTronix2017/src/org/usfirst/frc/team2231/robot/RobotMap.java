@@ -43,7 +43,8 @@ public class RobotMap {
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
-    public static OnyxTronixPIDController driveTrainDrivePIDController;
+    public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
+    public static OnyxTronixPIDController driveTrainDriveRightPIDController;
 
     public static void init() {
         gearBlockerPiston = new DoubleSolenoid(0, 0, 1);
@@ -93,11 +94,16 @@ public class RobotMap {
         triggerWheel = new CANTalon(6);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
         
-        driveTrainDrivePIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, 
-        													  DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft,
-        													  DriveTrain.DRIVE_PID_TOLEEANCE);
-        driveTrainDrivePIDController.setContinuous(false);
-        driveTrainDrivePIDController.setAbsoluteTolerance(DriveTrain.DRIVE_PID_TOLEEANCE);
-        driveTrainDrivePIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
+        driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, 
+        														   DriveTrain.DRIVE_PID_D, 
+        													       DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft,
+        													       DriveTrain.DRIVE_PID_TOLEEANCE);
+        driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, 
+        														   DriveTrain.DRIVE_PID_D, 
+				  												   DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight,
+				  												   DriveTrain.DRIVE_PID_TOLEEANCE);
+        driveTrainDriveLeftPIDController.setContinuous(false);
+        driveTrainDriveLeftPIDController.setAbsoluteTolerance(DriveTrain.DRIVE_PID_TOLEEANCE);
+        driveTrainDriveLeftPIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
     }
 }

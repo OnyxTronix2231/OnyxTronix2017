@@ -45,7 +45,8 @@ public class DriveTrain extends Subsystem {
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
     private final DoubleSolenoid shifterLeft = RobotMap.driveTrainShifterLeft;
-    private final OnyxTronixPIDController drivePIDController = RobotMap.driveTrainDrivePIDController;
+    private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
+    private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -70,15 +71,14 @@ public class DriveTrain extends Subsystem {
     }
     
     public void initPID(double setPoint) {
-    	drivePIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
+    	driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
+    	driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
     }
     
     public void setSlaveTalons() {
-    	firstRight.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
     	secondLeft.changeControlMode(TalonControlMode.Follower);
-    	firstRight.set(firstLeft.getDeviceID());
-    	secondRight.set(firstLeft.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
     	secondLeft.set(firstLeft.getDeviceID());
     }
     
@@ -89,12 +89,18 @@ public class DriveTrain extends Subsystem {
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     }
     
+    public void resetEncoders() {
+    	firstLeft.setPosition(0);
+    	firstRight.setPosition(0);
+    }
+    
     public boolean isOnTarget() {
-    	return RobotMap.driveTrainDrivePIDController.onTarget();
+    	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
     }
     
     public void stopPID() {
-    	drivePIDController.stop();
+    	driveLeftPIDController.stop();
+    	driveRightPIDController.stop();
     }
     
     public void changePIDType() {

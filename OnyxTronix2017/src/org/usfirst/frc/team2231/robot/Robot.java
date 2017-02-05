@@ -123,7 +123,8 @@ public class Robot extends IterativeRobot {
         d = SmartDashboard.getNumber("Drive PID D", 0);
         f = SmartDashboard.getNumber("Drive PID F", 0);
         
-        RobotMap.driveTrainDrivePIDController.setPID(p, i, d, f);
+        RobotMap.driveTrainDriveLeftPIDController.setPID(p, i, d, f);
+        RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);
     }
 
     /**
