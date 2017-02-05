@@ -19,9 +19,8 @@ public class CenterByVision extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.changeTalonsToFollower();
-    	Robot.driveTrain.centerByinit(m_setPoint);
-    	
+    	Robot.driveTrain.setSlaveTalons();
+    	Robot.driveTrain.initPID(m_setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,8 +34,8 @@ public class CenterByVision extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.resetTalons();
-    	Robot.driveTrain.pidStop();
+    	Robot.driveTrain.resetSlaveTalons();
+    	Robot.driveTrain.stopPID();
     }
 
     // Called when another command which requires one or more of the same

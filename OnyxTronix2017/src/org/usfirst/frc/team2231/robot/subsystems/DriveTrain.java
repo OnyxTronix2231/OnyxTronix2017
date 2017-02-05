@@ -73,28 +73,26 @@ public class DriveTrain extends Subsystem {
     	RobotMap.driveTrainShifterRight.set(Value.kForward);
     }
     
-    public void centerByinit(double setPoint) {
+    public void initPID(double setPoint) {
     	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
     	visionPIDControllerLeft.init(setPoint, PID_TOLERNCE);
     	visionPIDControllerRight.init(setPoint, PID_TOLERNCE);
     }
-    public void changeTalonsToFollower() {
-    	firstLeft.changeControlMode(TalonControlMode.Follower);
+    public void setSlaveTalons() {
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
-    	firstLeft.set(firstRight.getDeviceID());
-    	secondLeft.set(firstRight.getDeviceID());
+    	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     }
     public boolean isOnTarget() {
     	return visionPIDControllerRight.onTarget() && visionPIDControllerLeft.onTarget();
     }
-    public void resetTalons() {
+    public void resetSlaveTalons() {
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     }
-    public void pidStop() {
+    public void stopPID() {
     	visionPIDControllerLeft.stop();
     	visionPIDControllerRight.stop();
     }
