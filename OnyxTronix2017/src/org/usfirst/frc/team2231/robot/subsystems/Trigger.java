@@ -36,10 +36,12 @@ public class Trigger extends Subsystem {
     
     public void stopTrigger() {
     	wheel.set(0);
+    	RobotMap.climberMotor.set(0);
     }
     
     public void startTrigger() {
     	wheel.set(SPEED);
+    	RobotMap.climberMotor.set(1);
     }
 }
 

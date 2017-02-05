@@ -28,12 +28,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
 	public static final double SPEED = 1;
-	public static double PID_SET_POINT = -10000;
+	public static double PID_SET_POINT = 10000;
 	public static final double PID_P = 0.000001;
 	public static final double PID_I = 0;
 	public static final double PID_D = 0;
 	public static final double PID_F = 0;
-	public static final double ABSOLUTE_TOLERANCE = 50;
+	public static final double ABSOLUTE_TOLERANCE = 150;
 	public boolean isShooting = false;
 	
     private final CANTalon upperWheel = RobotMap.shooterUpperWheel;
@@ -90,7 +90,7 @@ public class Shooter extends Subsystem {
 	public void toggleShooting() {
 		if(!hasRunnedOnce){
 			hasRunnedOnce = true;
-			if(Robot.shooter.isShooting) {
+			if(isShooting) {
 //				System.out.println("start pid"); //TODO: remove
 	    		startPID();
 	    	} else {
