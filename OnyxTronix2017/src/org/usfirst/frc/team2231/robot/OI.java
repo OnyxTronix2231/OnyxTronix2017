@@ -86,7 +86,7 @@ public class OI {
         toggleGearHold = new JoystickButton(buttonStick, 3);
         toggleGearHold.whenPressed(new ToggleGearHold());
         load = new JoystickButton(buttonStick, 6);
-        load.whileHeld(new StartTrigger(1));
+        load.whileHeld(new StartTrigger());
         shoot = new JoystickButton(buttonStick, 5);
         shoot.whenPressed(new ToggleShoot());
     }

@@ -34,11 +34,11 @@ public class Trigger extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
-    public void stopLoad() {
+    public void stopTrigger() {
     	wheel.set(0);
     }
     
-    public void startLoad() {
+    public void startTrigger() {
     	wheel.set(SPEED);
     }
 }

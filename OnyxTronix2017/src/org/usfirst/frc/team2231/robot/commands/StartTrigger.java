@@ -19,25 +19,20 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class StartTrigger extends Command {
-    private double m_maxSpeed;
- 
-    public StartTrigger(double maxSpeed) {
-        m_maxSpeed = maxSpeed;
-     
+    public StartTrigger() {     
         requires(Robot.trigger);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.triggerWheel.set(m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.shooter.isReady()){
-        	Robot.trigger.startLoad();
+        	Robot.trigger.startTrigger();
     	} else {
-        	Robot.trigger.stopLoad();
+        	Robot.trigger.stopTrigger();
     	}
     }
 
@@ -48,7 +43,7 @@ public class StartTrigger extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.trigger.stopLoad();
+    	Robot.trigger.stopTrigger();
     }
 
     // Called when another command which requires one or more of the same
