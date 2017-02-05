@@ -110,13 +110,6 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        
-        p = SmartDashboard.getNumber("Drive PID P", 0);
-        i = SmartDashboard.getNumber("Drive PID I", 0);
-        d = SmartDashboard.getNumber("Drive PID D", 0);
-        f = SmartDashboard.getNumber("Drive PID F", 0);
-        
-        RobotMap.driveTrainDrivePIDController.setPID(p, i, d, f);
     }
 
     /**
@@ -124,6 +117,13 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        p = SmartDashboard.getNumber("Drive PID P", 0);
+        i = SmartDashboard.getNumber("Drive PID I", 0);
+        d = SmartDashboard.getNumber("Drive PID D", 0);
+        f = SmartDashboard.getNumber("Drive PID F", 0);
+        
+        RobotMap.driveTrainDrivePIDController.setPID(p, i, d, f);
     }
 
     /**
