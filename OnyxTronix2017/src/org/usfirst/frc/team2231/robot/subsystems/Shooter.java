@@ -15,6 +15,7 @@ import onyxNiVision.OnyxTronixPIDController;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.ControlShooting;
+import org.usfirst.frc.team2231.robot.commands.ShootByEncoder;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -27,12 +28,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
 	public static final double SPEED = 1;
-	public static final double PID_SET_POINT = 1000;
-	public static final double PID_P = 0.0001;
+	public static double PID_SET_POINT = -10000;
+	public static final double PID_P = 0.000001;
 	public static final double PID_I = 0;
 	public static final double PID_D = 0;
 	public static final double PID_F = 0;
-	public static final double ABSOLUTE_TOLERANCE = 5;
+	public static final double ABSOLUTE_TOLERANCE = 50;
 	public boolean isShooting = false;
 	
     private final CANTalon upperWheel = RobotMap.shooterUpperWheel;
@@ -42,7 +43,7 @@ public class Shooter extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new ControlShooting());
+		setDefaultCommand(new ShootByEncoder());
 	}
 	
 	public void startShoot() {
@@ -56,26 +57,24 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void setSlaveTalon() {
-		lowerWheel.changeControlMode(TalonControlMode.Follower);
-		lowerWheel.set(upperWheel.getDeviceID());
-		lowerWheel.reverseOutput(true);
+		upperWheel.changeControlMode(TalonControlMode.Follower);
+		upperWheel.set(lowerWheel.getDeviceID());
 	}
 	
-	public void initPID() {
+	public void initPIDController() {
 		PIDController.init(PID_SET_POINT, ABSOLUTE_TOLERANCE);
 	}
 	
-	public void disablePID() {
+	public void disablePIDContoller() {
 		PIDController.stop();
 	}
 	
 	public void resetSlaveTalon() {
 		lowerWheel.changeControlMode(TalonControlMode.PercentVbus);
-		lowerWheel.reverseOutput(false);
 	}
 	
 	public void setPIDSourceType(PIDSourceType PIDSourceType) {
-		upperWheel.setPIDSourceType(PIDSourceType);
+		lowerWheel.setPIDSourceType(PIDSourceType);
 	}
 	
 	public boolean isReady(){
@@ -84,13 +83,31 @@ public class Shooter extends Subsystem {
 	
 	public void toggleIsShooting() {
 		isShooting = !isShooting;
+		hasRunnedOnce = false;
 	}
 	
+	boolean hasRunnedOnce = false;
 	public void toggleShooting() {
-		if(Robot.shooter.isShooting) {
-    		Robot.shooter.startShoot();
-    	} else {
-    		Robot.shooter.stopShoot();
-    	}
+		if(!hasRunnedOnce){
+			hasRunnedOnce = true;
+			if(Robot.shooter.isShooting) {
+//				System.out.println("start pid"); //TODO: remove
+	    		startPID();
+	    	} else {
+//				System.out.println("stop pid");
+	    		stopPID();
+	    	}
+		}
+	}
+	
+	public void stopPID() {
+		disablePIDContoller();
+    	resetSlaveTalon();
+	}
+	
+	public void startPID() {
+		setSlaveTalon();
+		setPIDSourceType(PIDSourceType.kRate);
+    	initPIDController();
 	}
 }

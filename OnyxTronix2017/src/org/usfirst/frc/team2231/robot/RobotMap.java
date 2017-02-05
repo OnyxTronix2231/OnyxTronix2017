@@ -44,10 +44,9 @@ public class RobotMap {
     public static DoubleSolenoid driveTrainShifterRight;
     public static DoubleSolenoid gearHolderPiston;
     public static CANTalon shooterUpperWheel;
-    public static CANTalon loaderWheel;
+    public static CANTalon triggerWheel;
     public static OnyxTronixPIDController shooterPIDController;
     public static CANTalon shooterLowerWheel;
-    public static CANTalon triggerWheel;
 
     public static void init() {
         gearBlockerPiston = new DoubleSolenoid(0, 2, 3);
@@ -91,10 +90,11 @@ public class RobotMap {
         shooterLowerWheel = new OnyxCANTalon(6);
         LiveWindow.addActuator("Shooter", "LowerWheel", shooterLowerWheel);
         
-        loaderWheel = new CANTalon(20);
-        LiveWindow.addActuator("Loader", "Wheel", loaderWheel);
+        triggerWheel = new CANTalon(5);
+        LiveWindow.addActuator("Loader", "Wheel", triggerWheel);
          
-        shooterPIDController = new OnyxTronixPIDController(Shooter.PID_P, Shooter.PID_I, Shooter.PID_D, 0, shooterLowerWheel, shooterUpperWheel, Shooter.ABSOLUTE_TOLERANCE);
+        shooterPIDController = new OnyxTronixPIDController(Shooter.PID_P, Shooter.PID_I, Shooter.PID_D, 0, shooterLowerWheel, shooterLowerWheel, Shooter.ABSOLUTE_TOLERANCE);
         shooterPIDController.setOutputRange(-1, 1);
+        shooterLowerWheel.reverseSensor(true);
     }
 }

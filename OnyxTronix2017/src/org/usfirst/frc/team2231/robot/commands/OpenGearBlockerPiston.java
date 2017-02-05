@@ -17,7 +17,7 @@ public class OpenGearBlockerPiston extends InstantCommand {
     // Called once when the command executes
     protected void initialize() {
     	Robot.shooter.resetSlaveTalon();
-    	Robot.shooter.disablePID();
+    	Robot.shooter.disablePIDContoller();
     	RobotMap.gearBlockerPiston.set(Value.kForward);
     }
 
