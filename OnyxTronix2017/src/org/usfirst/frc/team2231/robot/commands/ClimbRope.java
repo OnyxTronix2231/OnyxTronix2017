@@ -10,7 +10,6 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
-
 import org.usfirst.frc.team2231.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,10 +17,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveByJoystick extends Command {
-
-    public DriveByJoystick() {
-        requires(Robot.driveTrain);
+public class ClimbRope extends Command {
+    public ClimbRope() {
+    	requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
@@ -30,7 +28,7 @@ public class DriveByJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.arcadeDrive(Robot.oi.getDriveStick());
+    	Robot.climber.climbRope();
     }
 
     // Make this return true when this Command no longer needs to run execute()
