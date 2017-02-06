@@ -24,7 +24,7 @@ public class OpenShifters extends InstantCommand {
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.driveTrain.openShifters();
+    	Robot.driveTrain.openShifter();
     }
 
 }

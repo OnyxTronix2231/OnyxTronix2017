@@ -38,7 +38,6 @@ public class RobotMap {
     public static CANTalon collectorWheel;
     public static CANTalon climberMotor;
     public static DoubleSolenoid driveTrainShifterRight;
-    public static DoubleSolenoid driveTrainShifterLeft;
     public static DoubleSolenoid gearHolderPiston;
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
@@ -47,7 +46,7 @@ public class RobotMap {
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
 
     public static void init() {
-        gearBlockerPiston = new DoubleSolenoid(0, 0, 1);
+        gearBlockerPiston = new DoubleSolenoid(0, 2, 3);
         LiveWindow.addActuator("GearBlocker", "Piston", gearBlockerPiston);
         
         driveTrainFirstLeft = new CANTalon(0);
@@ -73,25 +72,22 @@ public class RobotMap {
         collectorWheel = new CANTalon(4);
         LiveWindow.addActuator("BallCollector", "wheel", collectorWheel);
         
-        climberMotor = new CANTalon(9);
+        climberMotor = new CANTalon(8);
         LiveWindow.addActuator("Climber", "Motor", climberMotor);
 
         driveTrainShifterRight = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("DriveTrain", "ShifterRight", driveTrainShifterRight);
-        
-        driveTrainShifterLeft = new DoubleSolenoid(0, 2, 3);
-        LiveWindow.addActuator("DriveTrain", "ShifterLeft", driveTrainShifterLeft);
        
-        gearHolderPiston = new DoubleSolenoid(0, 0, 1);
+        gearHolderPiston = new DoubleSolenoid(0, 4, 5);
         LiveWindow.addActuator("Gear Holder", "Piston", gearHolderPiston);
       
         shooterUpperWheel = new CANTalon(7);
         LiveWindow.addActuator("Shooter", "UpperWheel", shooterUpperWheel);
         
-        shooterLowerWheel = new CANTalon(4);
+        shooterLowerWheel = new CANTalon(6);
         LiveWindow.addActuator("Shooter", "LowerWheel", shooterLowerWheel);
         
-        triggerWheel = new CANTalon(6);
+        triggerWheel = new CANTalon(5);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
         
         driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, 

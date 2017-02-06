@@ -21,6 +21,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -44,7 +45,6 @@ public class DriveTrain extends Subsystem {
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
-    private final DoubleSolenoid shifterLeft = RobotMap.driveTrainShifterLeft;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     
@@ -58,16 +58,14 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
-    public void closeShifters() {
-    	RobotMap.driveTrainShifterLeft.set(Value.kReverse);
-    	RobotMap.driveTrainShifterRight.set(Value.kReverse);
+    public void closeShifter() {
+    	shifterRight.set(Value.kReverse);
     }
     
-    public void openShifters() {
-    	RobotMap.driveTrainShifterLeft.set(Value.kForward);
-    	RobotMap.driveTrainShifterRight.set(Value.kForward);
+    public void openShifter() {
+    	shifterRight.set(Value.kForward);
     }
     
     public void initPID(double setPoint) {
