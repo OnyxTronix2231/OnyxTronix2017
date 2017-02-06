@@ -18,6 +18,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -44,7 +45,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kLeft));
     }
     public void closeShifter() {
     	shifterRight.set(Value.kReverse);
