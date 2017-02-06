@@ -17,7 +17,7 @@ public class Buttons {
 	    Button(int value) {
 	        this.value = value;
 	    }
-	    public double value() { return value; }
+	    public int value() { return value; }
 	}
 	 
 }
