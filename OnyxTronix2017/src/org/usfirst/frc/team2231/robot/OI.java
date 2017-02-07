@@ -10,6 +10,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
@@ -74,20 +75,20 @@ public class OI {
     public OI() {
         driveStick = new Joystick(1);
         
-        closeShifters = new JoystickButton(driveStick, 8);
+        closeShifters = new JoystickButton(driveStick, Button.Start.value());
         closeShifters.whenPressed(new CloseShifters());
-        openShifters = new JoystickButton(driveStick, 7);
+        openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new OpenShifters());
         
         buttonStick = new Joystick(0);
         
-        collectBalls = new JoystickButton(buttonStick, 1);
+        collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(buttonStick, 3);
+        toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
         toggleGearHold.whenPressed(new ToggleGearHold());
-        load = new JoystickButton(buttonStick, 6);
+        load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
-        shoot = new JoystickButton(buttonStick, 5);
+        shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whenPressed(new ToggleShoot());
 
 
