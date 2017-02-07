@@ -2,6 +2,7 @@ package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
+import vision.PIDVisionSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -19,8 +20,8 @@ public class CenterByVision extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.setSlaveTalons();
-    	Robot.driveTrain.initPID(m_setPoint);
+    	Robot.driveTrain.setRotationSlaveTalons();
+    	Robot.driveTrain.initPID(m_setPoint, PIDVisionSourceType.NormalizedDistanceFromCenter);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -75,12 +75,12 @@ public class DriveTrain extends Subsystem {
     	shifter.set(Value.kForward);
     }
     
-    public void initPID(double setPoint) {
-    	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
+    public void initPID(double setPoint, PIDVisionSourceType pidVisionSourceType) {
+    	visionSensor.setPidVisionSourceType(pidVisionSourceType);
     	visionPIDControllerLeft.init(setPoint, PID_TOLERNCE);
     	visionPIDControllerRight.init(setPoint, PID_TOLERNCE);
     }
-    public void setSlaveTalons() {
+    public void setRotationSlaveTalons() {
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
     	secondLeft.set(firstLeft.getDeviceID());
@@ -90,6 +90,7 @@ public class DriveTrain extends Subsystem {
     	return visionPIDControllerRight.onTarget() && visionPIDControllerLeft.onTarget();
     }
     public void resetSlaveTalons() {
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
