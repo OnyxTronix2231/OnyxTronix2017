@@ -46,7 +46,7 @@ public class DriveTrain extends Subsystem {
     private final AnalogGyro gyro = RobotMap.driveTrainGyro;
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
-    private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
+    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveByJoystick());
@@ -58,10 +58,10 @@ public class DriveTrain extends Subsystem {
     	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
     public void closeShifter() {
-    	shifterRight.set(Value.kReverse);
+    	shifter.set(Value.kReverse);
     }
     public void openShifter() {
-    	shifterRight.set(Value.kForward);
+    	shifter.set(Value.kForward);
     }
     
     public void setSlaveTalons(){
