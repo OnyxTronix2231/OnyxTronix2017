@@ -2,6 +2,7 @@ package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
+import vision.PIDVisionSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -19,8 +20,8 @@ public class DriveToTargetByVision extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.setSlaveAfterFirstRight();
-    	Robot.driveTrain.initPID(m_setPoint);
+    	Robot.driveTrain.setDriveSlaveTalons();
+    	Robot.driveTrain.initPID(m_setPoint, PIDVisionSourceType.DistanceFromTarget);
     	
     }
 

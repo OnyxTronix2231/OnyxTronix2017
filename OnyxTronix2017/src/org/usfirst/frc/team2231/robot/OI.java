@@ -81,7 +81,7 @@ public class OI {
         closeShifters.whenPressed(new CloseShifters());
         openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new OpenShifters());
-        driveByVision = new JoystickButton(driveStick, 3);
+        driveByVision = new JoystickButton(driveStick, Button.X.value());
         driveByVision.whenPressed(new DriveToTargetByVision(1));
         
         buttonStick = new Joystick(0);

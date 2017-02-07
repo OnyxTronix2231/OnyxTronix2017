@@ -80,14 +80,14 @@ public class DriveTrain extends Subsystem {
 	    visionRotationPIDController.stop();
     }
     
-    public void setSlaveTalons() {
+    public void setRotationSlaveTalons() {
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     }
     
-    public void setSlaveAfterFirstRight() {
+    public void setDriveSlaveTalons() {
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
     	firstLeft.changeControlMode(TalonControlMode.Follower);
@@ -98,13 +98,14 @@ public class DriveTrain extends Subsystem {
     }
     
     public void resetSlaveTalons() {
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     }
     
-    public void initPID(double setPoint) {
-    	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
+    public void initPID(double setPoint, PIDVisionSourceType pidVisionSourceType) {
+    	visionSensor.setPidVisionSourceType(pidVisionSourceType);
     	visionRotationPIDController.init(setPoint, PID_TOLERANCE);
     }
 }
