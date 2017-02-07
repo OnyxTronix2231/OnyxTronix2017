@@ -20,6 +20,7 @@ import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
 
+import OnyxTronix.Debug;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -44,7 +45,6 @@ public class Robot extends IterativeRobot {
     public static GearHolder gearHolder;
     public static Shooter shooter;
     public static Trigger trigger;
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.

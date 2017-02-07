@@ -24,6 +24,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -33,24 +34,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-    private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
-    private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
-    private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
-    private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
-    private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
-    private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
-    private final OnyxTronixPIDController visionPIDController = RobotMap.visionPIDController;
-    private final VisionSensor visionSensor = RobotMap.visionSensor;
     public static final double PID_P = 0.5;
     public static final double PID_I = 0;
     public static final double PID_D = 0;
     public static final double PID_F = 0;
     public static final double PID_TOLERANCE = 10;
-    public static final double angleToFloor = 10;
-    public static final double cameraHeight = 20;//meters
-    public static final double targetHeight = 60;//meters
-    public static final double verticalApertureAngle = 20;
+    public static final double ANGLE_TO_FLOOR = 10;
+    public static final double CAMERA_HIEGHT = 20;//meters
+    public static final double TARGET_HEIGHT = 60;//meters
+    public static final double VERTICAL_APERTURE_ANGLE = 20;
     
+    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
+    private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
+    private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
+    private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
+    private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
+    private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
+    private final OnyxTronixPIDController visionRotationPIDController = RobotMap.visionRotationPIDController;
+    private final VisionSensor visionSensor = RobotMap.visionSensor;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -62,21 +63,21 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
     public void closeShifter() {
-    	shifterRight.set(Value.kReverse);
+    	shifter.set(Value.kReverse);
     }
     public void openShifter() {
-    	shifterRight.set(Value.kForward);
+    	shifter.set(Value.kForward);
     }
     
     public boolean  isOnTarget() {
-    	return visionPIDController.onTarget() ;
+    	return visionRotationPIDController.onTarget() ;
     }
     
     public void stopPID() {
-	    visionPIDController.stop();
+	    visionRotationPIDController.stop();
     }
     
     public void setSlaveTalons() {
@@ -104,7 +105,7 @@ public class DriveTrain extends Subsystem {
     
     public void initPID(double setPoint) {
     	visionSensor.setPidVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
-    	visionPIDController.init(setPoint, PID_TOLERANCE);
+    	visionRotationPIDController.init(setPoint, PID_TOLERANCE);
     }
 }
 
