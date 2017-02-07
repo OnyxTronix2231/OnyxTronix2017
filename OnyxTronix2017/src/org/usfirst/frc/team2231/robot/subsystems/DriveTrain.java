@@ -18,6 +18,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -32,7 +33,7 @@ public class DriveTrain extends Subsystem {
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
-    private final DoubleSolenoid shifterRight = RobotMap.driveTrainShifterRight;
+    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -44,13 +45,13 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(-stick.getRawAxis(1), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
     public void closeShifter() {
-    	RobotMap.driveTrainShifterRight.set(Value.kReverse);
+    	shifter.set(Value.kReverse);
     }
     public void openShifter() {
-    	RobotMap.driveTrainShifterRight.set(Value.kForward);
+    	shifter.set(Value.kForward);
     }
 }
 

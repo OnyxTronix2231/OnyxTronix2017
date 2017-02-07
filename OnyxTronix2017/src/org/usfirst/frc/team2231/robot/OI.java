@@ -10,6 +10,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.ClimbByGyro;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
@@ -21,7 +22,6 @@ import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolderPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenShifters;
-import org.usfirst.frc.team2231.robot.commands.StartShoot;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
 import org.usfirst.frc.team2231.robot.commands.ToggleShoot;
 
@@ -76,22 +76,22 @@ public class OI {
     public OI() {
         driveStick = new Joystick(1);
         
-        closeShifters = new JoystickButton(driveStick, 8);
+        closeShifters = new JoystickButton(driveStick, Button.Start.value());
         closeShifters.whenPressed(new CloseShifters());
-        openShifters = new JoystickButton(driveStick, 7);
+        openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new OpenShifters());
         
         buttonStick = new Joystick(0);
         
-        climbByGyro = new JoystickButton(buttonStick, 2);
+        climbByGyro = new JoystickButton(buttonStick, Button.B.value());
         climbByGyro.whenPressed(new ClimbByGyro());
-        collectBalls = new JoystickButton(buttonStick, 1);
+        collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(buttonStick, 3);
+        toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
         toggleGearHold.whenPressed(new ToggleGearHold());
-        load = new JoystickButton(buttonStick, 6);
+        load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
-        shoot = new JoystickButton(buttonStick, 5);
+        shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whenPressed(new ToggleShoot());
 
 
@@ -102,7 +102,6 @@ public class OI {
         SmartDashboard.putData("CloseShifters", new CloseShifters());
         SmartDashboard.putData("OpenGearHolderPiston", new OpenGearHolderPiston());
         SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolderPiston());
-        SmartDashboard.putData("StartShoot", new StartShoot());
         SmartDashboard.putData("OpenGearBlockerPiston", new OpenGearBlockerPiston());
         SmartDashboard.putData("CloseGearBlockerPiston", new CloseGearBlockerPiston());
     }

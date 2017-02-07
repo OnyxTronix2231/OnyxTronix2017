@@ -13,19 +13,25 @@ package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
 /**
  *
  */
-public class ToggleShoot extends ConditionalCommand {
+public class ToggleShoot extends Command {
 
 
     public ToggleShoot() {
-    	super(new StartShoot(), new StopShoot());
     }
 
-    protected boolean condition(){
-        return Robot.shooter.isShooting();
+    @Override
+    protected void initialize(){
+       Robot.shooter.toggleIsShooting(); 
     }
+
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 }
