@@ -82,7 +82,9 @@ public class OI {
         openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new OpenShifters());
         driveByVision = new JoystickButton(driveStick, Button.X.value());
-        driveByVision.whenPressed(new DriveToTargetByVision(1));
+        driveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.boilerGripConfig));
+        driveByVision = new JoystickButton(driveStick, Button.B.value());
+        driveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.liftGripConfig));
         
         buttonStick = new Joystick(0);
         
