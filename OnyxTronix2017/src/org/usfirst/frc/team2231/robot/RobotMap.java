@@ -13,13 +13,17 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
-import onyxNiVision.OnyxTronixPIDController;
 import vision.VisionSensor;
-import Configuration.FieldConfiguration;
 import GripVision.VisionSensorGrip;
+import OnyxTronix.OnyxPipeline;
+import OnyxTronix.OnyxTronixPIDController;
 
 import com.ctre.CANTalon;
 
+import Configuration.CameraConfiguration;
+import Configuration.GripConfiguration;
+import Configuration.TargetConfiguration;
+import Configuration.VisionConfiguration;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -47,9 +51,10 @@ public class RobotMap {
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
-    public static VisionSensor visionSensor;
+    public static VisionSensor<GripConfiguration<OnyxPipeline>> visionSensor;
     public static AxisCamera axisCamera;
-    public static FieldConfiguration fieldConfig;
+    public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
+    public static GripConfiguration<OnyxPipeline> gripLiftConfig;
     public static OnyxTronixPIDController visionPIDControllerRight;
     public static OnyxTronixPIDController visionPIDControllerLeft;
     
@@ -99,11 +104,19 @@ public class RobotMap {
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
     
         axisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
-        fieldConfig = new FieldConfiguration(DriveTrain.ANGLE_TO_FLOOR, DriveTrain.CAMERA_HEIGHT, DriveTrain.TARGET_HEIGHT,
-        									 DriveTrain.VERTICAL_APERTURE_ANGLE);
         
-        visionSensor = new VisionSensorGrip(axisCamera, fieldConfig);
+        CameraConfiguration camConfig;
+        TargetConfiguration tarConfig;
         
+        camConfig = new CameraConfiguration(DriveTrain.ANGLE_TO_FLOOR, DriveTrain.CAMERA_HEIGHT, 
+        									DriveTrain.VERTICAL_APERTURE_ANGLE);
+        tarConfig = new TargetConfiguration(DriveTrain.BOILER_HEIGHT);
+        gripBoilerConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new BoilerPipeline());
+        tarConfig = new TargetConfiguration(DriveTrain.LIFT_HEIGHT);
+        gripLiftConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new LiftPipeline());
+        
+        visionSensor = new VisionSensorGrip(axisCamera, gripBoilerConfig);
+   
         visionPIDControllerRight = new OnyxTronixPIDController(DriveTrain.PID_P, DriveTrain.PID_I, DriveTrain.PID_D, DriveTrain.PID_F
         		                                               , visionSensor, driveTrainFirstRight, DriveTrain.PID_TOLERNCE);
         

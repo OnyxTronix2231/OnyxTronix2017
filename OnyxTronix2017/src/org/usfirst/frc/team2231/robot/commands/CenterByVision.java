@@ -2,6 +2,9 @@ package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
+import Configuration.GripConfiguration;
+import Configuration.VisionConfiguration;
+import OnyxTronix.OnyxPipeline;
 import vision.PIDVisionSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,16 +13,18 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CenterByVision extends Command {
 	private double m_setPoint;
-
-    public CenterByVision(double setPoint) {
+	private GripConfiguration<OnyxPipeline> config;
+    public CenterByVision(double setPoint, GripConfiguration<OnyxPipeline> config) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.config = config;
     	m_setPoint = setPoint;
     	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveTrain.setVisionSensorConfig(config);
     	Robot.driveTrain.setRotationSlaveTalons();
     	Robot.driveTrain.initPID(m_setPoint, PIDVisionSourceType.NormalizedDistanceFromCenter);
     }

@@ -11,7 +11,6 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import onyxNiVision.OnyxTronixPIDController;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
@@ -22,6 +21,10 @@ import vision.VisionSensor;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import Configuration.GripConfiguration;
+import Configuration.VisionConfiguration;
+import OnyxTronix.OnyxPipeline;
+import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -36,7 +39,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	public static final double ANGLE_TO_FLOOR = 31;
     public static final double CAMERA_HEIGHT = 40; //In meter.
-    public static final double TARGET_HEIGHT = 70; //In meter.
+    public static final double BOILER_HEIGHT = 70; //In meter.
+    public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
     public static final double PID_P = 5;
     public static final double PID_I = 0;
@@ -51,7 +55,7 @@ public class DriveTrain extends Subsystem {
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final OnyxTronixPIDController visionPIDControllerRight= RobotMap.visionPIDControllerRight;
     private final OnyxTronixPIDController visionPIDControllerLeft= RobotMap.visionPIDControllerLeft;
-    private final VisionSensor visionSensor = RobotMap.visionSensor;
+    private final VisionSensor<GripConfiguration<OnyxPipeline>> visionSensor = RobotMap.visionSensor;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     
     // Put methods for controlling this subsystem
@@ -99,5 +103,9 @@ public class DriveTrain extends Subsystem {
     	visionPIDControllerLeft.stop();
     	visionPIDControllerRight.stop();
     }
+
+	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
+		visionSensor.setConfiguration(config);
+	}
 }
 

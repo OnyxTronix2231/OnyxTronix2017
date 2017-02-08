@@ -92,8 +92,10 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whenPressed(new ToggleShoot());
-        centerByVision = new JoystickButton(buttonStick, 2);
-        centerByVision.whenPressed(new CenterByVision(1));
+        centerByVision = new JoystickButton(buttonStick, Button.B.value());
+        centerByVision.whenPressed(new CenterByVision(1, RobotMap.gripBoilerConfig));
+        centerByVision = new JoystickButton(buttonStick, Button.Y.value());
+        centerByVision.whenPressed(new CenterByVision(1, RobotMap.gripLiftConfig));
         
 
 
