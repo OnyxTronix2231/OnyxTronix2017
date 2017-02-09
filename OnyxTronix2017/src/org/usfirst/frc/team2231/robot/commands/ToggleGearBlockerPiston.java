@@ -11,7 +11,9 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 
+import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
@@ -27,6 +29,6 @@ public class ToggleGearBlockerPiston extends ConditionalCommand {
     }
 
     protected boolean condition(){
-        return RobotMap.gearBlockerPiston.get() != Value.kForward;//TODO: Auto Generated method stub
+        return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_CLOSE_POSIION);
     }
 }
