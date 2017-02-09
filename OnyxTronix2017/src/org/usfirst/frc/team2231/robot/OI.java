@@ -12,15 +12,15 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team2231.robot.commands.BlockGear;
-import org.usfirst.frc.team2231.robot.commands.HoldGear;
-import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
+import org.usfirst.frc.team2231.robot.commands.CloseGearBlockerPiston;
+import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.CloseShifters;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
-import org.usfirst.frc.team2231.robot.commands.SlideGear;
-import org.usfirst.frc.team2231.robot.commands.ReleaseGear;
-import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
+import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
+import org.usfirst.frc.team2231.robot.commands.OpenGearHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.OpenShifters;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
 import org.usfirst.frc.team2231.robot.commands.ToggleShoot;
 
@@ -76,9 +76,9 @@ public class OI {
         driveStick = new Joystick(1);
         
         closeShifters = new JoystickButton(driveStick, Button.Start.value());
-        closeShifters.whenPressed(new SwitchToStrengthGear());
+        closeShifters.whenPressed(new CloseShifters());
         openShifters = new JoystickButton(driveStick, Button.Back.value());
-        openShifters.whenPressed(new SwitchToSpeedGear());
+        openShifters.whenPressed(new OpenShifters());
         
         buttonStick = new Joystick(0);
         
@@ -95,12 +95,12 @@ public class OI {
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("DriveByJoystick", new DriveByJoystick());
-        SmartDashboard.putData("OpenShifters", new SwitchToSpeedGear());
-        SmartDashboard.putData("CloseShifters", new SwitchToStrengthGear());
-        SmartDashboard.putData("OpenGearHolderPiston", new ReleaseGear());
-        SmartDashboard.putData("CloseGearHolderPiston", new HoldGear());
-        SmartDashboard.putData("OpenGearBlockerPiston", new SlideGear());
-        SmartDashboard.putData("CloseGearBlockerPiston", new BlockGear());
+        SmartDashboard.putData("OpenShifters", new OpenShifters());
+        SmartDashboard.putData("CloseShifters", new CloseShifters());
+        SmartDashboard.putData("OpenGearHolderPiston", new OpenGearHolderPiston());
+        SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolderPiston());
+        SmartDashboard.putData("OpenGearBlockerPiston", new OpenGearBlockerPiston());
+        SmartDashboard.putData("CloseGearBlockerPiston", new CloseGearBlockerPiston());
     }
 
     public Joystick getButtonStick() {
