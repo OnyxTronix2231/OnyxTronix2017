@@ -23,7 +23,7 @@ public class ToggleGearBlockerPiston extends ConditionalCommand {
 
 
     public ToggleGearBlockerPiston() {
-    	super(new OpenGearBlockerPiston(), new CloseGearBlockerPiston());
+    	super(new SlideGear(), new BlockGear());
     }
 
     protected boolean condition(){

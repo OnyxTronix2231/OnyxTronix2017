@@ -19,15 +19,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class OpenGearBlockerPiston extends InstantCommand {
-
-    public OpenGearBlockerPiston() {
-        requires(Robot.gearBlocker); 
+public class BlockGear extends InstantCommand {
+    public BlockGear() {
+        requires(Robot.gearBlocker);
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	RobotMap.gearBlockerPiston.set(Value.kForward);
+    	RobotMap.gearBlockerPiston.set(Value.kReverse);
     }
 
 }

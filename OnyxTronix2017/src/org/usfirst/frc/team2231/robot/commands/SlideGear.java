@@ -19,14 +19,15 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class CloseGearHolderPiston extends InstantCommand {
-    public CloseGearHolderPiston() {
-        requires(Robot.gearHolder);
+public class SlideGear extends InstantCommand {
+
+    public SlideGear() {
+        requires(Robot.gearBlocker); 
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	RobotMap.gearHolderPiston.set(Value.kReverse);
+    	RobotMap.gearBlockerPiston.set(Value.kForward);
     }
 
 }

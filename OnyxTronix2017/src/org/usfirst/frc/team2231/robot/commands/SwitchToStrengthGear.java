@@ -11,22 +11,20 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class CloseGearBlockerPiston extends InstantCommand {
-    public CloseGearBlockerPiston() {
-        requires(Robot.gearBlocker);
+public class SwitchToStrengthGear extends InstantCommand {
+
+    public SwitchToStrengthGear() {
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	RobotMap.gearBlockerPiston.set(Value.kReverse);
+    	Robot.driveTrain.closeShifter();
     }
 
 }

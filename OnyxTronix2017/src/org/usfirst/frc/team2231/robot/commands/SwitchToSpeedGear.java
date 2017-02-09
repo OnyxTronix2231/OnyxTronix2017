@@ -17,9 +17,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class OpenShifters extends InstantCommand {
+public class SwitchToSpeedGear extends InstantCommand {
 
-    public OpenShifters() {
+    public SwitchToSpeedGear() {
     }
 
     // Called once when this command runs
