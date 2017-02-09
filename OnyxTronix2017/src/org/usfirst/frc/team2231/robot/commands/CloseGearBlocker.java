@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class CloseGearBlockerPiston extends Command {
-    public CloseGearBlockerPiston() {
+public class CloseGearBlocker extends Command {
+    public CloseGearBlocker() {
         requires(Robot.gearBlocker);
     }
 

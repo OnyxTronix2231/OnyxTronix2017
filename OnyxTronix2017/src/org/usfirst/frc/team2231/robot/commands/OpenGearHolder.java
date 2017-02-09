@@ -19,9 +19,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class OpenGearHolderPiston extends InstantCommand {
+public class OpenGearHolder extends InstantCommand {
 
-    public OpenGearHolderPiston() {
+    public OpenGearHolder() {
         requires(Robot.gearHolder);
     }
 

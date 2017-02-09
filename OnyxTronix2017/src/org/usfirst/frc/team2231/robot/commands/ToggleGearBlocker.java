@@ -21,11 +21,11 @@ import edu.wpi.first.wpilibj.command.ConditionalCommand;
 /**
  *
  */
-public class ToggleGearBlockerPiston extends ConditionalCommand {
+public class ToggleGearBlocker extends ConditionalCommand {
 
 
-    public ToggleGearBlockerPiston() {
-    	super(new OpenGearBlockerPiston(), new CloseGearBlockerPiston());
+    public ToggleGearBlocker() {
+    	super(new OpenGearBlockerPiston(), new CloseGearBlocker());
     }
 
     protected boolean condition(){
