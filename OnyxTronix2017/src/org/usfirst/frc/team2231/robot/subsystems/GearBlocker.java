@@ -9,10 +9,17 @@
 // it from being updated in the future.
 
 
+
+
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 
+import OnyxTronix.Debug;
+
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,7 +28,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class GearBlocker extends Subsystem {
-    private final DoubleSolenoid piston = RobotMap.gearBlockerPiston;
+	public static final double TOLERANCE = 5;
+	public static final double BLOCKER_OPEN_POSIION = 90;
+	public static final double BLOCKER_CLOSE_POSIION = 0;
+	public static final double MOTOR_SPEED = 0.5;
+	
+    private final CANTalon motor = RobotMap.gearBlockerMotor;
+    private final AnalogPotentiometer potentiometer = RobotMap.gearBlockerPotentiometer;
+
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -30,5 +44,23 @@ public class GearBlocker extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void openGearBlocker() {
+    	motor.set(MOTOR_SPEED);
+    }
+    
+    public void closeGearBlocker() {
+    	motor.set(-MOTOR_SPEED);
+    }
+    
+    public boolean isOnTarget(double setPointAngle) {
+    	Debug.getInstance().log(this, "Error: " + (setPointAngle - potentiometer.get()));
+    	return Math.abs(setPointAngle - potentiometer.get()) < TOLERANCE;
+    }
+
+	public void stopMotor() {
+		motor.set(0);		
+	}
 }
 
+ 
