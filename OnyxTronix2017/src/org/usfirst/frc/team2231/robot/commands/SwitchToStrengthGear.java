@@ -17,14 +17,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class OpenShifters extends InstantCommand {
+public class SwitchToStrengthGear extends InstantCommand {
 
-    public OpenShifters() {
+    public SwitchToStrengthGear() {
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.driveTrain.openShifter();
+    	Robot.driveTrain.switchToStrengthGear();
     }
 
 }

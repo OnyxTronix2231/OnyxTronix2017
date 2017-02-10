@@ -71,11 +71,11 @@ public class DriveTrain extends Subsystem {
     	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
     
-    public void closeShifter() {
+    public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
     }
     
-    public void openShifter() {
+    public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
     
@@ -90,15 +90,18 @@ public class DriveTrain extends Subsystem {
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     }
+    
     public boolean isOnTarget() {
     	return visionPIDControllerRight.onTarget() && visionPIDControllerLeft.onTarget();
     }
+    
     public void resetSlaveTalons() {
     	firstRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     }
+    
     public void stopPID() {
     	visionPIDControllerLeft.stop();
     	visionPIDControllerRight.stop();

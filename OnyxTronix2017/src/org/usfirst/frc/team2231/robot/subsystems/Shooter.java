@@ -12,7 +12,6 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.ControlShooting;
 
 import com.ctre.CANTalon;
 
@@ -23,7 +22,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
 	private static final double SPEED = 1;
-	public boolean isShooting = false;
 	
     private final CANTalon upperWheel = RobotMap.shooterUpperWheel;
     private final CANTalon lowerWheel = RobotMap.shooterLowerWheel;
@@ -34,7 +32,6 @@ public class Shooter extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new ControlShooting());
 	}
 	
 	public void startShoot() {
@@ -45,17 +42,5 @@ public class Shooter extends Subsystem {
 	public void stopShoot() {
 		upperWheel.set(0);
 		lowerWheel.set(0);
-	}
-	
-	public void toggleIsShooting() {
-		isShooting = !isShooting;
-	}
-	
-	public void toggleShooting() {
-		if(Robot.shooter.isShooting) {
-    		Robot.shooter.startShoot();
-    	} else {
-    		Robot.shooter.stopShoot();
-    	}
 	}
 }

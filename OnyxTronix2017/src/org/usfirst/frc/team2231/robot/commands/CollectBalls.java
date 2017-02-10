@@ -22,7 +22,6 @@ public class CollectBalls extends Command {
     
     public CollectBalls(double maxSpeed) {
         m_maxSpeed = maxSpeed;
-
         requires(Robot.collector);
     }
 

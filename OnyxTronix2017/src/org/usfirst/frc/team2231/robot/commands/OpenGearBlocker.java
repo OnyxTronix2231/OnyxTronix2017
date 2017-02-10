@@ -11,39 +11,37 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ControlShooting extends Command {
+public class OpenGearBlocker extends Command {
 
-    public ControlShooting() {
-        requires(Robot.shooter);
+    public OpenGearBlocker() {
+        requires(Robot.gearBlocker); 
     }
 
     // Called once when this command runs
     protected void initialize() {
-
-    }
-    
-    @Override
-    protected void execute() {
-    	Robot.shooter.toggleShooting();
+    	Robot.gearBlocker.openGearBlocker();
     }
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_OPEN_POSIION);
 	}
 	
+	@Override
 	protected void end() {
-		Robot.shooter.stopShoot();
-		Robot.shooter.isShooting = false;
+		Robot.gearBlocker.stopMotor();
 	}
-	
+
 	@Override
 	protected void interrupted() {
 		end();
