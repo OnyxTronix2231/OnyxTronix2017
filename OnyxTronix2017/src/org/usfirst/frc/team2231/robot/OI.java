@@ -72,7 +72,9 @@ public class OI {
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
     public Joystick driveStick;
-    public JoystickButton centerByVision;
+    public JoystickButton boilerCenterByVision;
+    public JoystickButton liftCenterByVision;
+
 
     public OI() {
         driveStick = new Joystick(1);
@@ -92,10 +94,10 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
-        centerByVision = new JoystickButton(buttonStick, Button.B.value());
-        centerByVision.whenPressed(new CenterByVision(1, RobotMap.gripBoilerConfig));
-        centerByVision = new JoystickButton(buttonStick, Button.Y.value());
-        centerByVision.whenPressed(new CenterByVision(1, RobotMap.gripLiftConfig));
+        boilerCenterByVision = new JoystickButton(buttonStick, Button.B.value());
+        boilerCenterByVision.whenPressed(new CenterByVision(1, RobotMap.gripBoilerConfig));
+        liftCenterByVision = new JoystickButton(buttonStick, Button.Y.value());
+        liftCenterByVision.whenPressed(new CenterByVision(1, RobotMap.gripLiftConfig));
 
 
         // SmartDashboard Buttons
