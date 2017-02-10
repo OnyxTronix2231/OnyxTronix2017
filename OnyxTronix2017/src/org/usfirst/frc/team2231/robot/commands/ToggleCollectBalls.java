@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2231.robot.commands;
 
+import org.usfirst.frc.team2231.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
 /**
@@ -15,6 +17,6 @@ public class ToggleCollectBalls extends ConditionalCommand {
     
 	@Override
 	protected boolean condition() {
-		return false;
+		return Robot.collector.isCollecting();
 	}
 }

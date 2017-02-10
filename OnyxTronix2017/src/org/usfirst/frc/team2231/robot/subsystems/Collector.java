@@ -40,5 +40,9 @@ public class Collector extends Subsystem {
     public void stopBallCollector() {
     	wheel.set(0);
     }
+    
+    public boolean isCollecting() {
+    	return wheel.get() != 0;
+    }
 }
 
