@@ -25,7 +25,7 @@ public class ToggleGearBlocker extends ConditionalCommand {
 
 
     public ToggleGearBlocker() {
-    	super(new OpenGearBlockerPiston(), new CloseGearBlocker());
+    	super(new OpenGearBlocker(), new CloseGearBlocker());
     }
 
     protected boolean condition(){

@@ -13,12 +13,12 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
-import org.usfirst.frc.team2231.robot.commands.CloseGearHolderPiston;
+import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
-import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
+import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
@@ -98,8 +98,8 @@ public class OI {
         SmartDashboard.putData("OpenShifters", new SwitchToSpeedGear());
         SmartDashboard.putData("CloseShifters", new SwitchToStrengthGear());
         SmartDashboard.putData("OpenGearHolderPiston", new OpenGearHolder());
-        SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolderPiston());
-        SmartDashboard.putData("OpenGearBlockerPiston", new OpenGearBlockerPiston());
+        SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolder());
+        SmartDashboard.putData("OpenGearBlockerPiston", new OpenGearBlocker());
         SmartDashboard.putData("CloseGearBlockerPiston", new CloseGearBlocker());
     }
 

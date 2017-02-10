@@ -23,7 +23,7 @@ public class ToggleGearHold extends ConditionalCommand {
 
 
     public ToggleGearHold() {
-    	super(new OpenGearHolder(), new CloseGearHolderPiston());
+    	super(new OpenGearHolder(), new CloseGearHolder());
     }
 
     protected boolean condition(){

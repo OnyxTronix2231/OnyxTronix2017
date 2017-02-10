@@ -15,26 +15,24 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class OpenGearBlockerPiston extends Command {
-
-    public OpenGearBlockerPiston() {
-        requires(Robot.gearBlocker); 
+public class CloseGearHolder extends InstantCommand {
+    public CloseGearHolder() {
+        requires(Robot.gearHolder);
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearBlocker.openGearBlocker();
+    	Robot.gearBlocker.closeGearBlocker();
     }
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_OPEN_POSIION);
+		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_CLOSE_POSIION);
 	}
 	
 	@Override
