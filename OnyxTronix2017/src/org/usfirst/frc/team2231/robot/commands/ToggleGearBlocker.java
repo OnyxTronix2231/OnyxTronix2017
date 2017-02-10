@@ -10,23 +10,25 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
+
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
 /**
  *
  */
-public class CloseGearHolderPiston extends InstantCommand {
-    public CloseGearHolderPiston() {
-        requires(Robot.gearHolder);
+public class ToggleGearBlocker extends ConditionalCommand {
+
+
+    public ToggleGearBlocker() {
+    	super(new OpenGearBlocker(), new CloseGearBlocker());
     }
 
-    // Called once when this command runs
-    protected void initialize() {
-    	RobotMap.gearHolderPiston.set(Value.kReverse);
+    protected boolean condition(){
+        return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_CLOSE_POSIION);
     }
-
 }

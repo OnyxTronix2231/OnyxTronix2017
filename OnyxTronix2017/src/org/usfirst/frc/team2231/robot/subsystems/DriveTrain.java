@@ -57,10 +57,10 @@ public class DriveTrain extends Subsystem {
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
-    public void closeShifter() {
+    public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
     }
-    public void openShifter() {
+    public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
     

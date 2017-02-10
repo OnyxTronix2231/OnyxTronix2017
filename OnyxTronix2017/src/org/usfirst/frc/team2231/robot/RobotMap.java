@@ -22,6 +22,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -33,7 +34,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
-    public static DoubleSolenoid gearBlockerPiston;
+    public static CANTalon gearBlockerMotor;
+    public static AnalogPotentiometer gearBlockerPotentiometer;
     public static CANTalon driveTrainFirstLeft;
     public static CANTalon driveTrainSecondLeft;
     public static CANTalon driveTrainFirstRight;
@@ -51,8 +53,11 @@ public class RobotMap {
     public static CANTalon triggerWheel;
 
     public static void init() {
-        gearBlockerPiston = new DoubleSolenoid(0, 2, 3);
-        LiveWindow.addActuator("GearBlocker", "Piston", gearBlockerPiston);
+        gearBlockerMotor = new CANTalon(9);
+        LiveWindow.addActuator("GearBlocker", "Motor", gearBlockerMotor);
+        
+        gearBlockerPotentiometer = new AnalogPotentiometer(0);
+        LiveWindow.addActuator("GearBlocker", "Potentiometer", gearBlockerPotentiometer);
         
         driveTrainFirstLeft = new CANTalon(0);
         LiveWindow.addActuator("DriveTrain", "FirstLeft", driveTrainFirstLeft);

@@ -11,23 +11,20 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class OpenGearHolderPiston extends InstantCommand {
+public class SwitchToSpeedGear extends InstantCommand {
 
-    public OpenGearHolderPiston() {
-        requires(Robot.gearHolder);
+    public SwitchToSpeedGear() {
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	RobotMap.gearHolderPiston.set(Value.kForward);
+    	Robot.driveTrain.switchToSpeedGear();
     }
 
 }
