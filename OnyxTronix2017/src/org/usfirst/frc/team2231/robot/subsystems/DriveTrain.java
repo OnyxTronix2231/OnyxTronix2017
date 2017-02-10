@@ -11,14 +11,13 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import onyxNiVision.OnyxTronixPIDController;
-
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -60,11 +59,12 @@ public class DriveTrain extends Subsystem {
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
-    public void closeShifter() {
+    
+    public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
     }
     
-    public void openShifter() {
+    public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
     
