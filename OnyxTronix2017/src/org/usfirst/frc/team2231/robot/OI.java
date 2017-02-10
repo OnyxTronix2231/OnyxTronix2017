@@ -72,7 +72,9 @@ public class OI {
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
     public Joystick driveStick;
-    public JoystickButton driveByVision;
+    public JoystickButton boilerDriveByVision;
+    public JoystickButton liftDriveByVision;
+
 
     public OI() {
         driveStick = new Joystick(1);
@@ -81,10 +83,10 @@ public class OI {
         closeShifters.whenPressed(new SwitchToStrengthGear());
         openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new SwitchToSpeedGear());
-        driveByVision = new JoystickButton(driveStick, Button.X.value());
-        driveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.boilerGripConfig));
-        driveByVision = new JoystickButton(driveStick, Button.B.value());
-        driveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.liftGripConfig));
+        boilerDriveByVision = new JoystickButton(driveStick, Button.X.value());
+        boilerDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.boilerGripConfig));
+        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
+        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.liftGripConfig));
         
         buttonStick = new Joystick(0);
         
