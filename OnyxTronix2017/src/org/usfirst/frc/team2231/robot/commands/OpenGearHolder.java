@@ -11,40 +11,23 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ControlShooting extends Command {
+public class OpenGearHolder extends InstantCommand {
 
-    public ControlShooting() {
-        requires(Robot.shooter);
+    public OpenGearHolder() {
+        requires(Robot.gearHolder);
     }
 
     // Called once when this command runs
     protected void initialize() {
-
-    }
-    
-    @Override
-    protected void execute() {
-    	Robot.shooter.toggleShooting();
+    	RobotMap.gearHolderPiston.set(Value.kForward);
     }
 
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
-	
-	protected void end() {
-		Robot.shooter.stopShoot();
-		Robot.shooter.isShooting = false;
-	}
-	
-	@Override
-	protected void interrupted() {
-		end();
-	}
 }

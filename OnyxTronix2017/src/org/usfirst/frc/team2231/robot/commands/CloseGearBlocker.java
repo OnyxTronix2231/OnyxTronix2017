@@ -11,20 +11,38 @@
 
 package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CloseShifters extends InstantCommand {
-
-    public CloseShifters() {
+public class CloseGearBlocker extends Command {
+    public CloseGearBlocker() {
+        requires(Robot.gearBlocker);
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.driveTrain.closeShifter();
+    	Robot.gearBlocker.closeGearBlocker();
     }
+    
+    @Override
+	protected boolean isFinished() {
+		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_OPEN_POSIION);
+	}
+	
+	@Override
+	protected void end() {
+		Robot.gearBlocker.stopMotor();
+	}
+
+	@Override
+	protected void interrupted() {
+		end();
+	}
 
 }

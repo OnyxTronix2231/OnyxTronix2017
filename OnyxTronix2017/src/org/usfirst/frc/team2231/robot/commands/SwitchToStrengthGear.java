@@ -10,26 +10,21 @@
 
 
 package org.usfirst.frc.team2231.robot.commands;
-
 import org.usfirst.frc.team2231.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ToggleShoot extends Command {
+public class SwitchToStrengthGear extends InstantCommand {
 
-    public ToggleShoot() {
+    public SwitchToStrengthGear() {
     }
 
-    @Override
-    protected void initialize(){
-       Robot.shooter.toggleIsShooting(); 
+    // Called once when this command runs
+    protected void initialize() {
+    	Robot.driveTrain.switchToStrengthGear();
     }
 
-	@Override
-	protected boolean isFinished() {
-		return true;
-	}
 }

@@ -10,16 +10,12 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import onyxNiVision.OnyxTronixPIDController;
-
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.ControlShooting;
-import org.usfirst.frc.team2231.robot.commands.ShootByEncoder;
-
+import org.usfirst.frc.team2231.robot.StaticFields;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
-
+import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -43,7 +39,6 @@ public class Shooter extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new ShootByEncoder());
 	}
 	
 	public void startShoot() {
@@ -79,25 +74,6 @@ public class Shooter extends Subsystem {
 	
 	public boolean isReady(){
 		return PIDController.isEnabled() && PIDController.onTarget();
-	}
-	
-	public void toggleIsShooting() {
-		isShooting = !isShooting;
-		hasRunnedOnce = false;
-	}
-	
-	boolean hasRunnedOnce = false;
-	public void toggleShooting() {
-		if(!hasRunnedOnce){
-			hasRunnedOnce = true;
-			if(isShooting) {
-//				System.out.println("start pid"); //TODO: remove
-	    		startPID();
-	    	} else {
-//				System.out.println("stop pid");
-	    		stopPID();
-	    	}
-		}
 	}
 	
 	public void stopPID() {
