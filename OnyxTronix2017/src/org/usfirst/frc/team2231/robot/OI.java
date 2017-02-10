@@ -20,9 +20,9 @@ import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlockerPiston;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
+import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
-import org.usfirst.frc.team2231.robot.commands.ToggleShoot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -89,7 +89,7 @@ public class OI {
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
-        shoot.whenPressed(new ToggleShoot());
+        shoot.whileHeld(new Shoot());
 
 
         // SmartDashboard Buttons
