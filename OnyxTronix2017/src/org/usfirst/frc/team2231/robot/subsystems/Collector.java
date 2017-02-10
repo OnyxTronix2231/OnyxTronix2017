@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Collector extends Subsystem {
+	public static final double SPEED = 1;
     private final CANTalon wheel = RobotMap.collectorWheel;
     
     // Put methods for controlling this subsystem
@@ -38,6 +39,10 @@ public class Collector extends Subsystem {
     
     public void stopBallCollector() {
     	wheel.set(0);
+    }
+    
+    public boolean isCollecting() {
+    	return wheel.get() != 0;
     }
 }
 
