@@ -17,6 +17,7 @@ import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -25,7 +26,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import onyxNiVision.OnyxTronixPIDController;
 
 
 /**
