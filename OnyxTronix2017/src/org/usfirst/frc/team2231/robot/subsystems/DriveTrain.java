@@ -42,6 +42,7 @@ public class DriveTrain extends Subsystem {
     public static final double BOILER_HEIGHT = 70; //In meter.
     public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
+    public static final double HORIZONTAL_APERTURE_ANGLE = 47;
     public static final double PID_P = 5;
     public static final double PID_I = 0;
     public static final double PID_D = 0;
