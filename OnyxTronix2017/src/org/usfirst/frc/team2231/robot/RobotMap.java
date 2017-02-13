@@ -19,11 +19,15 @@ import com.ctre.CANTalon;
 
 import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.AnalogGyro;
+
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+
 import vision.VisionSensor;
+import GripVision.AngleCalculation;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
+
 import com.ctre.CANTalon;
 
 import Configuration.CameraConfiguration;
@@ -60,13 +64,13 @@ public class RobotMap {
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
-    public static VisionSensor<GripConfiguration<OnyxPipeline>> visionSensor;
+    public static VisionSensorGrip visionSensor;
     public static AxisCamera axisCamera;
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
     public static OnyxTronixPIDController visionPIDControllerRight;
     public static OnyxTronixPIDController visionPIDControllerLeft;
-    
+    public static AngleCalculation angleCalculation;
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
         LiveWindow.addActuator("GearBlocker", "Motor", gearBlockerMotor);
@@ -136,6 +140,9 @@ public class RobotMap {
         tarConfig = new TargetConfiguration(DriveTrain.LIFT_HEIGHT);
         gripLiftConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new LiftPipeline());
         
+        angleCalculation = new AngleCalculation();
+        
         visionSensor = new VisionSensorGrip(axisCamera, gripBoilerConfig);  
+        
     }
 }

@@ -12,6 +12,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 
+import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
@@ -21,6 +22,11 @@ import vision.VisionSensor;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import Configuration.GripConfiguration;
+import GripVision.AngleCalculation;
+import GripVision.GripVisionStrategy;
+import GripVision.VisionSensorGrip;
+import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -57,6 +63,8 @@ public class DriveTrain extends Subsystem {
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
+    private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
+    private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveByJoystick());
@@ -101,6 +109,11 @@ public class DriveTrain extends Subsystem {
     	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
     }
     
+    public void setPIDSetPoint(double setPoint) {
+    	rotationPidControllerLeft.setSetpoint(setPoint);
+    	rotationPidControllerRight.setSetpoint(setPoint);
+    }
+    
     public void resetGyro() {
     	gyro.reset();
     }
@@ -112,6 +125,23 @@ public class DriveTrain extends Subsystem {
     
     public boolean isOnTarget(){
     	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
+    }
+    
+    public void setConfig(GripConfiguration<OnyxPipeline> config) {
+    	visionSensor.setConfiguration(config);
+    }
+    
+    public double getAngleFromVision(double setPoint) {
+    	visionSensor.setStrategy(angleCalculation);
+    	return visionSensor.getValueBySetPoint(setPoint);
+    }
+    
+    public double getAngleError() {
+    	return rotationPidControllerRight.getError();
+    }
+    
+    public boolean isVisionOnTarget(double setPoint) {
+    	return Math.abs(Robot.driveTrain.getAngleFromVision(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
     }
     
     public double getEfficientAngle(double angle) {
