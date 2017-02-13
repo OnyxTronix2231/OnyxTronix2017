@@ -13,7 +13,7 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 
-import onyxNiVision.OnyxTronixPIDController;
+import OnyxTronix.OnyxTronixPIDController;
 
 import com.ctre.CANTalon;
 
