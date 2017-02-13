@@ -12,6 +12,7 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
@@ -73,6 +74,9 @@ public class OI {
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
     public Joystick driveStick;
+    public JoystickButton boilerCenterByVision;
+    public JoystickButton liftCenterByVision;
+
 
     public OI() {
         driveStick = new Joystick(1);
@@ -94,6 +98,10 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
+        boilerCenterByVision = new JoystickButton(buttonStick, Button.B.value());
+        boilerCenterByVision.whenPressed(new CenterByVision(1, RobotMap.gripBoilerConfig));
+        liftCenterByVision = new JoystickButton(buttonStick, Button.Y.value());
+        liftCenterByVision.whenPressed(new CenterByVision(1, RobotMap.gripLiftConfig));
 
 
         // SmartDashboard Buttons

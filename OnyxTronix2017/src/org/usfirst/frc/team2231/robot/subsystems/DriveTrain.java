@@ -11,8 +11,12 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
+
+import vision.PIDVisionSourceType;
+import vision.VisionSensor;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -37,7 +41,13 @@ public class DriveTrain extends Subsystem {
 	public static final double ROTATION_PID_D = 0;
 	public static final double ROTATION_PID_F = 0;
 	public static final double ROTATION_ABSOLUTE_TOLERANCE = 5;
-	
+	public static final double ANGLE_TO_FLOOR = 31;
+    public static final double CAMERA_HEIGHT = 40; //In meter.
+    public static final double BOILER_HEIGHT = 70; //In meter.
+    public static final double LIFT_HEIGHT = 20; //In meter.
+    public static final double VERTICAL_APERTURE_ANGLE = 35;
+    public static final double HORIZONTAL_APERTURE_ANGLE = 47;
+
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
@@ -57,9 +67,11 @@ public class DriveTrain extends Subsystem {
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
     }
+    
     public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
     }
+    
     public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
@@ -67,7 +79,6 @@ public class DriveTrain extends Subsystem {
     public void setSlaveTalons(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
-    	
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     }
