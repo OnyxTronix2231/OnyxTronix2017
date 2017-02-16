@@ -28,6 +28,7 @@ import GripVision.GripVisionStrategy;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -59,7 +60,7 @@ public class DriveTrain extends Subsystem {
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
-    private final AnalogGyro gyro = RobotMap.driveTrainGyro;
+    private final ADXRS450_Gyro gyro = RobotMap.driveTrainGyro;
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;

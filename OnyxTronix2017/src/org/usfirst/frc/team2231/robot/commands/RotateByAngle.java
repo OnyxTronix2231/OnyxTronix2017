@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
+import OnyxTronix.Debug;
+
 /**
  *
  */
@@ -47,6 +49,8 @@ public class RotateByAngle extends Command {
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.setSlaveTalons();
     	Robot.driveTrain.PIDInit(m_setPoint);
+    	Debug.getInstance().log(this, m_setPoint + "");
+
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -34,6 +34,8 @@ import Configuration.CameraConfiguration;
 import Configuration.GripConfiguration;
 import Configuration.TargetConfiguration;
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.first.wpilibj.ADXL345_SPI;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -54,7 +56,7 @@ public class RobotMap {
     public static CANTalon driveTrainFirstRight;
     public static CANTalon driveTrainSecondRight;
     public static RobotDrive driveTrainRobotDrive;
-    public static AnalogGyro driveTrainGyro;
+    public static ADXRS450_Gyro driveTrainGyro;
     public static OnyxTronixPIDController driveTrainRotationRightPIDController;
 	public static OnyxTronixPIDController driveTrainRotationLeftPIDController;
     public static CANTalon collectorWheel;
@@ -97,15 +99,16 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
         
+        driveTrainGyro = new ADXRS450_Gyro();
+        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);
+        
         driveTrainRotationRightPIDController = new OnyxTronixPIDController(DriveTrain.ROTATION_PID_P, DriveTrain.ROTATION_PID_I, DriveTrain.ROTATION_PID_D, DriveTrain.ROTATION_PID_F, driveTrainGyro, driveTrainFirstRight, DriveTrain.ROTATION_ABSOLUTE_TOLERANCE);
         driveTrainRotationRightPIDController.setOutputRange(-1, 1);
         
         driveTrainRotationLeftPIDController = new OnyxTronixPIDController(DriveTrain.ROTATION_PID_P, DriveTrain.ROTATION_PID_I, DriveTrain.ROTATION_PID_D, DriveTrain.ROTATION_PID_F, driveTrainGyro, driveTrainFirstLeft, DriveTrain.ROTATION_ABSOLUTE_TOLERANCE);
         driveTrainRotationLeftPIDController.setOutputRange(-1, 1);      
 
-        driveTrainGyro = new AnalogGyro(0);
-        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);
-        driveTrainGyro.setSensitivity(0.007);
+        
 
         collectorWheel = new CANTalon(4);
         LiveWindow.addActuator("BallCollector", "wheel", collectorWheel);
@@ -128,7 +131,7 @@ public class RobotMap {
         triggerWheel = new CANTalon(5);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
     
-        axisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
+        axisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
         
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
