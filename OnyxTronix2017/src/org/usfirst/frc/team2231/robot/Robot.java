@@ -81,6 +81,10 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Rotation PID I", DriveTrain.ROTATION_PID_I);
         SmartDashboard.putNumber("Rotation PID D", DriveTrain.ROTATION_PID_D);
         SmartDashboard.putNumber("Rotation PID F", DriveTrain.ROTATION_PID_F);
+        SmartDashboard.putNumber("Drive PID P", DriveTrain.DRIVE_PID_P);
+        SmartDashboard.putNumber("Drive PID I", DriveTrain.DRIVE_PID_I);
+        SmartDashboard.putNumber("Drive PID D", DriveTrain.DRIVE_PID_D);
+        SmartDashboard.putNumber("Drive PID F", DriveTrain.DRIVE_PID_F);
     }
 
     /**
@@ -106,14 +110,29 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
-
-    double p, i, d, f;
+    
+    double p, i,d, f;
     public void teleopInit() {
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+    }
+
+    /**
+     * This function is called periodically during operator control
+     */
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+        
+        p = SmartDashboard.getNumber("Drive PID P", 0);
+        i = SmartDashboard.getNumber("Drive PID I", 0);
+        d = SmartDashboard.getNumber("Drive PID D", 0);
+        f = SmartDashboard.getNumber("Drive PID F", 0);
+        
+        RobotMap.driveTrainDriveLeftPIDController.setPID(p, i, d, f);
+        RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);
         
         p = SmartDashboard.getNumber("Rotation PID P", 0);
         i = SmartDashboard.getNumber("Rotation PID I", 0);
@@ -122,13 +141,6 @@ public class Robot extends IterativeRobot {
         
         RobotMap.driveTrainRotationLeftPIDController.setPID(p, i, d, f);
         RobotMap.driveTrainRotationRightPIDController.setPID(p, i, d, f);
-    }
-
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
     }
 
     /**

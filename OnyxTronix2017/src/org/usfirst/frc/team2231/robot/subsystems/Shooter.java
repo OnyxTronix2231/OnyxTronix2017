@@ -36,7 +36,7 @@ public class Shooter extends Subsystem {
 	
 	public void startShoot() {
 		upperWheel.set(SPEED);
-		lowerWheel.set(SPEED);
+		lowerWheel.set(SPEED);	
 	}
 	
 	public void stopShoot() {

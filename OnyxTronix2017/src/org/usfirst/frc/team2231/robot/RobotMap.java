@@ -17,26 +17,13 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import com.ctre.CANTalon;
 
 import OnyxTronix.OnyxTronixPIDController;
-import edu.wpi.first.wpilibj.AnalogGyro;
-
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-
-import vision.VisionSensor;
 import GripVision.AngleCalculation;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-
-import vision.VisionSensor;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
-import OnyxTronix.OnyxTronixPIDController;
-
-import com.ctre.CANTalon;
-
 import Configuration.CameraConfiguration;
 import Configuration.GripConfiguration;
 import Configuration.TargetConfiguration;
 import edu.wpi.cscore.AxisCamera;
-import edu.wpi.first.wpilibj.ADXL345_SPI;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -76,6 +63,8 @@ public class RobotMap {
     public static OnyxTronixPIDController visionPIDControllerLeft;
     public static AngleCalculation angleCalculation;
     public static OnyxTronixPIDController visionRotationPIDController;
+    public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
+    public static OnyxTronixPIDController driveTrainDriveRightPIDController;
 
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
@@ -150,5 +139,5 @@ public class RobotMap {
         angleCalculation = new AngleCalculation();
         
         visionSensor = new VisionSensorGrip(axisCamera, gripBoilerConfig);  
-        }
+	} 
 }

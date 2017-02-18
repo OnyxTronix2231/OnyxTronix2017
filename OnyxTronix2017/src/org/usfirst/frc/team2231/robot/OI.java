@@ -18,6 +18,7 @@ import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
 import org.usfirst.frc.team2231.robot.commands.DriveToTargetByVision;
@@ -75,6 +76,7 @@ public class OI {
     public JoystickButton rotateByAngle;
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
+    public JoystickButton driveByDistance;
     public Joystick driveStick;
     public JoystickButton boilerCenterByVision;
     public JoystickButton liftCenterByVision;

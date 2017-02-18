@@ -21,7 +21,6 @@ import vision.VisionSensor;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
-
 import Configuration.GripConfiguration;
 import GripVision.AngleCalculation;
 import GripVision.GripVisionStrategy;
@@ -59,8 +58,13 @@ public class DriveTrain extends Subsystem {
     public static final double PID_D = 0;
     public static final double PID_F = 0;
     public static final double PID_TOLERANCE = 10;
-    
-    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
+	public static final double DRIVE_PID_P = 0.5;
+	public static final double DRIVE_PID_I = 0;
+	public static final double DRIVE_PID_D = 0;
+	public static final double DRIVE_PID_F = 0;
+	public static final double DRIVE_PID_TOLEEANCE = 5;
+	public static final double DRIVE_PID_OUTPUTRANGE = 1;
+
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
@@ -72,6 +76,9 @@ public class DriveTrain extends Subsystem {
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
     private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
     private final OnyxTronixPIDController visionRotationPIDController = RobotMap.visionRotationPIDController;
+    private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
+    private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
+    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -93,6 +100,7 @@ public class DriveTrain extends Subsystem {
     public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
+
     public void setSlaveTalons(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
