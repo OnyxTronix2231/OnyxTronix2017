@@ -14,6 +14,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -21,13 +22,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class GearHolder extends Subsystem {
-    private final DoubleSolenoid piston = RobotMap.gearHolderPiston;
+    private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
+    private final DoubleSolenoid upperPiston = RobotMap.gearHolderUpperPiston;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+    }
+    
+    public void setGearHolderPosition(Value value) {
+    	lowerPiston.set(value);
+    	upperPiston.set(value);
     }
 }
 
