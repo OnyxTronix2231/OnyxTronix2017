@@ -21,7 +21,7 @@ public class CenterByVision extends InstantCommand {
 
     // Called once when the command executes
     protected void initialize() {
-    	new ActByVision(setPoint, config, new RotateByAngle(0), RobotMap.angleCalculation).start();
+    	new ActByVision(setPoint, config, new RotateByAngle(setPoint), RobotMap.angleCalculation).start();
     }
 
 }

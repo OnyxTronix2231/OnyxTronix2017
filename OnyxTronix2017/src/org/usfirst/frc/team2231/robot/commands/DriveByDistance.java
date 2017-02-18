@@ -4,18 +4,19 @@ import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
+import OnyxTronix.SetPointCommand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveByDistance extends Command {
-	private double m_setPoint;
+public class DriveByDistance extends SetPointCommand {
 	
     public DriveByDistance(double setPoint) {
+    	super(setPoint);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	m_setPoint = setPoint;
+    	this.setPoint = setPoint;
     	requires(Robot.driveTrain);
     }
 
@@ -24,7 +25,7 @@ public class DriveByDistance extends Command {
     	Robot.driveTrain.resetEncoders();
     	Robot.driveTrain.changePIDType();
     	Robot.driveTrain.setSlaveTalons();
-    	Robot.driveTrain.initDrivePID(m_setPoint);
+    	Robot.driveTrain.initDrivePID(setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run

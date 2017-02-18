@@ -1,8 +1,10 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 
 import Configuration.GripConfiguration;
+import GripVision.DistanceCalculation;
 import OnyxTronix.OnyxPipeline;
 import vision.PIDVisionSourceType;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,6 +26,6 @@ public class DriveToTargetByVision extends InstantCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//new ActByVision(setPoint, config, setPointCommand, strategy)
+    	new ActByVision(setPoint, config, new DriveByDistance(setPoint), RobotMap.distanceCalculation);
     }
 }
