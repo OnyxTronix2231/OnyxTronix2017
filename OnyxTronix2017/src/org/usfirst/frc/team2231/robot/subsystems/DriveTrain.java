@@ -194,7 +194,7 @@ public class DriveTrain extends Subsystem {
 		firstRight.setPIDSourceType(PIDSourceType.kDisplacement);
 	}
 
-	public void initPID(double setPoint) {
+	public void initDrivePID(double setPoint) {
 		driveLeftPIDController.init(setPoint, PID_TOLERANCE);
 		driveRightPIDController.init(setPoint, PID_TOLERANCE);
 	}
