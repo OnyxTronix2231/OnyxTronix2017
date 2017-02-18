@@ -75,7 +75,6 @@ public class DriveTrain extends Subsystem {
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
     private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
-    private final OnyxTronixPIDController visionRotationPIDController = RobotMap.visionRotationPIDController;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
@@ -132,8 +131,12 @@ public class DriveTrain extends Subsystem {
     	rotationPidControllerRight.stop();
     }
     
-    public boolean isOnTarget(){
+    public boolean isRotateOnTarget(){
     	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
+    }
+    
+    public boolean isDriveOnTarget(){
+    	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
     }
     
     public void setVisionOperation(GripConfiguration<OnyxPipeline> config, GripVisionStrategy strategy) {
@@ -176,14 +179,24 @@ public class DriveTrain extends Subsystem {
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     }
-    
-    public void initPID(double setPoint, PIDVisionSourceType pidVisionSourceType) {
-    	visionSensor.setPidVisionSourceType(pidVisionSourceType);
-    	visionRotationPIDController.init(setPoint, PID_TOLERANCE);
-    }
 
 	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
 		visionSensor.setConfiguration(config);
+	}
+
+	public void resetEncoders() {
+		firstLeft.setPosition(0);
+		firstRight.setPosition(0);
+	}
+
+	public void changePIDType() {
+		firstLeft.setPIDSourceType(PIDSourceType.kDisplacement);
+		firstRight.setPIDSourceType(PIDSourceType.kDisplacement);
+	}
+
+	public void initPID(double setPoint) {
+		driveLeftPIDController.init(setPoint, PID_TOLERANCE);
+		driveRightPIDController.init(setPoint, PID_TOLERANCE);
 	}
 }
 

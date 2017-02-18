@@ -59,10 +59,7 @@ public class RobotMap {
     public static AxisCamera axisCamera;
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
-    public static OnyxTronixPIDController visionPIDControllerRight;
-    public static OnyxTronixPIDController visionPIDControllerLeft;
     public static AngleCalculation angleCalculation;
-    public static OnyxTronixPIDController visionRotationPIDController;
     public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
 
