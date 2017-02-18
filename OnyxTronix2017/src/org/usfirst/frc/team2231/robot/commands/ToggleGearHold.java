@@ -27,6 +27,6 @@ public class ToggleGearHold extends ConditionalCommand {
     }
 
     protected boolean condition(){
-        return RobotMap.gearHolderPiston.get() != Value.kForward;
+        return RobotMap.gearHolderLowerPiston.get() != Value.kForward;
     }
 }

@@ -45,7 +45,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
+    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getRawAxis(4));
     }
     public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
