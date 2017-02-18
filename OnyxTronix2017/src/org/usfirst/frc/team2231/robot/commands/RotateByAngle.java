@@ -37,7 +37,7 @@ public class RotateByAngle extends SetPointCommand {
     	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.setSlaveTalons();
-    	Robot.driveTrain.PIDInit(setPoint);
+    	Robot.driveTrain.initRotatePID(setPoint);
     	Debug.getInstance().log(this, setPoint + "");
 
     }

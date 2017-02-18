@@ -112,7 +112,7 @@ public class DriveTrain extends Subsystem {
     	firstRight.setPIDSourceType(sourceType);
     }
     
-    public void PIDInit(double setPoint) {
+    public void initRotatePID(double setPoint) {
     	rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
     	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
     }
