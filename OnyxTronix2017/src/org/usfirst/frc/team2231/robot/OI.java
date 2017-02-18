@@ -13,6 +13,7 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.CenterByVision;
+import org.usfirst.frc.team2231.robot.commands.ActByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;

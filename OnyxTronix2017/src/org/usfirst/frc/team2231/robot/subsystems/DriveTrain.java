@@ -128,21 +128,21 @@ public class DriveTrain extends Subsystem {
     	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
     }
     
-    public void setConfig(GripConfiguration<OnyxPipeline> config) {
+    public void setVisionOperation(GripConfiguration<OnyxPipeline> config, GripVisionStrategy strategy) {
     	visionSensor.setConfiguration(config);
+    	visionSensor.setStrategy(strategy);
     }
     
-    public double getAngleFromVision(double setPoint) {
-    	visionSensor.setStrategy(angleCalculation);
+    public double getVisionValueBySetPoint(double setPoint) {
     	return visionSensor.getValueBySetPoint(setPoint);
     }
     
-    public double getAngleError() {
+    public double getError() {
     	return rotationPidControllerRight.getError();
     }
     
     public boolean isVisionOnTarget(double setPoint) {
-    	return Math.abs(Robot.driveTrain.getAngleFromVision(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
+    	return Math.abs(Robot.driveTrain.getVisionValueBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
     }
     
     public double getEfficientAngle(double angle) {
