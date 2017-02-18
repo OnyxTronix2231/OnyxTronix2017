@@ -54,7 +54,13 @@ public class DriveTrain extends Subsystem {
     public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
     public static final double HORIZONTAL_APERTURE_ANGLE = 47;
-
+    public static final double PID_P = 0.5;
+    public static final double PID_I = 0;
+    public static final double PID_D = 0;
+    public static final double PID_F = 0;
+    public static final double PID_TOLERANCE = 10;
+    
+    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
@@ -63,9 +69,12 @@ public class DriveTrain extends Subsystem {
     private final ADXRS450_Gyro gyro = RobotMap.driveTrainGyro;
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
-    private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
     private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
+    private final OnyxTronixPIDController visionRotationPIDController = RobotMap.visionRotationPIDController;
+    
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveByJoystick());
@@ -84,7 +93,6 @@ public class DriveTrain extends Subsystem {
     public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
-    
     public void setSlaveTalons(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
@@ -95,14 +103,6 @@ public class DriveTrain extends Subsystem {
     public void setPIDSourceType(PIDSourceType sourceType){ 
     	firstLeft.setPIDSourceType(sourceType);
     	firstRight.setPIDSourceType(sourceType);
-    }
-    
-    public void resetSlaveTalons(){
-    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
-    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
-    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
-    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
-
     }
     
     public void PIDInit(double setPoint) {
@@ -151,5 +151,31 @@ public class DriveTrain extends Subsystem {
     	} 
     	return angle;
     }
+
+    public void setDriveSlaveTalons() {
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);
+    	firstLeft.changeControlMode(TalonControlMode.Follower);
+    	secondLeft.set(firstRight.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.set(firstRight.getDeviceID());
+    	
+    }
+    
+    public void resetSlaveTalons() {
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+    }
+    
+    public void initPID(double setPoint, PIDVisionSourceType pidVisionSourceType) {
+    	visionSensor.setPidVisionSourceType(pidVisionSourceType);
+    	visionRotationPIDController.init(setPoint, PID_TOLERANCE);
+    }
+
+	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
+		visionSensor.setConfiguration(config);
+	}
 }
 
