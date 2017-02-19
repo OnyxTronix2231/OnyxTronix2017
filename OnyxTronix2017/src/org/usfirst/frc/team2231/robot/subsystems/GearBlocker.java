@@ -14,6 +14,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.commands.GearBlockerAxisControl;
 
 import OnyxTronix.Debug;
 
@@ -43,6 +44,7 @@ public class GearBlocker extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new GearBlockerAxisControl());
     }
     
     public void openGearBlocker() {
