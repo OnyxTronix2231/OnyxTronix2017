@@ -13,6 +13,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -24,12 +25,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearHolder extends Subsystem {
     private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
     private final DoubleSolenoid upperPiston = RobotMap.gearHolderUpperPiston;
+    private final DigitalInput microSwitch = RobotMap.gearHolderMicroSwitch;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+    }
+    
+    public boolean isGearInPlace() {
+    	return microSwitch.get();
     }
     
     public void setGearHolderPosition(Value value) {
