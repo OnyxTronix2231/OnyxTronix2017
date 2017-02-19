@@ -22,6 +22,7 @@ import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
+import org.usfirst.frc.team2231.robot.commands.ToggleGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -64,6 +65,7 @@ public class OI {
 
     public JoystickButton collectBalls;
     public JoystickButton toggleGearHold;
+    public JoystickButton toggleGearBlocker;
     public JoystickButton shoot;
     public JoystickButton load;
     public JoystickButton test;
@@ -90,6 +92,8 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
+        toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
+        toggleGearBlocker.whenPressed(new ToggleGearBlocker());
 
 
         // SmartDashboard Buttons

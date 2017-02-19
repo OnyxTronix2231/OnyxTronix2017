@@ -14,6 +14,8 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
+import OnyxTronix.Debug;
+
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -45,6 +47,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
+    	Debug.getInstance().log(this, firstLeft.getPosition());
     	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getRawAxis(4));
     }
     public void switchToStrengthGear() {
