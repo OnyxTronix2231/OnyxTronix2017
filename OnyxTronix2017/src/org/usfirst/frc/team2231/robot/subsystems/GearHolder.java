@@ -12,6 +12,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.commands.isGearInPlace;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -32,10 +33,17 @@ public class GearHolder extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+    	setDefaultCommand(new isGearInPlace());
     }
-    
-    public boolean isGearInPlace() {
-    	return microSwitch.get();
+
+    public void setGearHolderPositionMicroSwitch() {
+    	if(microSwitch.get()) {
+    		lowerPiston.set(Value.kForward);
+    		upperPiston.set(Value.kForward);
+    	}
+    	else
+    		lowerPiston.set(Value.kReverse);
+    	    upperPiston.set(Value.kReverse);
     }
     
     public void setGearHolderPosition(Value value) {
