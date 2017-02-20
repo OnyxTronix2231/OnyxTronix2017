@@ -12,11 +12,16 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.CenterByVision;
+import org.usfirst.frc.team2231.robot.commands.ActByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
+import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
+import org.usfirst.frc.team2231.robot.commands.DriveToTargetByVision;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
@@ -70,9 +75,15 @@ public class OI {
     public JoystickButton load;
     public JoystickButton test;
     public Joystick buttonStick;
+    public JoystickButton rotateByAngle;
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
+    public JoystickButton driveByDistance;
     public Joystick driveStick;
+    public JoystickButton boilerCenterByVision;
+    public JoystickButton liftCenterByVision;
+    public JoystickButton boilerDriveByVision;
+    public JoystickButton liftDriveByVision;
 
     public OI() {
         driveStick = new Joystick(1);
@@ -81,6 +92,12 @@ public class OI {
         closeShifters.whenPressed(new SwitchToStrengthGear());
         openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new SwitchToSpeedGear());
+//        boilerDriveByVision = new JoystickButton(driveStick, Button.X.value());
+//        boilerDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripBoilerConfig));
+//        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
+//        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
+        driveByDistance = new JoystickButton(driveStick, Button.Y.value());
+        driveByDistance.whenPressed(new DriveByDistance(10));
         
         buttonStick = new Joystick(0);
         
@@ -92,8 +109,15 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
+<<<<<<< HEAD
         toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
         toggleGearBlocker.whenPressed(new ToggleGearBlocker());
+=======
+        boilerCenterByVision = new JoystickButton(buttonStick, Button.B.value());
+        boilerCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripBoilerConfig));
+        liftCenterByVision = new JoystickButton(buttonStick, Button.Y.value());
+        liftCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
+>>>>>>> refs/remotes/origin/Feature-VisionRotateAndDrive
 
 
         // SmartDashboard Buttons
