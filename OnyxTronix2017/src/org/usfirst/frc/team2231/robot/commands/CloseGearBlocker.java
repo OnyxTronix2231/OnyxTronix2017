@@ -33,7 +33,7 @@ public class CloseGearBlocker extends Command {
     
     @Override
 	protected boolean isFinished() {
-		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_OPEN_POSIION);
+		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_CLOSE_POSIION);
 	}
 	
 	@Override
