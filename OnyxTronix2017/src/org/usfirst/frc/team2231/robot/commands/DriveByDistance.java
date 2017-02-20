@@ -48,6 +48,7 @@ public class DriveByDistance extends SetPointCommand {
     protected void end() {
     	Robot.driveTrain.stopDrivePID();
     	Robot.driveTrain.resetSlaveTalons();
+    	System.out.println("Finished");
     }
 
     // Called when another command which requires one or more of the same
