@@ -109,15 +109,12 @@ public class OI {
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
-<<<<<<< HEAD
         toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
         toggleGearBlocker.whenPressed(new ToggleGearBlocker());
-=======
         boilerCenterByVision = new JoystickButton(buttonStick, Button.B.value());
         boilerCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripBoilerConfig));
         liftCenterByVision = new JoystickButton(buttonStick, Button.Y.value());
         liftCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
->>>>>>> refs/remotes/origin/Feature-VisionRotateAndDrive
 
 
         // SmartDashboard Buttons
