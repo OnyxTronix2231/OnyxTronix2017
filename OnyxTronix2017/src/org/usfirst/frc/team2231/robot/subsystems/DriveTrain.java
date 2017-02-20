@@ -43,17 +43,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double ROTATION_PID_P = 0.5;
-	public static final double ROTATION_PID_I = 0;
-	public static final double ROTATION_PID_D = 0;
-	public static final double ROTATION_PID_F = 0;
-	public static final double ROTATION_ABSOLUTE_TOLERANCE = 5;
-	public static final double ANGLE_TO_FLOOR = 31;
-    public static final double CAMERA_HEIGHT = 40; //In meter.
-    public static final double BOILER_HEIGHT = 70; //In meter.
-    public static final double LIFT_HEIGHT = 20; //In meter.
-    public static final double VERTICAL_APERTURE_ANGLE = 35;
-    public static final double HORIZONTAL_APERTURE_ANGLE = 47;
 	public static final double DRIVE_PID_P = 0.5;
 	public static final double DRIVE_PID_I = 0;
 	public static final double DRIVE_PID_D = 0;
@@ -67,10 +56,6 @@ public class DriveTrain extends Subsystem {
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final ADXRS450_Gyro gyro = RobotMap.driveTrainGyro;
-    private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
-    private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
-    private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
-    private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
@@ -109,23 +94,8 @@ public class DriveTrain extends Subsystem {
     	firstRight.setPIDSourceType(sourceType);
     }
     
-    public void initRotatePID(double setPoint) {
-    	rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
-    	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
-    }
-    
-    public void setPIDSetPoint(double setPoint) {
-    	rotationPidControllerLeft.setSetpoint(setPoint);
-    	rotationPidControllerRight.setSetpoint(setPoint);
-    }
-    
     public void resetGyro() {
     	gyro.reset();
-    }
-    
-    public void stopRotatePID() {
-    	rotationPidControllerLeft.stop();
-    	rotationPidControllerRight.stop();
     }
     
     public void stopDrivePID() {
@@ -133,29 +103,8 @@ public class DriveTrain extends Subsystem {
     	driveRightPIDController.stop();
     }
     
-    public boolean isRotateOnTarget(){
-    	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
-    }
-    
     public boolean isDriveOnTarget(){
     	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
-    }
-    
-    public void setVisionOperation(GripConfiguration<OnyxPipeline> config, GripVisionStrategy strategy) {
-    	visionSensor.setConfiguration(config);
-    	visionSensor.setStrategy(strategy);
-    }
-    
-    public double getVisionValueBySetPoint(double setPoint) {
-    	return visionSensor.getValueBySetPoint(setPoint);
-    }
-    
-    public double getError() {
-    	return rotationPidControllerRight.getError();
-    }
-    
-    public boolean isVisionOnTarget(double setPoint) {
-    	return Math.abs(Robot.driveTrain.getVisionValueBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
     }
     
     public double getEfficientAngle(double angle) {
@@ -172,10 +121,6 @@ public class DriveTrain extends Subsystem {
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.setInverted(false);
     }
-
-	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
-		visionSensor.setConfiguration(config);
-	}
 
 	public void resetEncoders() {
 		firstLeft.setPosition(0);

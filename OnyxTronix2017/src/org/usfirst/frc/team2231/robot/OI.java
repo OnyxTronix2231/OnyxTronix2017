@@ -12,16 +12,12 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team2231.robot.commands.CenterByVision;
-import org.usfirst.frc.team2231.robot.commands.ActByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
-import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
-import org.usfirst.frc.team2231.robot.commands.DriveToTargetByVision;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
@@ -111,10 +107,6 @@ public class OI {
         shoot.whileHeld(new Shoot());
         toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
         toggleGearBlocker.whenPressed(new ToggleGearBlocker());
-        boilerCenterByVision = new JoystickButton(buttonStick, Button.B.value());
-        boilerCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripBoilerConfig));
-        liftCenterByVision = new JoystickButton(buttonStick, Button.Y.value());
-        liftCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
 
 
         // SmartDashboard Buttons
