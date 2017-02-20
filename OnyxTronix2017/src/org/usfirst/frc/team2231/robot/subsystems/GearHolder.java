@@ -12,7 +12,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.isGearInPlace;
+import org.usfirst.frc.team2231.robot.commands.OpenGearHolderTimeOut;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -24,7 +24,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class GearHolder extends Subsystem {
-    private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
+    public static final double OPEN_TIME_OUT = 3;
+	private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
     private final DoubleSolenoid upperPiston = RobotMap.gearHolderUpperPiston;
     private final DigitalInput microSwitch = RobotMap.gearHolderMicroSwitch;
 
@@ -33,20 +34,9 @@ public class GearHolder extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new isGearInPlace());
-    }
-
-    public void setGearHolderPositionMicroSwitch() {
-    	if(microSwitch.get()) {
-    		lowerPiston.set(Value.kForward);
-    		upperPiston.set(Value.kForward);
-    	}
-    	else
-    		lowerPiston.set(Value.kReverse);
-    	    upperPiston.set(Value.kReverse);
     }
     
-    public void setGearHolderPosition(Value value) {
+    public void setPistonPotion(Value value) {
     	lowerPiston.set(value);
     	upperPiston.set(value);
     }
