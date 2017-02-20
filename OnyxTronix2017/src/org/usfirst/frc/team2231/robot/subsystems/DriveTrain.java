@@ -189,8 +189,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDrivePID(double setPoint) {
-		driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
-		driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
+		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 	}
 }
 
