@@ -19,7 +19,9 @@ public class OpenGearHolderTimeOut extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearHolder.setPistonPotion(Value.kForward);
+    	if(Robot.gearHolder.isGearInPlace()) {
+    		Robot.gearHolder.setPistonPotion(Value.kForward);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

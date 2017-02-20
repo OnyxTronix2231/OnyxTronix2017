@@ -73,6 +73,10 @@ public class DriveTrain extends Subsystem {
     	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
     }
     
+    public void arcadeDrive(double moveValue, double rotateValue){
+    	robotDrive.arcadeDrive(moveValue, rotateValue);
+    }
+    
     public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
     }

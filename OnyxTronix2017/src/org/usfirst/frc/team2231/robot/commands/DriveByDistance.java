@@ -32,11 +32,11 @@ public class DriveByDistance extends SetPointCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Left Output: " + RobotMap.driveTrainDriveLeftPIDController.get());
-    	System.out.println("Right Output: " + RobotMap.driveTrainDriveRightPIDController.get());
-    	
-    	System.out.println("Left Error: " + RobotMap.driveTrainDriveLeftPIDController.getError());
-    	System.out.println("Right Error: " + RobotMap.driveTrainDriveRightPIDController.getError());
+//    	System.out.println("Left Output: " + RobotMap.driveTrainDriveLeftPIDController.get());
+//    	System.out.println("Right Output: " + RobotMap.driveTrainDriveRightPIDController.get());
+//    	
+//    	System.out.println("Left Error: " + RobotMap.driveTrainDriveLeftPIDController.getError());
+//    	System.out.println("Right Error: " + RobotMap.driveTrainDriveRightPIDController.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()

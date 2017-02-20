@@ -12,6 +12,7 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.AutonomousGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
@@ -88,25 +89,20 @@ public class OI {
         closeShifters.whenPressed(new SwitchToStrengthGear());
         openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new SwitchToSpeedGear());
-//        boilerDriveByVision = new JoystickButton(driveStick, Button.X.value());
-//        boilerDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripBoilerConfig));
-//        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
-//        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
-        driveByDistance = new JoystickButton(driveStick, Button.Y.value());
-        driveByDistance.whenPressed(new DriveByDistance(10));
         
         buttonStick = new Joystick(0);
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
         toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
-        toggleGearHold.whenPressed(new ToggleGearHold());
+        toggleGearHold.whenPressed(new AutonomousGearDeliver());
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
         toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
         toggleGearBlocker.whenPressed(new ToggleGearBlocker());
+        
 
 
         // SmartDashboard Buttons
