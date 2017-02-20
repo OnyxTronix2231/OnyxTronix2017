@@ -11,7 +11,7 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
-
+import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
@@ -21,10 +21,12 @@ import vision.VisionSensor;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
+
 import Configuration.GripConfiguration;
 import GripVision.AngleCalculation;
 import GripVision.GripVisionStrategy;
 import GripVision.VisionSensorGrip;
+import OnyxTronix.Debug;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -53,16 +55,11 @@ public class DriveTrain extends Subsystem {
     public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
     public static final double HORIZONTAL_APERTURE_ANGLE = 47;
-    public static final double PID_P = 0.5;
-    public static final double PID_I = 0;
-    public static final double PID_D = 0;
-    public static final double PID_F = 0;
-    public static final double PID_TOLERANCE = 10;
 	public static final double DRIVE_PID_P = 0.5;
 	public static final double DRIVE_PID_I = 0;
 	public static final double DRIVE_PID_D = 0;
 	public static final double DRIVE_PID_F = 0;
-	public static final double DRIVE_PID_TOLEEANCE = 5;
+	public static final double DRIVE_PID_TOLEEANCE = 0.5;
 	public static final double DRIVE_PID_OUTPUTRANGE = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
@@ -89,7 +86,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getX(Hand.kRight));
+    	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
     }
     
     public void switchToStrengthGear() {
@@ -105,6 +102,7 @@ public class DriveTrain extends Subsystem {
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.setInverted(true);
     }
     
     public void setPIDSourceType(PIDSourceType sourceType){ 
@@ -126,9 +124,14 @@ public class DriveTrain extends Subsystem {
     	gyro.reset();
     }
     
-    public void stopPID() {
+    public void stopRotatePID() {
     	rotationPidControllerLeft.stop();
     	rotationPidControllerRight.stop();
+    }
+    
+    public void stopDrivePID() {
+    	driveLeftPIDController.stop();
+    	driveRightPIDController.stop();
     }
     
     public boolean isRotateOnTarget(){
@@ -162,22 +165,13 @@ public class DriveTrain extends Subsystem {
     	} 
     	return angle;
     }
-
-    public void setDriveSlaveTalons() {
-    	secondLeft.changeControlMode(TalonControlMode.Follower);
-    	secondRight.changeControlMode(TalonControlMode.Follower);
-    	firstLeft.changeControlMode(TalonControlMode.Follower);
-    	secondLeft.set(firstRight.getDeviceID());
-    	secondRight.set(firstRight.getDeviceID());
-    	firstLeft.set(firstRight.getDeviceID());
-    	
-    }
     
     public void resetSlaveTalons() {
     	firstRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+    	firstLeft.setInverted(false);
     }
 
 	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
@@ -195,8 +189,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDrivePID(double setPoint) {
-		driveLeftPIDController.init(setPoint, PID_TOLERANCE);
-		driveRightPIDController.init(setPoint, PID_TOLERANCE);
+		driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
+		driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE);
 	}
 }
 

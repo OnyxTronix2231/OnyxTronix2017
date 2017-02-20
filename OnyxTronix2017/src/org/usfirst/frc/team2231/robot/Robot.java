@@ -11,6 +11,7 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
@@ -141,6 +142,13 @@ public class Robot extends IterativeRobot {
         
         RobotMap.driveTrainRotationLeftPIDController.setPID(p, i, d, f);
         RobotMap.driveTrainRotationRightPIDController.setPID(p, i, d, f);
+        
+        Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
+    	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
+    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
+    		RobotMap.driveTrainFirstLeft.setPosition(0);
+    		RobotMap.driveTrainFirstRight.setPosition(0);
+    	}
     }
 
     /**

@@ -53,7 +53,7 @@ public class RotateByAngle extends SetPointCommand {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.stopPID();
+    	Robot.driveTrain.stopRotatePID();
     	Robot.driveTrain.resetSlaveTalons();
     }
 
