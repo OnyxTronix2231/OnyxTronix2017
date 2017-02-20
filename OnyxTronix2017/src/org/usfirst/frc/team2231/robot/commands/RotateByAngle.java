@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
 import OnyxTronix.Debug;
@@ -28,6 +29,7 @@ public class RotateByAngle extends SetPointCommand {
     public RotateByAngle(double setPoint) {
     	super(setPoint);
     	this.setPoint = Robot.driveTrain.getEfficientAngle(setPoint);
+    	System.out.println(setPoint);
         requires(Robot.driveTrain);
 
     }
@@ -36,7 +38,7 @@ public class RotateByAngle extends SetPointCommand {
     protected void initialize() {
     	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
-    	Robot.driveTrain.setSlaveTalons();
+    	Robot.driveTrain.setRotateSlaveTalons();
     	Robot.driveTrain.initRotatePID(setPoint);
     	Debug.getInstance().log(this, setPoint + "");
 
@@ -44,6 +46,11 @@ public class RotateByAngle extends SetPointCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Left Output: " + RobotMap.driveTrainRotationLeftPIDController.get());
+    	System.out.println("Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
+    	
+    	System.out.println("Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
+    	System.out.println("Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()

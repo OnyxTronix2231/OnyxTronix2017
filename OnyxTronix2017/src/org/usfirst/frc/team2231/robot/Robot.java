@@ -149,6 +149,8 @@ public class Robot extends IterativeRobot {
     		RobotMap.driveTrainFirstLeft.setPosition(0);
     		RobotMap.driveTrainFirstRight.setPosition(0);
     	}
+    	//System.out.println(RobotMap.driveTrainGyro.getAngle());
+
     }
 
     /**

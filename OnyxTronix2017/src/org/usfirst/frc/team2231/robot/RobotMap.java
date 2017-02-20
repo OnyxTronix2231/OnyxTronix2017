@@ -26,6 +26,7 @@ import Configuration.GripConfiguration;
 import Configuration.TargetConfiguration;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -46,7 +47,8 @@ public class RobotMap {
     public static CANTalon driveTrainFirstRight;
     public static CANTalon driveTrainSecondRight;
     public static RobotDrive driveTrainRobotDrive;
-    public static ADXRS450_Gyro driveTrainGyro;
+    public static ADXRS450_Gyro driveTrainGyroSPI;
+    public static AnalogGyro driveTrainGyro;
     public static OnyxTronixPIDController driveTrainRotationRightPIDController;
 	public static OnyxTronixPIDController driveTrainRotationLeftPIDController;
     public static CANTalon collectorWheel;
@@ -70,7 +72,7 @@ public class RobotMap {
         gearBlockerMotor = new CANTalon(9);
         LiveWindow.addActuator("GearBlocker", "Motor", gearBlockerMotor);
         
-        gearBlockerPotentiometer = new AnalogPotentiometer(0);
+        gearBlockerPotentiometer = new AnalogPotentiometer(1);
         LiveWindow.addActuator("GearBlocker", "Potentiometer", gearBlockerPotentiometer);
         
         driveTrainFirstLeft = new CANTalon(0);
@@ -95,8 +97,11 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
         
-        driveTrainGyro = new ADXRS450_Gyro();
-        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);
+        driveTrainGyroSPI = new ADXRS450_Gyro();
+        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyroSPI);
+        
+        driveTrainGyro = new AnalogGyro(0);
+       // driveTrainGyro.setSensitivity(0.0001);
         
         driveTrainRotationRightPIDController = new OnyxTronixPIDController(DriveTrain.ROTATION_PID_P, DriveTrain.ROTATION_PID_I, DriveTrain.ROTATION_PID_D, DriveTrain.ROTATION_PID_F, driveTrainGyro, driveTrainFirstRight, DriveTrain.ROTATION_ABSOLUTE_TOLERANCE);
         driveTrainRotationRightPIDController.setOutputRange(-1, 1);

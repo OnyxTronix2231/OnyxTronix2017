@@ -96,6 +96,8 @@ public class OI {
 //        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
         driveByDistance = new JoystickButton(driveStick, Button.Y.value());
         driveByDistance.whenPressed(new DriveByDistance(100));
+        rotateByAngle = new JoystickButton(driveStick, Button.B.value());
+        rotateByAngle.whenPressed(new RotateByAngle(90));
         
         buttonStick = new Joystick(0);
         

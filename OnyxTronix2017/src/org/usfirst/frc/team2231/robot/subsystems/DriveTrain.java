@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
-    private final ADXRS450_Gyro gyro = RobotMap.driveTrainGyro;
+    private final AnalogGyro gyro = RobotMap.driveTrainGyro;
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
@@ -103,6 +103,15 @@ public class DriveTrain extends Subsystem {
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.set(firstRight.getDeviceID());
     	firstLeft.setInverted(true);
+    }
+    
+    public void setRotateSlaveTalons(){
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);    	
+    	secondLeft.set(firstLeft.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.setInverted(true);
+    	firstRight.setInverted(true);
     }
     
     public void setPIDSourceType(PIDSourceType sourceType){ 
@@ -160,9 +169,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public double getEfficientAngle(double angle) {
-    	if (angle >= 180) {
-    		angle -= 360;
-    	} 
+    	angle %= 360;
     	return angle;
     }
     
