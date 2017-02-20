@@ -27,7 +27,7 @@ public class DriveByDistance extends SetPointCommand {
     	Robot.driveTrain.resetEncoders();
     	Robot.driveTrain.changePIDType();
     	Robot.driveTrain.setSlaveTalons();
-    	Robot.driveTrain.initDrivePID(setPoint);
+    	Robot.driveTrain.initDrivePID(setPoint / (6 * 2.54 * Math.PI));
     }
 
     // Called repeatedly when this Command is scheduled to run

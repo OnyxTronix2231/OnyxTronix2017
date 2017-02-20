@@ -95,7 +95,7 @@ public class OI {
 //        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
 //        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
         driveByDistance = new JoystickButton(driveStick, Button.Y.value());
-        driveByDistance.whenPressed(new DriveByDistance(10));
+        driveByDistance.whenPressed(new DriveByDistance(100));
         
         buttonStick = new Joystick(0);
         

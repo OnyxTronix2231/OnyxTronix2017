@@ -59,7 +59,7 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_I = 0;
 	public static final double DRIVE_PID_D = 1;
 	public static final double DRIVE_PID_F = 0.12;
-	public static final double DRIVE_PID_TOLEEANCE = 0.03;
+	public static final double DRIVE_PID_TOLEEANCE = 0.005;
 	public static final double DRIVE_PID_OUTPUTRANGE = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
