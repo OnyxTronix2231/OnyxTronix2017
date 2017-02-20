@@ -12,10 +12,12 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.AutonomousGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
@@ -70,9 +72,15 @@ public class OI {
     public JoystickButton load;
     public JoystickButton test;
     public Joystick buttonStick;
+    public JoystickButton rotateByAngle;
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
+    public JoystickButton driveByDistance;
     public Joystick driveStick;
+    public JoystickButton boilerCenterByVision;
+    public JoystickButton liftCenterByVision;
+    public JoystickButton boilerDriveByVision;
+    public JoystickButton liftDriveByVision;
 
     public OI() {
         driveStick = new Joystick(1);
@@ -87,13 +95,14 @@ public class OI {
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
         toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
-        toggleGearHold.whenPressed(new ToggleGearHold());
+        toggleGearHold.whenPressed(new AutonomousGearDeliver());
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
         toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
         toggleGearBlocker.whenPressed(new ToggleGearBlocker());
+        
 
 
         // SmartDashboard Buttons

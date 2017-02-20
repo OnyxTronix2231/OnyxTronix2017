@@ -8,10 +8,6 @@
 	<classpathentry kind="var" path="USER_JAVA_LIB_DIR/NetworkTables.jar" sourcepath="/USER_JAVA_LIB_DIR/NetworkTables-sources.jar"/>
 	<classpathentry kind="var" path="USER_JAVA_LIB_DIR/opencv.jar" sourcepath="/USER_JAVA_LIB_DIR/opencv-sources.jar"/>
 	<classpathentry kind="var" path="USER_JAVA_LIB_DIR/WPILib.jar" sourcepath="/USER_JAVA_LIB_DIR/WPILib-sources.jar"/>
-	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
-	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
-	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
-	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Team2231API-FRC"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

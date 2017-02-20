@@ -11,17 +11,30 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
+import org.usfirst.frc.team2231.robot.Buttons.Button;
+import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
-
 import OnyxTronix.Debug;
-
+import vision.PIDVisionSourceType;
+import vision.VisionSensor;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 
+import Configuration.GripConfiguration;
+import GripVision.AngleCalculation;
+import GripVision.GripVisionStrategy;
+import GripVision.VisionSensorGrip;
+import OnyxTronix.Debug;
+import OnyxTronix.OnyxPipeline;
+import OnyxTronix.OnyxTronixPIDController;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -30,11 +43,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
+	public static final double DRIVE_PID_P = 0.5;
+	public static final double DRIVE_PID_I = 0;
+	public static final double DRIVE_PID_D = 0;
+	public static final double DRIVE_PID_F = 0;
+	public static final double DRIVE_PID_TOLEEANCE = 0.5;
+	public static final double DRIVE_PID_OUTPUTRANGE = 1;
+
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
+    private final ADXRS450_Gyro gyro = RobotMap.driveTrainGyro;
+    private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
+    private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     
     // Put methods for controlling this subsystem
@@ -47,14 +70,75 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	Debug.getInstance().log(this, firstLeft.getPosition());
-    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
     }
+    
+    public void arcadeDrive(double moveValue, double rotateValue){
+    	robotDrive.arcadeDrive(moveValue, rotateValue);
+    }
+    
     public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);
     }
+    
     public void switchToSpeedGear() {
     	shifter.set(Value.kForward);
     }
+
+    public void setSlaveTalons(){
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);    	
+    	secondLeft.set(firstLeft.getDeviceID());
+    	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.setInverted(true);
+    }
+    
+    public void setPIDSourceType(PIDSourceType sourceType){ 
+    	firstLeft.setPIDSourceType(sourceType);
+    	firstRight.setPIDSourceType(sourceType);
+    }
+    
+    public void resetGyro() {
+    	gyro.reset();
+    }
+    
+    public void stopDrivePID() {
+    	driveLeftPIDController.stop();
+    	driveRightPIDController.stop();
+    }
+    
+    public boolean isDriveOnTarget(){
+    	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
+    }
+    
+    public double getEfficientAngle(double angle) {
+    	if (angle >= 180) {
+    		angle -= 360;
+    	} 
+    	return angle;
+    }
+    
+    public void resetSlaveTalons() {
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+    	firstLeft.setInverted(false);
+    }
+
+	public void resetEncoders() {
+		firstLeft.setPosition(0);
+		firstRight.setPosition(0);
+	}
+
+	public void changePIDType() {
+		firstLeft.setPIDSourceType(PIDSourceType.kDisplacement);
+		firstRight.setPIDSourceType(PIDSourceType.kDisplacement);
+	}
+
+	public void initDrivePID(double setPoint) {
+		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+	}
 }
 
