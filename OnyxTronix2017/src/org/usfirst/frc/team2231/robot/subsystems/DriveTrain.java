@@ -22,8 +22,6 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 import Configuration.GripConfiguration;
-import GripVision.AngleCalculation;
-import GripVision.GripVisionStrategy;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.Debug;
 import OnyxTronix.OnyxPipeline;

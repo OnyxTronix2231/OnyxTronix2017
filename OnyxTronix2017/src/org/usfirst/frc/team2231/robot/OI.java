@@ -67,7 +67,8 @@ public class OI {
 
     public JoystickButton collectBalls;
     public JoystickButton toggleGearHold;
-    public JoystickButton toggleGearBlocker;
+    public JoystickButton openGearBlocker;
+    public JoystickButton closeGearBlocker;
     public JoystickButton shoot;
     public JoystickButton load;
     public JoystickButton test;
@@ -94,14 +95,16 @@ public class OI {
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
-        toggleGearHold.whenPressed(new AutonomousGearDeliver());
+        toggleGearHold = new JoystickButton(buttonStick, Button.Y.value());
+        toggleGearHold.whenPressed(new ToggleGearHold());
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
-        toggleGearBlocker = new JoystickButton(buttonStick, Button.Y.value());
-        toggleGearBlocker.whenPressed(new ToggleGearBlocker());
+        openGearBlocker = new JoystickButton(buttonStick, Button.X.value());
+        openGearBlocker.whenPressed(new OpenGearBlocker());
+        closeGearBlocker = new JoystickButton(buttonStick, Button.B.value());
+        closeGearBlocker.whenPressed(new CloseGearBlocker());
         
 
 

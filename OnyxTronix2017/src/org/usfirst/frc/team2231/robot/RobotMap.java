@@ -67,7 +67,7 @@ public class RobotMap {
         gearBlockerMotor = new CANTalon(9);
         LiveWindow.addActuator("GearBlocker", "Motor", gearBlockerMotor);
         
-        gearBlockerPotentiometer = new AnalogPotentiometer(0);
+        gearBlockerPotentiometer = new AnalogPotentiometer(1);
         LiveWindow.addActuator("GearBlocker", "Potentiometer", gearBlockerPotentiometer);
         
         driveTrainFirstLeft = new CANTalon(0);
@@ -127,5 +127,7 @@ public class RobotMap {
         
         gearHolderMicroSwitch = new DigitalInput(0);
         LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
+        
+        CameraServer.getInstance().addAxisCamera("10.22.31.18");
 	} 
 }

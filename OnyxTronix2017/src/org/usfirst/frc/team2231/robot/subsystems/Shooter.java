@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Shooter extends Subsystem {
-	private static final double SPEED = 1;
+	private static final double SPEED = 0.80;
 	
     private final CANTalon upperWheel = RobotMap.shooterUpperWheel;
     private final CANTalon lowerWheel = RobotMap.shooterLowerWheel;
