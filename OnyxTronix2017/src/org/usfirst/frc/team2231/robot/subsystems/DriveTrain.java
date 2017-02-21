@@ -43,11 +43,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double DRIVE_PID_P = 0.5;
-	public static final double DRIVE_PID_I = 0;
-	public static final double DRIVE_PID_D = 0;
-	public static final double DRIVE_PID_F = 0;
-	public static final double DRIVE_PID_TOLEEANCE = 0.5;
+	public static final double DRIVE_PID_P = 0.1;
+	public static final double DRIVE_PID_I = 0.0001;
+	public static final double DRIVE_PID_D = 1;
+	public static final double DRIVE_PID_F = 0.13;
+	public static final double DRIVE_PID_TOLEEANCE = 0.005;
 	public static final double DRIVE_PID_OUTPUTRANGE = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
