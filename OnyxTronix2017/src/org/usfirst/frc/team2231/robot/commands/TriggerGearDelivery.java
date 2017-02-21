@@ -3,6 +3,7 @@ package org.usfirst.frc.team2231.robot.commands;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -24,10 +25,18 @@ public class TriggerGearDelivery extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.gearHolder.isGearInPlace()){
-    		if(!command.isRunning()){
-    			command.start();
-    		}
+//    	if(Robot.gearHolder.isGearInPlace()){
+//    		if(!command.isRunning()){
+//    			command.start();
+//    		}
+//    	}
+    	
+    	if(Robot.oi.getButtonStick().getRawAxis(2) >= 0.9) {
+    		Robot.gearHolder.setPistonPotion(Value.kForward);
+    	}
+    	
+    	if(Robot.oi.getButtonStick().getRawAxis(3) >= 0.9) {
+    		Robot.gearHolder.setPistonPotion(Value.kReverse);
     	}
     }
 

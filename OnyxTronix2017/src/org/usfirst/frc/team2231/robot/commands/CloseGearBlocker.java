@@ -28,7 +28,11 @@ public class CloseGearBlocker extends Command {
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearBlocker.closeGearBlocker();
+    }
+    
+    @Override
+    protected void execute() {
+    	Robot.gearBlocker.setGearBlocker(GearBlocker.BLOCKER_CLOSE_POSIION);
     }
     
     @Override

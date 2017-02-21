@@ -129,5 +129,6 @@ public class RobotMap {
         LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
         
         CameraServer.getInstance().addAxisCamera("10.22.31.18");
+        CameraServer.getInstance().startAutomaticCapture();
 	} 
 }
