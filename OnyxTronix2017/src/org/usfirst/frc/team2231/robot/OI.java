@@ -97,7 +97,7 @@ public class OI {
         driveByDistance = new JoystickButton(driveStick, Button.Y.value());
         driveByDistance.whenPressed(new DriveByDistance(100));
         rotateByAngle = new JoystickButton(driveStick, Button.B.value());
-        rotateByAngle.whenPressed(new RotateByAngle(90));
+        rotateByAngle.whenPressed(new RotateByAngle(180));
         
         buttonStick = new Joystick(0);
         

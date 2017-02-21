@@ -62,6 +62,7 @@ public class RotateByAngle extends SetPointCommand {
     protected void end() {
     	Robot.driveTrain.stopRotatePID();
     	Robot.driveTrain.resetSlaveTalons();
+    	System.out.println("Finished");
     }
 
     // Called when another command which requires one or more of the same

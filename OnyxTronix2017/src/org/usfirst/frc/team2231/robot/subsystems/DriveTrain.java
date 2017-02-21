@@ -44,11 +44,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double ROTATION_PID_P = 0.5;
-	public static final double ROTATION_PID_I = 0;
-	public static final double ROTATION_PID_D = 0;
-	public static final double ROTATION_PID_F = 0;
-	public static final double ROTATION_ABSOLUTE_TOLERANCE = 5;
+	public static final double ROTATION_PID_P = 0.001;
+	public static final double ROTATION_PID_I = 0.00;
+	public static final double ROTATION_PID_D = 0.035;
+	public static final double ROTATION_PID_F = 0.21;
+	public static final double ROTATION_ABSOLUTE_TOLERANCE = 1;
 	public static final double ANGLE_TO_FLOOR = 31;
     public static final double CAMERA_HEIGHT = 40; //In meter.
     public static final double BOILER_HEIGHT = 70; //In meter.
@@ -170,6 +170,9 @@ public class DriveTrain extends Subsystem {
     
     public double getEfficientAngle(double angle) {
     	angle %= 360;
+    	if (angle >= 180) {
+    		angle -= 360;
+    	} 
     	return angle;
     }
     
@@ -179,6 +182,7 @@ public class DriveTrain extends Subsystem {
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.setInverted(false);
+    	firstRight.setInverted(false);
     }
 
 	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
