@@ -19,9 +19,10 @@ public class OpenGearHolderTimeOut extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.gearHolder.isGearInPlace()) {
-    		Robot.gearHolder.setPistonPotion(Value.kForward);
-    	}
+    	System.out.println("Is in place: " + Robot.gearHolder.isGearInPlace());
+    	//if(Robot.gearHolder.isGearInPlace()) {
+    		Robot.gearHolder.setPistonPotion(Value.kReverse);
+    	//}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +36,6 @@ public class OpenGearHolderTimeOut extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.gearHolder.setPistonPotion(Value.kReverse);
     }
 
     // Called when another command which requires one or more of the same

@@ -1,48 +1,47 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 
-import OnyxTronix.SetPointCommand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveUntilGearInPlace extends Command {
-
-	public DriveUntilGearInPlace() {
+public class TriggerGearDelivery extends Command {
+	private Command command;
+	
+    public TriggerGearDelivery() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.gearHolder);
+    	command = new GearDeliver();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.driveTrainDriveLeftPIDController.setOutputRange(-0.5, 0.5);
-    	RobotMap.driveTrainDriveRightPIDController.setOutputRange(-0.5, 0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Robot.gearHolder.isGearInPlace()){
+    		if(!command.isRunning()){
+    			command.start();
+    		}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println(Robot.gearHolder.isGearInPlace());
-        return Robot.gearHolder.isGearInPlace();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.driveTrainDriveLeftPIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
-    	RobotMap.driveTrainDriveRightPIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
-    	Robot.driveTrain.stopDrivePID();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }
