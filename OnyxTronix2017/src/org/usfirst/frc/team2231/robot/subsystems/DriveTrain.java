@@ -124,6 +124,7 @@ public class DriveTrain extends Subsystem {
     	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
     	secondRight.changeControlMode(TalonControlMode.PercentVbus);
     	firstLeft.setInverted(false);
+    	firstRight.setInverted(false);
     }
 
 	public void resetEncoders() {
