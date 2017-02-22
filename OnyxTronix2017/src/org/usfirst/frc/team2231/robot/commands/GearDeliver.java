@@ -27,7 +27,7 @@ public class GearDeliver extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new OpenGearHolderTimeOut(GearHolder.OPEN_TIME_OUT));
+    	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));
     	addSequential(new DriveByDistance(GearHolder.REVERSE_DRIVE));
     	addSequential(new OpenGearHolder());
     }

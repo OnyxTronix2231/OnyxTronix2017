@@ -46,7 +46,8 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_D = 1;
 	public static final double DRIVE_PID_F = 0.13;
 	public static final double DRIVE_PID_TOLEEANCE = 0.005;
-	public static final double DRIVE_PID_OUTPUTRANGE = 1;
+	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
+	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
@@ -139,5 +140,10 @@ public class DriveTrain extends Subsystem {
 		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 	}
+	
+    public void setOutputRange(double output) {
+    	driveLeftPIDController.setOutputRange(-output, output);
+    	driveRightPIDController.setOutputRange(-output, output);
+    }
 }
 

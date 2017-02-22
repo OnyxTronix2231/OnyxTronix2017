@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class OpenGearHolderTimeOut extends Command {
+public class TimeOut extends Command {
 
-    public OpenGearHolderTimeOut(double timeOut) {
+    public TimeOut(double timeOut) {
     	super(timeOut);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -19,9 +19,8 @@ public class OpenGearHolderTimeOut extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Is in place: " + Robot.gearHolder.isGearInPlace());
+    	System.out.println("Is in place: " + Robot.gearHolder.isPegInGear());
     	//if(Robot.gearHolder.isGearInPlace()) {
-    		Robot.gearHolder.setPistonPotion(Value.kReverse);
     	//}
     }
 

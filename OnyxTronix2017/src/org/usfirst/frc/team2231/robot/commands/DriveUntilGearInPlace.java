@@ -11,16 +11,19 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveUntilGearInPlace extends Command {
-
-	public DriveUntilGearInPlace() {
+	
+	double output;
+	
+	public DriveUntilGearInPlace(double output) {
+		this.output = output;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+		requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.driveTrainDriveLeftPIDController.setOutputRange(-0.25, 0.25);
-    	RobotMap.driveTrainDriveRightPIDController.setOutputRange(-0.25, 0.25);
+    Robot.driveTrain.setOutputRange(output);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,14 +32,13 @@ public class DriveUntilGearInPlace extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println(Robot.gearHolder.isGearInPlace());
-        return Robot.gearHolder.isGearInPlace();
+    	System.out.println(Robot.gearHolder.isPegInGear());
+        return Robot.gearHolder.isPegInGear();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.driveTrainDriveLeftPIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
-    	RobotMap.driveTrainDriveRightPIDController.setOutputRange(-DriveTrain.DRIVE_PID_OUTPUTRANGE, DriveTrain.DRIVE_PID_OUTPUTRANGE);
+    	Robot.driveTrain.setOutputRange(DriveTrain.DRIVE_PID_DEFAULT_OUTPUT_RANGE);
     	Robot.driveTrain.stopDrivePID();
     }
 
