@@ -38,7 +38,7 @@ public class ActByVision extends Command {
     @Override
     protected void initialize() {
     	Robot.driveTrain.setVisionOperation(config, strategy);
-    	setPointCommand.setSetPoint(Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
+    	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
     	setPointCommand.start();
     }
     
@@ -49,7 +49,8 @@ public class ActByVision extends Command {
 			if(Robot.driveTrain.isVisionOnTarget(m_setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
 				isFinished = true;
 			}
-			setPointCommand.setSetPoint(Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
+			System.out.println("Still centering");
+			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
 			setPointCommand.start();
     	}
     }

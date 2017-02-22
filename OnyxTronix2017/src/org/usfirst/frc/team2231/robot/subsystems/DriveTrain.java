@@ -48,13 +48,13 @@ public class DriveTrain extends Subsystem {
 	public static final double ROTATION_PID_I = 0.00;
 	public static final double ROTATION_PID_D = 0.035;
 	public static final double ROTATION_PID_F = 0.21;
-	public static final double ROTATION_ABSOLUTE_TOLERANCE = 1;
+	public static final double ROTATION_ABSOLUTE_TOLERANCE = 3;
 	public static final double ANGLE_TO_FLOOR = 31;
     public static final double CAMERA_HEIGHT = 40; //In meter.
     public static final double BOILER_HEIGHT = 70; //In meter.
     public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
-    public static final double HORIZONTAL_APERTURE_ANGLE = 47;
+    public static final double HORIZONTAL_APERTURE_ANGLE = 67;
 	public static final double DRIVE_PID_P = 0.1;
 	public static final double DRIVE_PID_I = 0;
 	public static final double DRIVE_PID_D = 1;

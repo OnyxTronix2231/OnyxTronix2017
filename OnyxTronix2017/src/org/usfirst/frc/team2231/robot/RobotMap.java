@@ -153,6 +153,6 @@ public class RobotMap {
         angleCalculation = new AngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
-        visionSensor = new VisionSensorGrip(gearAxisCamera, gripBoilerConfig);  
+        visionSensor = new VisionSensorGrip(boilerAxisCamera, gripLiftConfig);  
 	} 
 }

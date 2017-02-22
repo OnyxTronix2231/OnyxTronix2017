@@ -17,6 +17,7 @@ public class CenterByVision extends InstantCommand {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.setPoint = setPoint;
+    	this.config = config;
     }
 
     // Called once when the command executes
