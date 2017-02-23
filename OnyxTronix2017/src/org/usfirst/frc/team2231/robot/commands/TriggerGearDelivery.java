@@ -32,11 +32,11 @@ public class TriggerGearDelivery extends Command {
 //    	}
     	
     	if(Robot.oi.getButtonStick().getRawAxis(2) >= 0.9) {
-    		Robot.gearHolder.setPistonPotion(Value.kForward);
+    		Robot.gearHolder.setPistonPosition(Value.kForward);
     	}
     	
     	if(Robot.oi.getButtonStick().getRawAxis(3) >= 0.9) {
-    		Robot.gearHolder.setPistonPotion(Value.kReverse);
+    		Robot.gearHolder.setPistonPosition(Value.kReverse);
     	}
     }
 

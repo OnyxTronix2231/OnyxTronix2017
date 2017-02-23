@@ -42,7 +42,7 @@ public class GearHolder extends Subsystem {
     	setDefaultCommand(new TriggerGearDelivery());
     }
     
-    public void setPistonPotion(Value value) {
+    public void setPistonPosition(Value value) {
     	lowerPiston.set(value);
     	upperPiston.set(value);
     }
