@@ -28,7 +28,7 @@ public class GearDeliver extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));
-    	addSequential(new DriveByDistance(GearHolder.REVERSE_DRIVE));
+    	addSequential(new DriveByDistance(GearHolder.AUTONOMOUS_REVERSE_DRIVE));
     	addSequential(new OpenGearHolder());
     }
 }

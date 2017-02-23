@@ -32,7 +32,7 @@ public class AutonomousGearDeliver extends CommandGroup {
     	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
     	addParallel(new OpenGearHolder());
     	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));
-    	addSequential(new DriveByDistance(GearHolder.REVERSE_DRIVE));
+    	addSequential(new DriveByDistance(GearHolder.AUTONOMOUS_REVERSE_DRIVE));
     	addSequential(new CloseGearHolder());
     }
 }

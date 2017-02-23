@@ -28,7 +28,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearHolder extends Subsystem {
     public static final double OPEN_TIME_OUT = 1;
 	public static final double DRIVE_GEAR_TIME_OUT = 3;
-	public static final double REVERSE_DRIVE = -2;
+	public static final double AUTONOMOUS_REVERSE_DRIVE = -2;
+	public static final double AUTONOMOUS_DRIVE = 150;
 	private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
     private final DoubleSolenoid upperPiston = RobotMap.gearHolderUpperPiston;
     private final DigitalInput microSwitch = RobotMap.gearHolderMicroSwitch;
