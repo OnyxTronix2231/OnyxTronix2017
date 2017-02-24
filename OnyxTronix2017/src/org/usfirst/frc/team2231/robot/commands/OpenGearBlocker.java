@@ -29,7 +29,11 @@ public class OpenGearBlocker extends Command {
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearBlocker.openGearBlocker();
+    }
+    
+    @Override
+    protected void execute() {
+    	Robot.gearBlocker.setGearBlocker(GearBlocker.BLOCKER_OPEN_POSIION);
     }
 
 	@Override

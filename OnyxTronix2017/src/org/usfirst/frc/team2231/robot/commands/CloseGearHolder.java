@@ -27,21 +27,6 @@ public class CloseGearHolder extends InstantCommand {
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearBlocker.closeGearBlocker();
+    	Robot.gearHolder.setPistonPosition(Value.kForward);
     }
-
-	@Override
-	protected boolean isFinished() {
-		return Robot.gearBlocker.isOnTarget(GearBlocker.BLOCKER_CLOSE_POSIION);
-	}
-	
-	@Override
-	protected void end() {
-		Robot.gearBlocker.stopMotor();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
-	}
 }

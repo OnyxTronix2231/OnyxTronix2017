@@ -12,8 +12,13 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
+import org.usfirst.frc.team2231.robot.commands.GearDeliver;
+import org.usfirst.frc.team2231.robot.commands.TimeOut;
+import org.usfirst.frc.team2231.robot.commands.TriggerGearDelivery;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -21,13 +26,29 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class GearHolder extends Subsystem {
-    private final DoubleSolenoid piston = RobotMap.gearHolderPiston;
+    public static final double OPEN_TIME_OUT = 1;
+	public static final double DRIVE_GEAR_TIME_OUT = 3;
+	public static final double AUTONOMOUS_REVERSE_DRIVE = -2;
+	public static final double AUTONOMOUS_DRIVE = 150;
+	private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
+    private final DoubleSolenoid upperPiston = RobotMap.gearHolderUpperPiston;
+    private final DigitalInput microSwitch = RobotMap.gearHolderMicroSwitch;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+    	setDefaultCommand(new TriggerGearDelivery());
+    }
+    
+    public void setPistonPosition(Value value) {
+    	lowerPiston.set(value);
+    	upperPiston.set(value);
+    }
+    
+    public boolean isPegInGear() {
+    	return microSwitch.get();
     }
 }
 

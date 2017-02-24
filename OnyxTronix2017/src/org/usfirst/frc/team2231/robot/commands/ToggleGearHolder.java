@@ -19,14 +19,14 @@ import edu.wpi.first.wpilibj.command.ConditionalCommand;
 /**
  *
  */
-public class ToggleGearHold extends ConditionalCommand {
+public class ToggleGearHolder extends ConditionalCommand {
 
 
-    public ToggleGearHold() {
+    public ToggleGearHolder() {
     	super(new OpenGearHolder(), new CloseGearHolder());
     }
 
     protected boolean condition(){
-        return RobotMap.gearHolderPiston.get() != Value.kForward;
+        return RobotMap.gearHolderLowerPiston.get() != Value.kReverse;
     }
 }

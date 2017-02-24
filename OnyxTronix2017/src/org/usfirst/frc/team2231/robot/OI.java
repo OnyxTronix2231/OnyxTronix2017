@@ -12,22 +12,22 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team2231.robot.commands.CenterByVision;
-import org.usfirst.frc.team2231.robot.commands.ActByVision;
+import org.usfirst.frc.team2231.robot.commands.AutonomousGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
+import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
 import org.usfirst.frc.team2231.robot.commands.DriveByDistance;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
-import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
-import org.usfirst.frc.team2231.robot.commands.DriveToTargetByVision;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
-import org.usfirst.frc.team2231.robot.commands.ToggleGearHold;
+import org.usfirst.frc.team2231.robot.commands.ToggleGearBlocker;
+import org.usfirst.frc.team2231.robot.commands.ToggleGearHolder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -69,6 +69,8 @@ public class OI {
 
     public JoystickButton collectBalls;
     public JoystickButton toggleGearHold;
+    public JoystickButton openGearBlocker;
+    public JoystickButton closeGearBlocker;
     public JoystickButton shoot;
     public JoystickButton load;
     public JoystickButton test;
@@ -82,6 +84,7 @@ public class OI {
     public JoystickButton liftCenterByVision;
     public JoystickButton boilerDriveByVision;
     public JoystickButton liftDriveByVision;
+    public JoystickButton driveAutoDisabler;
 
     public OI() {
         driveStick = new Joystick(1);
@@ -98,21 +101,24 @@ public class OI {
         driveByDistance.whenPressed(new DriveByDistance(100));
         rotateByAngle = new JoystickButton(driveStick, Button.B.value());
         rotateByAngle.whenPressed(new RotateByAngle(180));
+        driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
+        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
         
         buttonStick = new Joystick(0);
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
-        toggleGearHold.whenPressed(new ToggleGearHold());
+        toggleGearHold = new JoystickButton(buttonStick, Button.Y.value());
+        toggleGearHold.whenPressed(new ToggleGearHolder());
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
-        boilerCenterByVision = new JoystickButton(buttonStick, Button.B.value());
-        boilerCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripBoilerConfig));
-        liftCenterByVision = new JoystickButton(buttonStick, Button.Y.value());
-        liftCenterByVision.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
+        openGearBlocker = new JoystickButton(buttonStick, Button.X.value());
+        openGearBlocker.whenPressed(new OpenGearBlocker());
+        closeGearBlocker = new JoystickButton(buttonStick, Button.B.value());
+        closeGearBlocker.whenPressed(new CloseGearBlocker());
+        
 
 
         // SmartDashboard Buttons

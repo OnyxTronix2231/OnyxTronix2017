@@ -16,6 +16,7 @@ import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
 
+import OnyxTronix.Debug;
 import vision.PIDVisionSourceType;
 import vision.VisionSensor;
 
@@ -60,7 +61,8 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_D = 1;
 	public static final double DRIVE_PID_F = 0.12;
 	public static final double DRIVE_PID_TOLEEANCE = 0.005;
-	public static final double DRIVE_PID_OUTPUTRANGE = 1;
+	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
+	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
@@ -87,6 +89,10 @@ public class DriveTrain extends Subsystem {
     
     public void arcadeDrive(Joystick stick){
     	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
+    }
+    
+    public void arcadeDrive(double moveValue, double rotateValue){
+    	robotDrive.arcadeDrive(moveValue, rotateValue);
     }
     
     public void switchToStrengthGear() {
@@ -119,23 +125,8 @@ public class DriveTrain extends Subsystem {
     	firstRight.setPIDSourceType(sourceType);
     }
     
-    public void initRotatePID(double setPoint) {
-    	rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
-    	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
-    }
-    
-    public void setPIDSetPoint(double setPoint) {
-    	rotationPidControllerLeft.setSetpoint(setPoint);
-    	rotationPidControllerRight.setSetpoint(setPoint);
-    }
-    
     public void resetGyro() {
     	gyro.reset();
-    }
-    
-    public void stopRotatePID() {
-    	rotationPidControllerLeft.stop();
-    	rotationPidControllerRight.stop();
     }
     
     public void stopDrivePID() {
@@ -143,29 +134,8 @@ public class DriveTrain extends Subsystem {
     	driveRightPIDController.stop();
     }
     
-    public boolean isRotateOnTarget(){
-    	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
-    }
-    
     public boolean isDriveOnTarget(){
     	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
-    }
-    
-    public void setVisionOperation(GripConfiguration<OnyxPipeline> config, GripVisionStrategy strategy) {
-    	visionSensor.setConfiguration(config);
-    	visionSensor.setStrategy(strategy);
-    }
-    
-    public double getVisionValueBySetPoint(double setPoint) {
-    	return visionSensor.getValueBySetPoint(setPoint);
-    }
-    
-    public double getError() {
-    	return rotationPidControllerRight.getError();
-    }
-    
-    public boolean isVisionOnTarget(double setPoint) {
-    	return Math.abs(Robot.driveTrain.getVisionValueBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
     }
     
     public double getEfficientAngle(double angle) {
@@ -185,10 +155,6 @@ public class DriveTrain extends Subsystem {
     	firstRight.setInverted(false);
     }
 
-	public void setVisionSensorConfig(GripConfiguration<OnyxPipeline> config) {
-		visionSensor.setConfiguration(config);
-	}
-
 	public void resetEncoders() {
 		firstLeft.setPosition(0);
 		firstRight.setPosition(0);
@@ -203,5 +169,46 @@ public class DriveTrain extends Subsystem {
 		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 	}
+	
+    public void setOutputRange(double output) {
+    	driveLeftPIDController.setOutputRange(-output, output);
+    	driveRightPIDController.setOutputRange(-output, output);
+    }
+    
+    public void initRotatePID(double setPoint) {
+    	rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
+    	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
+    }
+    
+    public void setPIDSetPoint(double setPoint) {
+    	rotationPidControllerLeft.setSetpoint(setPoint);
+    	rotationPidControllerRight.setSetpoint(setPoint);
+    }
+    
+    public void stopRotatePID() {
+    	rotationPidControllerLeft.stop();
+    	rotationPidControllerRight.stop();
+    }
+    
+    public boolean isRotateOnTarget(){
+    	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
+    }
+    
+    public void setVisionOperation(GripConfiguration<OnyxPipeline> config, GripVisionStrategy strategy) {
+    	visionSensor.setConfiguration(config);
+    	visionSensor.setStrategy(strategy);
+    }
+    
+    public double getVisionValueBySetPoint(double setPoint) {
+    	return visionSensor.getValueBySetPoint(setPoint);
+    }
+    
+    public double getError() {
+    	return rotationPidControllerRight.getError();
+    }
+    
+    public boolean isVisionOnTarget(double setPoint) {
+    	return Math.abs(Robot.driveTrain.getVisionValueBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
+    }
 }
 

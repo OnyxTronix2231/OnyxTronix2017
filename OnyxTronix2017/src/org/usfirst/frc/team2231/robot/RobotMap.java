@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -54,20 +55,22 @@ public class RobotMap {
     public static CANTalon collectorWheel;
     public static CANTalon climberMotor;
     public static DoubleSolenoid driveTrainShifter;
-    public static DoubleSolenoid gearHolderPiston;
+    public static DoubleSolenoid gearHolderUpperPiston;
+    public static DoubleSolenoid gearHolderLowerPiston;
     public static CANTalon shooterUpperWheel;
     public static CANTalon shooterLowerWheel;
     public static CANTalon triggerWheel;
-    public static VisionSensorGrip visionSensor;
-    public static AxisCamera gearAxisCamera;
-    public static AxisCamera boilerAxisCamera;
+    public static DigitalInput gearHolderMicroSwitch;
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
     public static AngleCalculation angleCalculation;
-    public static DistanceCalculation distanceCalculation;
     public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
-
+    public static VisionSensorGrip visionSensor;
+    public static AxisCamera gearAxisCamera;
+    public static AxisCamera boilerAxisCamera;
+    public static DistanceCalculation distanceCalculation;
+    
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
         LiveWindow.addActuator("GearBlocker", "Motor", gearBlockerMotor);
@@ -108,7 +111,7 @@ public class RobotMap {
         
         driveTrainRotationLeftPIDController = new OnyxTronixPIDController(DriveTrain.ROTATION_PID_P, DriveTrain.ROTATION_PID_I, DriveTrain.ROTATION_PID_D, DriveTrain.ROTATION_PID_F, driveTrainGyro, driveTrainFirstLeft, DriveTrain.ROTATION_ABSOLUTE_TOLERANCE);
         driveTrainRotationLeftPIDController.setOutputRange(-1, 1);      
-
+     
        driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft, DriveTrain.DRIVE_PID_TOLEEANCE);
        driveTrainDriveLeftPIDController.setOutputRange(-1, 1);
         
@@ -124,9 +127,12 @@ public class RobotMap {
         driveTrainShifter = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("DriveTrain", "ShifterRight", driveTrainShifter);
        
-        gearHolderPiston = new DoubleSolenoid(0, 4, 5);
-        LiveWindow.addActuator("Gear Holder", "Piston", gearHolderPiston);
+        gearHolderLowerPiston = new DoubleSolenoid(0, 2, 3);
+        LiveWindow.addActuator("Gear Holder", "Piston", gearHolderLowerPiston);
       
+        gearHolderUpperPiston = new DoubleSolenoid(0, 4, 5);
+        LiveWindow.addActuator("Gear Holder", "Piston", gearHolderLowerPiston);
+        
         shooterUpperWheel = new CANTalon(7);
         LiveWindow.addActuator("Shooter", "UpperWheel", shooterUpperWheel);
         
@@ -135,7 +141,10 @@ public class RobotMap {
         
         triggerWheel = new CANTalon(5);
         LiveWindow.addActuator("Loader", "Wheel", triggerWheel);        
-    
+        
+        gearHolderMicroSwitch = new DigitalInput(0);
+        LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
+        
         gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
         
         boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
@@ -154,5 +163,7 @@ public class RobotMap {
         distanceCalculation = new DistanceCalculation();
         
         visionSensor = new VisionSensorGrip(boilerAxisCamera, gripLiftConfig);  
+        CameraServer.getInstance().addAxisCamera("10.22.31.18");
+        CameraServer.getInstance().startAutomaticCapture();
 	} 
 }
