@@ -64,8 +64,6 @@ public class RobotMap {
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
     public static AngleCalculation angleCalculation;
-    public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
-    public static OnyxTronixPIDController driveTrainDriveRightPIDController;
     public static VisionSensorGrip visionSensor;
     public static AxisCamera gearAxisCamera;
     public static AxisCamera boilerAxisCamera;
@@ -110,13 +108,7 @@ public class RobotMap {
         driveTrainRotationRightPIDController.setOutputRange(-1, 1);
         
         driveTrainRotationLeftPIDController = new OnyxTronixPIDController(DriveTrain.ROTATION_PID_P, DriveTrain.ROTATION_PID_I, DriveTrain.ROTATION_PID_D, DriveTrain.ROTATION_PID_F, driveTrainGyro, driveTrainFirstLeft, DriveTrain.ROTATION_ABSOLUTE_TOLERANCE);
-        driveTrainRotationLeftPIDController.setOutputRange(-1, 1);      
-     
-       driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft, DriveTrain.DRIVE_PID_TOLEEANCE);
-       driveTrainDriveLeftPIDController.setOutputRange(-1, 1);
-        
-       driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
-       driveTrainDriveRightPIDController.setOutputRange(-1, 1);      
+        driveTrainRotationLeftPIDController.setOutputRange(-1, 1);          
 
         collectorWheel = new CANTalon(4);
         LiveWindow.addActuator("BallCollector", "wheel", collectorWheel);

@@ -63,19 +63,17 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_TOLEEANCE = 0.005;
 	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
 	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
-
+	
+	private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
+	private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
     private final CANTalon secondRight = RobotMap.driveTrainSecondRight;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     private final AnalogGyro gyro = RobotMap.driveTrainGyro;
-    private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
-    private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
     private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
-    private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
-    private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     
     // Put methods for controlling this subsystem
@@ -130,12 +128,14 @@ public class DriveTrain extends Subsystem {
     }
     
     public void stopDrivePID() {
-    	driveLeftPIDController.stop();
-    	driveRightPIDController.stop();
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
+    	firstLeft.set(0);
+    	firstRight.set(0);
     }
     
     public boolean isDriveOnTarget(){
-    	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
+    	return Math.abs(firstLeft.getError()) < DRIVE_PID_TOLEEANCE && Math.abs(firstRight.getError()) < DRIVE_PID_TOLEEANCE; 
     }
     
     public double getEfficientAngle(double angle) {
@@ -166,13 +166,16 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDrivePID(double setPoint) {
-		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
-		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+		firstLeft.setSetpoint(setPoint);
+		firstRight.setSetpoint(setPoint);
 	}
 	
     public void setOutputRange(double output) {
-    	driveLeftPIDController.setOutputRange(-output, output);
-    	driveRightPIDController.setOutputRange(-output, output);
+    	firstLeft.configNominalOutputVoltage(+0f, -0f);
+        firstLeft.configPeakOutputVoltage(+12f, -12f);
+        
+        firstRight.configNominalOutputVoltage(+0f, -0f);
+        firstRight.configPeakOutputVoltage(+12f, -12f);
     }
     
     public void initRotatePID(double setPoint) {
