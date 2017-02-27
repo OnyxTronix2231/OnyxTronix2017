@@ -166,7 +166,10 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDrivePID(double setPoint) {
+		firstLeft.changeControlMode(TalonControlMode.Position);
 		firstLeft.setSetpoint(setPoint);
+
+		firstRight.changeControlMode(TalonControlMode.Position);
 		firstRight.setSetpoint(setPoint);
 	}
 	
