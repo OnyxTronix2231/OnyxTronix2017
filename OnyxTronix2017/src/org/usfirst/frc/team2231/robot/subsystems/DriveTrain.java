@@ -63,6 +63,9 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_TOLEEANCE = 0.005;
 	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
 	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
+	public static final float PEAK_OUT_PUT_VOLTAGE_ROTATE = 12 * 1;
+	public static final float NOMINAL_OUT_PUT_VOLTAGE_ROTATE = 12 * 0;
+
 	
 	private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
 	private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
@@ -174,11 +177,11 @@ public class DriveTrain extends Subsystem {
 	}
 	
     public void setOutputRange(double output) {
-    	firstLeft.configNominalOutputVoltage(+0f, -0f);
-        firstLeft.configPeakOutputVoltage(+12f, -12f);
+    	firstLeft.configNominalOutputVoltage(NOMINAL_OUT_PUT_VOLTAGE_ROTATE, -NOMINAL_OUT_PUT_VOLTAGE_ROTATE);
+        firstLeft.configPeakOutputVoltage(PEAK_OUT_PUT_VOLTAGE_ROTATE, -PEAK_OUT_PUT_VOLTAGE_ROTATE);
         
-        firstRight.configNominalOutputVoltage(+0f, -0f);
-        firstRight.configPeakOutputVoltage(+12f, -12f);
+        firstRight.configNominalOutputVoltage(NOMINAL_OUT_PUT_VOLTAGE_ROTATE, -NOMINAL_OUT_PUT_VOLTAGE_ROTATE);
+        firstRight.configPeakOutputVoltage(PEAK_OUT_PUT_VOLTAGE_ROTATE, -PEAK_OUT_PUT_VOLTAGE_ROTATE);
     }
     
     public void initRotatePID(double setPoint) {
