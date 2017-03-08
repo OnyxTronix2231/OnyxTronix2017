@@ -15,6 +15,7 @@ import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.AutonomousGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
+import org.usfirst.frc.team2231.robot.commands.SwitchClimberDirection;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
@@ -84,6 +85,8 @@ public class OI {
     public JoystickButton boilerDriveByVision;
     public JoystickButton liftDriveByVision;
     public JoystickButton driveAutoDisabler;
+    public JoystickButton switchClimberDirection;
+
 
     public OI() {
         driveStick = new Joystick(1);
@@ -94,6 +97,8 @@ public class OI {
         openShifters.whenPressed(new SwitchToSpeedGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+        switchClimberDirection = new JoystickButton(driveStick, Button.B.value());
+        switchClimberDirection.whenPressed(new SwitchClimberDirection());
         
         buttonStick = new Joystick(0);
         

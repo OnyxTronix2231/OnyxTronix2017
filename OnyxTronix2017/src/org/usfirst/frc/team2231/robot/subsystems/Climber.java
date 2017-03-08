@@ -24,8 +24,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Climber extends Subsystem {
-    private final CANTalon motor = RobotMap.climberMotor;
+    private final CANTalon firstMotor = RobotMap.climberFristMotor;
+    private final CANTalon secondMotor = RobotMap.climberFristMotor;
     private static final double SENSITIVITY_VALUE = 1 * 0.2;
+    public int climbDirection = -1;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -36,9 +38,11 @@ public class Climber extends Subsystem {
     }
     public void climbRope() {
     	if(Math.abs(Robot.oi.getButtonStick().getRawAxis(1)) > SENSITIVITY_VALUE){
-    		motor.set(Robot.oi.getButtonStick().getRawAxis(1));
+    		firstMotor.set(climbDirection * Math.abs(Robot.oi.getButtonStick().getRawAxis(1)));
+    		secondMotor.set(climbDirection * Math.abs(Robot.oi.getButtonStick().getRawAxis(1)));
     	} else {
-    		motor.set(0);
+    		firstMotor.set(0);
+    		secondMotor.set(0);
     	}
     }
 }

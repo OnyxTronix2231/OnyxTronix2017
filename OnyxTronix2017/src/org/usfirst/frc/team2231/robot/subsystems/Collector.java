@@ -15,6 +15,8 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -23,7 +25,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Collector extends Subsystem {
 	public static final double SPEED = 1;
-    private final CANTalon wheel = RobotMap.collectorWheel;
+    private final Talon wheel = RobotMap.collectorWheel;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

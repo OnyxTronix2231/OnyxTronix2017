@@ -31,6 +31,8 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -48,8 +50,9 @@ public class RobotMap {
     public static CANTalon driveTrainSecondRight;
     public static RobotDrive driveTrainRobotDrive;
     public static ADXRS450_Gyro driveTrainGyro;
-    public static CANTalon collectorWheel;
-    public static CANTalon climberMotor;
+    public static Talon collectorWheel;
+    public static CANTalon climberFristMotor;
+    public static CANTalon climberSecondMotor;
     public static DoubleSolenoid driveTrainShifter;
     public static DoubleSolenoid gearHolderUpperPiston;
     public static DoubleSolenoid gearHolderLowerPiston;
@@ -101,11 +104,14 @@ public class RobotMap {
        driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
        driveTrainDriveRightPIDController.setOutputRange(-1, 1);      
 
-        collectorWheel = new CANTalon(4);
+        collectorWheel = new Talon(0);
         LiveWindow.addActuator("BallCollector", "wheel", collectorWheel);
         
-        climberMotor = new CANTalon(8);
-        LiveWindow.addActuator("Climber", "Motor", climberMotor);
+        climberFristMotor = new CANTalon(8);
+        LiveWindow.addActuator("Climber", "Frist motor", climberFristMotor);
+        
+        climberSecondMotor = new CANTalon(4);
+        LiveWindow.addActuator("Climber", "Second motor", climberSecondMotor);
 
         driveTrainShifter = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("DriveTrain", "ShifterRight", driveTrainShifter);
