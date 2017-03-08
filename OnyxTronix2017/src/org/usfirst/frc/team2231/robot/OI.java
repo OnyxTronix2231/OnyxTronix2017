@@ -91,9 +91,9 @@ public class OI {
     public OI() {
         driveStick = new Joystick(1);
         
-        closeShifters = new JoystickButton(driveStick, Button.Start.value());
+        closeShifters = new JoystickButton(driveStick, Button.RB.value());
         closeShifters.whenPressed(new SwitchToStrengthGear());
-        openShifters = new JoystickButton(driveStick, Button.Back.value());
+        openShifters = new JoystickButton(driveStick, Button.LB.value());
         openShifters.whenPressed(new SwitchToSpeedGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
