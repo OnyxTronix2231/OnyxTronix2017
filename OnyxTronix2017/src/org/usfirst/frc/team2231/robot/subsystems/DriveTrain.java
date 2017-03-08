@@ -57,9 +57,9 @@ public class DriveTrain extends Subsystem {
     public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
     public static final double HORIZONTAL_APERTURE_ANGLE = 67;
-	public static final double DRIVE_PID_P = 0.1;
-	public static final double DRIVE_PID_I = 0;
-	public static final double DRIVE_PID_D = 1;
+	public static final double DRIVE_PID_P = 0.06;
+	public static final double DRIVE_PID_I = 0.01;
+	public static final double DRIVE_PID_D = 4;
 	public static final double DRIVE_PID_F = 0.12;
 	public static final double DRIVE_PID_TOLEEANCE = 0.005;
 	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
