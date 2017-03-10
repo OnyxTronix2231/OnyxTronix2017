@@ -30,6 +30,7 @@ import GripVision.VisionSensorGrip;
 import OnyxTronix.Debug;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
+import OnyxTronix.PIDBalancer;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -63,6 +64,13 @@ public class DriveTrain extends Subsystem {
 	public static final double DRIVE_PID_TOLEEANCE = 0.005;
 	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
 	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
+	public static final double BALANCE_PID_P = 0.1;
+	public static final double BALANCE_PID_I = 0;
+	public static final double BALANCE_PID_D = 1;
+	public static final double BALANCE_PID_F = 0.12;
+	public static final double BALANCE_PID_TOLEEANCE = 0.005;
+	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
+	public static final double BALANCE_PID_SETPOINT = 1;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
@@ -76,6 +84,8 @@ public class DriveTrain extends Subsystem {
     private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
+    private final OnyxTronixPIDController balancerPIDController = RobotMap.balancerPIDController;
+    private final PIDBalancer pidBalancer = RobotMap.pidBalancer;
     private final DoubleSolenoid shifter = RobotMap.driveTrainShifter;
     
     // Put methods for controlling this subsystem
@@ -163,11 +173,13 @@ public class DriveTrain extends Subsystem {
 	public void changePIDType() {
 		firstLeft.setPIDSourceType(PIDSourceType.kDisplacement);
 		firstRight.setPIDSourceType(PIDSourceType.kDisplacement);
+		pidBalancer.setPIDSourceType(PIDSourceType.kDisplacement);
 	}
 
 	public void initDrivePID(double setPoint) {
 		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+		System.out.println("Is balance initialized: " + balancerPIDController.init(BALANCE_PID_SETPOINT, DRIVE_PID_TOLEEANCE));
 	}
 	
     public void setOutputRange(double output) {

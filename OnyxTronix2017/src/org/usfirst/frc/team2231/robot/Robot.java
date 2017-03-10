@@ -81,6 +81,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drive PID I", DriveTrain.DRIVE_PID_I);
         SmartDashboard.putNumber("Drive PID D", DriveTrain.DRIVE_PID_D);
         SmartDashboard.putNumber("Drive PID F", DriveTrain.DRIVE_PID_F);
+        
+        SmartDashboard.putNumber("Balance PID P", DriveTrain.BALANCE_PID_P);
+        SmartDashboard.putNumber("Balance PID I", DriveTrain.BALANCE_PID_I);
+        SmartDashboard.putNumber("Balance PID D", DriveTrain.BALANCE_PID_D);
+        SmartDashboard.putNumber("Balance PID F", DriveTrain.BALANCE_PID_F);
     }
 
     /**
@@ -128,8 +133,15 @@ public class Robot extends IterativeRobot {
         f = SmartDashboard.getNumber("Drive PID F", 0);
         
         RobotMap.driveTrainDriveLeftPIDController.setPID(p, i, d, f);
-        RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);     
-                
+        RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);   
+        
+        p = SmartDashboard.getNumber("Balance PID P", 0);
+        i = SmartDashboard.getNumber("Balance PID I", 0);
+        d = SmartDashboard.getNumber("Balance PID D", 0);
+        f = SmartDashboard.getNumber("Balance PID F", 0);
+        
+        RobotMap.balancerPIDController.setPID(p, i, d, f);
+        
         Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
     	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
     	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {

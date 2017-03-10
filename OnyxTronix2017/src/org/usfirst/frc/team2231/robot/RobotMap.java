@@ -17,6 +17,7 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import com.ctre.CANTalon;
 
 import OnyxTronix.OnyxTronixPIDController;
+import OnyxTronix.PIDBalancer;
 import GripVision.AngleCalculation;
 import GripVision.DistanceCalculation;
 import GripVision.VisionSensorGrip;
@@ -70,6 +71,8 @@ public class RobotMap {
     public static AxisCamera gearAxisCamera;
     public static AxisCamera boilerAxisCamera;
     public static DistanceCalculation distanceCalculation;
+    public static PIDBalancer pidBalancer;
+    public static OnyxTronixPIDController balancerPIDController;
     
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
@@ -116,7 +119,10 @@ public class RobotMap {
        driveTrainDriveLeftPIDController.setOutputRange(-1, 1);
         
        driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
-       driveTrainDriveRightPIDController.setOutputRange(-1, 1);      
+       driveTrainDriveRightPIDController.setOutputRange(-1, 1);
+       
+       pidBalancer = new PIDBalancer(driveTrainDriveLeftPIDController, driveTrainDriveRightPIDController);
+       balancerPIDController = new OnyxTronixPIDController(DriveTrain.BALANCE_PID_P, DriveTrain.BALANCE_PID_I, DriveTrain.BALANCE_PID_D, DriveTrain.BALANCE_PID_F, pidBalancer, pidBalancer, DriveTrain.BALANCE_PID_TOLEEANCE);
 
         collectorWheel = new CANTalon(4);
         LiveWindow.addActuator("BallCollector", "wheel", collectorWheel);
