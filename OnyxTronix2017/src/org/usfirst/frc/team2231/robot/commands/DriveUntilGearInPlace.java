@@ -18,7 +18,7 @@ public class DriveUntilGearInPlace extends Command {
 		this.output = output;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-		requires(Robot.driveTrain);
+//		requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -32,7 +32,7 @@ public class DriveUntilGearInPlace extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println(Robot.gearHolder.isPegInGear());
+    	System.out.println("Peg " + Robot.gearHolder.isPegInGear());
         return Robot.gearHolder.isPegInGear();
     }
 

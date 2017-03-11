@@ -82,6 +82,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drive PID D", DriveTrain.DRIVE_PID_D);
         SmartDashboard.putNumber("Drive PID F", DriveTrain.DRIVE_PID_F);
         
+        SmartDashboard.putNumber("Rotation PID P", DriveTrain.ROTATION_PID_P);
+        SmartDashboard.putNumber("Rotation PID I", DriveTrain.ROTATION_PID_I);
+        SmartDashboard.putNumber("Rotation PID D", DriveTrain.ROTATION_PID_D);
+        SmartDashboard.putNumber("Rotation PID F", DriveTrain.ROTATION_PID_F);
+        
         SmartDashboard.putNumber("Balance PID P", DriveTrain.BALANCE_PID_P);
         SmartDashboard.putNumber("Balance PID I", DriveTrain.BALANCE_PID_I);
         SmartDashboard.putNumber("Balance PID D", DriveTrain.BALANCE_PID_D);
@@ -141,6 +146,15 @@ public class Robot extends IterativeRobot {
         f = SmartDashboard.getNumber("Balance PID F", 0);
         
         RobotMap.balancerPIDController.setPID(p, i, d, f);
+        
+        p = SmartDashboard.getNumber("Rotation PID P", 0);
+        i = SmartDashboard.getNumber("Rotation PID I", 0);
+        d = SmartDashboard.getNumber("Rotation PID D", 0);
+        f = SmartDashboard.getNumber("Rotation PID F", 0);
+        
+        RobotMap.driveTrainRotationLeftPIDController.setPID(p, i, d, f);
+        RobotMap.driveTrainRotationRightPIDController.setPID(p, i, d, f);
+
         
         Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
     	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());

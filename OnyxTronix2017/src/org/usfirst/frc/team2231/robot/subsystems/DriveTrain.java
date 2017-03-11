@@ -46,11 +46,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double ROTATION_PID_P = 0.001;
-	public static final double ROTATION_PID_I = 0.00;
+	public static final double ROTATION_PID_P = 0.002;
+	public static final double ROTATION_PID_I = 0.00001;
 	public static final double ROTATION_PID_D = 0.035;
 	public static final double ROTATION_PID_F = 0.21;
-	public static final double ROTATION_ABSOLUTE_TOLERANCE = 3;
+	public static final double ROTATION_ABSOLUTE_TOLERANCE = 10;
 	public static final double ANGLE_TO_FLOOR = 31;
     public static final double CAMERA_HEIGHT = 40; //In meter.
     public static final double BOILER_HEIGHT = 70; //In meter.
@@ -58,16 +58,16 @@ public class DriveTrain extends Subsystem {
     public static final double VERTICAL_APERTURE_ANGLE = 35;
     public static final double HORIZONTAL_APERTURE_ANGLE = 67;
 	public static final double DRIVE_PID_P = 0.06;
-	public static final double DRIVE_PID_I = 0.01;
+	public static final double DRIVE_PID_I = 0.001;
 	public static final double DRIVE_PID_D = 4;
 	public static final double DRIVE_PID_F = 0.12;
-	public static final double DRIVE_PID_TOLEEANCE = 0.005;
-	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 0.25;
+	public static final double DRIVE_PID_TOLEEANCE = 0.5;
+	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 1;
 	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
-	public static final double BALANCE_PID_P = 0.1;
+	public static final double BALANCE_PID_P = 0;
 	public static final double BALANCE_PID_I = 0;
-	public static final double BALANCE_PID_D = 1;
-	public static final double BALANCE_PID_F = 0.12;
+	public static final double BALANCE_PID_D = 0;
+	public static final double BALANCE_PID_F = 0;
 	public static final double BALANCE_PID_TOLEEANCE = 0.005;
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
@@ -142,6 +142,7 @@ public class DriveTrain extends Subsystem {
     public void stopDrivePID() {
     	driveLeftPIDController.stop();
     	driveRightPIDController.stop();
+    	
     }
     
     public boolean isDriveOnTarget(){
@@ -200,6 +201,7 @@ public class DriveTrain extends Subsystem {
     public void stopRotatePID() {
     	rotationPidControllerLeft.stop();
     	rotationPidControllerRight.stop();
+    	balancerPIDController.stop();
     }
     
     public boolean isRotateOnTarget(){

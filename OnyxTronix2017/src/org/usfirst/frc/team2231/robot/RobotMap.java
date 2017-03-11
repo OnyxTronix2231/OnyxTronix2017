@@ -151,9 +151,9 @@ public class RobotMap {
         gearHolderMicroSwitch = new DigitalInput(0);
         LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
         
-        gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
+        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
         
-        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
+        gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
         
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
@@ -168,8 +168,7 @@ public class RobotMap {
         angleCalculation = new AngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
-        visionSensor = new VisionSensorGrip(boilerAxisCamera, gripLiftConfig);  
-        CameraServer.getInstance().addAxisCamera("10.22.31.18");
+        visionSensor = new VisionSensorGrip(gearAxisCamera, gripLiftConfig);  
         CameraServer.getInstance().startAutomaticCapture();
 	} 
 }

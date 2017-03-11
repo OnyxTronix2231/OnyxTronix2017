@@ -13,6 +13,8 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.AutonomousGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.AutonomousRightGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
@@ -98,11 +100,16 @@ public class OI {
 //        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
 //        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
         driveByDistance = new JoystickButton(driveStick, Button.Y.value());
-        driveByDistance.whenPressed(new DriveByDistance(240));
-        rotateByAngle = new JoystickButton(driveStick, Button.B.value());
-        rotateByAngle.whenPressed(new RotateByAngle(180));
-        driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
-        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+        driveByDistance.whenPressed(new RotateByAngle(90));
+//        rotateByAngle = new JoystickButton(driveStick, Button.B.value());
+//        rotateByAngle.whenPressed(new RotateByAngle(180));
+//        driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
+//        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+//        driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
+//        driveAutoDisabler.whenPressed(new AutonomousRightGearDeliver());
+        
+      rotateByAngle = new JoystickButton(driveStick, Button.B.value());
+      rotateByAngle.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
         
         buttonStick = new Joystick(0);
         
