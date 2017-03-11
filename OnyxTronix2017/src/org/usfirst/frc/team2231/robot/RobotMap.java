@@ -51,7 +51,7 @@ public class RobotMap {
     public static RobotDrive driveTrainRobotDrive;
     public static ADXRS450_Gyro driveTrainGyro;
     public static Talon collectorWheel;
-    public static CANTalon climberFristMotor;
+    public static CANTalon climberFirstMotor;
     public static CANTalon climberSecondMotor;
     public static DoubleSolenoid driveTrainShifter;
     public static DoubleSolenoid gearHolderUpperPiston;
@@ -107,8 +107,8 @@ public class RobotMap {
         collectorWheel = new Talon(0);
         LiveWindow.addActuator("BallCollector", "wheel", collectorWheel);
         
-        climberFristMotor = new CANTalon(8);
-        LiveWindow.addActuator("Climber", "Frist motor", climberFristMotor);
+        climberFirstMotor = new CANTalon(8);
+        LiveWindow.addActuator("Climber", "Frist motor", climberFirstMotor);
         
         climberSecondMotor = new CANTalon(4);
         LiveWindow.addActuator("Climber", "Second motor", climberSecondMotor);

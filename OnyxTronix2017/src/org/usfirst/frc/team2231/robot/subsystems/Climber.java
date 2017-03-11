@@ -24,8 +24,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Climber extends Subsystem {
-    private final CANTalon firstMotor = RobotMap.climberFristMotor;
-    private final CANTalon secondMotor = RobotMap.climberFristMotor;
+    private final CANTalon firstMotor = RobotMap.climberFirstMotor;
+    private final CANTalon secondMotor = RobotMap.climberFirstMotor;
     private static final double SENSITIVITY_VALUE = 1 * 0.2;
     public int climbDirection = -1;
     // Put methods for controlling this subsystem
