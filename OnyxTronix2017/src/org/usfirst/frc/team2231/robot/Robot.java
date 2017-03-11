@@ -134,7 +134,7 @@ public class Robot extends IterativeRobot {
         RobotMap.driveTrainDriveLeftPIDController.setPID(p, i, d, f);
         RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);   
         
-        isReversed = SmartDashboard.putBoolean("Reverse climber direction", false);
+        isReversed = SmartDashboard.getBoolean("Reverse climber direction", false);
         Robot.climber.climbDirection = isReversed ? -Climber.DEFAULT_DIRECTION : Climber.DEFAULT_DIRECTION;        
         
         Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
