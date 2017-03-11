@@ -27,7 +27,8 @@ public class Climber extends Subsystem {
     private final CANTalon firstMotor = RobotMap.climberFirstMotor;
     private final CANTalon secondMotor = RobotMap.climberFirstMotor;
     private static final double SENSITIVITY_VALUE = 1 * 0.2;
-    public int climbDirection = -1;
+    public static final int DEFAULT_DIRECTION = -1;
+    public int climbDirection = DEFAULT_DIRECTION;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

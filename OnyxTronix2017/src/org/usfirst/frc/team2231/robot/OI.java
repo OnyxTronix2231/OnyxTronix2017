@@ -97,8 +97,6 @@ public class OI {
         openShifters.whenPressed(new SwitchToSpeedGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
-        switchClimberDirection = new JoystickButton(driveStick, Button.B.value());
-        switchClimberDirection.whenPressed(new SwitchClimberDirection());
         
         buttonStick = new Joystick(0);
         

@@ -81,6 +81,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drive PID I", DriveTrain.DRIVE_PID_I);
         SmartDashboard.putNumber("Drive PID D", DriveTrain.DRIVE_PID_D);
         SmartDashboard.putNumber("Drive PID F", DriveTrain.DRIVE_PID_F);
+        
+        SmartDashboard.putBoolean("Reverse climber direction", false);
+
     }
 
     /**
@@ -107,7 +110,6 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
     }
     
-    double p, i,d, f;
     public void teleopInit() {
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
@@ -119,6 +121,8 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
+    double p, i,d, f;
+    boolean isReversed;
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
@@ -128,8 +132,11 @@ public class Robot extends IterativeRobot {
         f = SmartDashboard.getNumber("Drive PID F", 0);
         
         RobotMap.driveTrainDriveLeftPIDController.setPID(p, i, d, f);
-        RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);     
-                
+        RobotMap.driveTrainDriveRightPIDController.setPID(p, i, d, f);   
+        
+        isReversed = SmartDashboard.putBoolean("Reverse climber direction", false);
+        Robot.climber.climbDirection = isReversed ? -Climber.DEFAULT_DIRECTION : Climber.DEFAULT_DIRECTION;        
+        
         Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
     	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
     	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
