@@ -13,9 +13,11 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class DriveToTargetByVision extends InstantCommand {
+public class DriveToTargetByVision extends Command {
 	private double setPoint;
 	private GripConfiguration<OnyxPipeline> config;
+	private ActByVision actByVision;
+
     public DriveToTargetByVision(double setPoint, GripConfiguration<OnyxPipeline> config) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,6 +28,20 @@ public class DriveToTargetByVision extends InstantCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	new ActByVision(setPoint, config, new DriveByDistance(setPoint), RobotMap.distanceCalculation);
+    	actByVision = new ActByVision(setPoint, config, new DriveByDistance(setPoint), RobotMap.distanceCalculation);
     }
+
+	@Override
+	protected boolean isFinished() {
+		return actByVision.isRunning();
+	}
+	
+	@Override
+	protected void end() {
+	}
+	
+	@Override
+	protected void interrupted() {
+		actByVision.cancel();
+	}
 }

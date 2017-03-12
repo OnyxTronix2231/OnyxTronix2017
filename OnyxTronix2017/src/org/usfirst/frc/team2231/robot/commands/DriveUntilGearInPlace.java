@@ -38,6 +38,9 @@ public class DriveUntilGearInPlace extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	if(Robot.driveTrain.getCurrentCommand() != null) {
+    		Robot.driveTrain.getCurrentCommand().cancel();
+    	}
     	Robot.driveTrain.setOutputRange(DriveTrain.DRIVE_PID_DEFAULT_OUTPUT_RANGE);
     	Robot.driveTrain.stopDrivePID();
     }
