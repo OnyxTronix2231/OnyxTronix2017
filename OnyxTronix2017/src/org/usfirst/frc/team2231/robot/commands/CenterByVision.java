@@ -35,5 +35,10 @@ public class CenterByVision extends Command {
 		}
 		return false;
 	}
+	
+	@Override
+	protected void interrupted() {
+		actByVision.cancel();
+	}
 
 }

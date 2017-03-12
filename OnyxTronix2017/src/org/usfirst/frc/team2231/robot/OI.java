@@ -101,18 +101,8 @@ public class OI {
         openShifters.whenPressed(new SwitchToSpeedGear());
         deliverGear = new JoystickButton(driveStick, Button.A.value());
         deliverGear.whenPressed(new TeleopGearDeliver());
-//        boilerDriveByVision = new JoystickButton(driveStick, Button.X.value());
-//        boilerDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripBoilerConfig));
-//        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
-//        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
-       /* driveByDistance = new JoystickButton(driveStick, Button.Y.value());
-        driveByDistance.whenPressed(new RotateByAngle(90));*/
-//        rotateByAngle = new JoystickButton(driveStick, Button.B.value());
-//        rotateByAngle.whenPressed(new RotateByAngle(180));
-//        driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
-//        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
         driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
-        driveAutoDisabler.whenPressed(new AutonomousRightGearDeliver());
+        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
         
       rotateByAngle = new JoystickButton(driveStick, Button.B.value());
       rotateByAngle.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
