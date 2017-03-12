@@ -28,6 +28,7 @@ import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
+import org.usfirst.frc.team2231.robot.commands.TeleopGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHolder;
 
@@ -87,7 +88,8 @@ public class OI {
     public JoystickButton boilerDriveByVision;
     public JoystickButton liftDriveByVision;
     public JoystickButton driveAutoDisabler;
-
+    public JoystickButton deliverGear;
+    
     public OI() {
         driveStick = new Joystick(1);
         
@@ -95,6 +97,8 @@ public class OI {
         closeShifters.whenPressed(new SwitchToStrengthGear());
         openShifters = new JoystickButton(driveStick, Button.Back.value());
         openShifters.whenPressed(new SwitchToSpeedGear());
+        deliverGear = new JoystickButton(driveStick, Button.A.value());
+        deliverGear.whenPressed(new TeleopGearDeliver());
 //        boilerDriveByVision = new JoystickButton(driveStick, Button.X.value());
 //        boilerDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripBoilerConfig));
 //        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());

@@ -71,6 +71,7 @@ public class DriveTrain extends Subsystem {
 	public static final double BALANCE_PID_TOLEEANCE = 0.005;
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
+	public static final double VISION_LIFT_SETPOINT = 0.8;
 
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
