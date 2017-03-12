@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2231.robot.commands;
 
-import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 
@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonomousGearDeliver extends CommandGroup {
+public class AutonomousRightGearDeliver extends CommandGroup {
 
-    public AutonomousGearDeliver() {
+    public AutonomousRightGearDeliver() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -28,7 +28,10 @@ public class AutonomousGearDeliver extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new DriveByDistance(240));
+    	addSequential(new DriveByDistance(180));
+    	addSequential(new RotateByAngle(-60));
+    	addSequential(new CenterByVision(0.8, RobotMap.gripLiftConfig));
+    	addParallel(new DriveByDistance(180));
     	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
     	addParallel(new CloseGearHolder());
     	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));

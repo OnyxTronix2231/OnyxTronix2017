@@ -28,7 +28,6 @@ public class GearBlockerAxisControl extends Command {
     	} else {
     		RobotMap.gearBlockerMotor.set(0);
     	}
-    	System.out.println(RobotMap.gearBlockerPotentiometer.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

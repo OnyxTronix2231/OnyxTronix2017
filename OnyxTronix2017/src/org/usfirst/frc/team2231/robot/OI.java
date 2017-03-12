@@ -13,9 +13,12 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.AutonomousGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.AutonomousRightGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.SwitchClimberDirection;
+import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
@@ -26,6 +29,7 @@ import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
+import org.usfirst.frc.team2231.robot.commands.TeleopGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.ToggleGearHolder;
 
@@ -86,8 +90,8 @@ public class OI {
     public JoystickButton liftDriveByVision;
     public JoystickButton driveAutoDisabler;
     public JoystickButton switchClimberDirection;
-
-
+    public JoystickButton deliverGear;
+    
     public OI() {
         driveStick = new Joystick(1);
         
@@ -95,8 +99,23 @@ public class OI {
         closeShifters.whenPressed(new SwitchToStrengthGear());
         openShifters = new JoystickButton(driveStick, Button.LB.value());
         openShifters.whenPressed(new SwitchToSpeedGear());
-        driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
-        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+        deliverGear = new JoystickButton(driveStick, Button.A.value());
+        deliverGear.whenPressed(new TeleopGearDeliver());
+//        boilerDriveByVision = new JoystickButton(driveStick, Button.X.value());
+//        boilerDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripBoilerConfig));
+//        liftDriveByVision = new JoystickButton(driveStick, Button.B.value());
+//        liftDriveByVision.whenPressed(new DriveToTargetByVision(1, RobotMap.gripLiftConfig));
+       /* driveByDistance = new JoystickButton(driveStick, Button.Y.value());
+        driveByDistance.whenPressed(new RotateByAngle(90));*/
+//        rotateByAngle = new JoystickButton(driveStick, Button.B.value());
+//        rotateByAngle.whenPressed(new RotateByAngle(180));
+//        driveAutoDisabler = new JoystickButton(driveStick, Button.A.value());
+//        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+        driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
+        driveAutoDisabler.whenPressed(new AutonomousRightGearDeliver());
+        
+      rotateByAngle = new JoystickButton(driveStick, Button.B.value());
+      rotateByAngle.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
         
         buttonStick = new Joystick(0);
         

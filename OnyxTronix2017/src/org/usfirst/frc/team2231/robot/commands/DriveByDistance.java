@@ -27,16 +27,16 @@ public class DriveByDistance extends SetPointCommand {
     	Robot.driveTrain.resetEncoders();
     	Robot.driveTrain.changePIDType();
     	Robot.driveTrain.setSlaveTalons();
-    	Robot.driveTrain.initDrivePID(setPoint);
+    	Robot.driveTrain.initDrivePID(setPoint / (6 * 2.54 * Math.PI));
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Left Output: " + RobotMap.driveTrainDriveLeftPIDController.get());
-    	System.out.println("Right Output: " + RobotMap.driveTrainDriveRightPIDController.get());
+    	Debug.getInstance().log(this, "Left Output: " + RobotMap.driveTrainDriveLeftPIDController.get());
+    	Debug.getInstance().log(this, "Right Output: " + RobotMap.driveTrainDriveRightPIDController.get());
     	
-    	System.out.println("Left Error: " + RobotMap.driveTrainDriveLeftPIDController.getError());
-    	System.out.println("Right Error: " + RobotMap.driveTrainDriveRightPIDController.getError());
+    	Debug.getInstance().log(this, "Left Error: " + RobotMap.driveTrainDriveLeftPIDController.getError());
+    	Debug.getInstance().log(this, "Right Error: " + RobotMap.driveTrainDriveRightPIDController.getError());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -48,6 +48,7 @@ public class DriveByDistance extends SetPointCommand {
     protected void end() {
     	Robot.driveTrain.stopDrivePID();
     	Robot.driveTrain.resetSlaveTalons();
+    	System.out.println("Finished");
     }
 
     // Called when another command which requires one or more of the same

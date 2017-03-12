@@ -81,9 +81,17 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drive PID I", DriveTrain.DRIVE_PID_I);
         SmartDashboard.putNumber("Drive PID D", DriveTrain.DRIVE_PID_D);
         SmartDashboard.putNumber("Drive PID F", DriveTrain.DRIVE_PID_F);
-        
         SmartDashboard.putBoolean("Reverse climber direction", false);
 
+        SmartDashboard.putNumber("Rotation PID P", DriveTrain.ROTATION_PID_P);
+        SmartDashboard.putNumber("Rotation PID I", DriveTrain.ROTATION_PID_I);
+        SmartDashboard.putNumber("Rotation PID D", DriveTrain.ROTATION_PID_D);
+        SmartDashboard.putNumber("Rotation PID F", DriveTrain.ROTATION_PID_F);
+        
+        SmartDashboard.putNumber("Balance PID P", DriveTrain.BALANCE_PID_P);
+        SmartDashboard.putNumber("Balance PID I", DriveTrain.BALANCE_PID_I);
+        SmartDashboard.putNumber("Balance PID D", DriveTrain.BALANCE_PID_D);
+        SmartDashboard.putNumber("Balance PID F", DriveTrain.BALANCE_PID_F);
     }
 
     /**
@@ -139,10 +147,31 @@ public class Robot extends IterativeRobot {
         
         Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
     	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
+
+    	p = SmartDashboard.getNumber("Balance PID P", 0);
+        i = SmartDashboard.getNumber("Balance PID I", 0);
+        d = SmartDashboard.getNumber("Balance PID D", 0);
+        f = SmartDashboard.getNumber("Balance PID F", 0);
+        
+        RobotMap.balancerPIDController.setPID(p, i, d, f);
+        
+        p = SmartDashboard.getNumber("Rotation PID P", 0);
+        i = SmartDashboard.getNumber("Rotation PID I", 0);
+        d = SmartDashboard.getNumber("Rotation PID D", 0);
+        f = SmartDashboard.getNumber("Rotation PID F", 0);
+        
+        RobotMap.driveTrainRotationLeftPIDController.setPID(p, i, d, f);
+        RobotMap.driveTrainRotationRightPIDController.setPID(p, i, d, f);
+
+        
+//        Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
+//    	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
+        Debug.getInstance().log(this, RobotMap.driveTrainGyro.getAngle());
     	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
-    		RobotMap.driveTrainFirstLeft.setPosition(0);
-    		RobotMap.driveTrainFirstRight.setPosition(0);
+    		RobotMap.driveTrainGyro.reset();
     	}
+    	//System.out.println(RobotMap.driveTrainGyro.getAngle());
+
     }
 
     /**

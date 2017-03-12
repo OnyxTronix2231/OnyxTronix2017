@@ -14,7 +14,6 @@ public class TimeOut extends Command {
     	super(timeOut);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearHolder);
     }
 
     // Called just before this Command runs the first time
