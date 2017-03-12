@@ -4,14 +4,16 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 
 import Configuration.GripConfiguration;
 import OnyxTronix.OnyxPipeline;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class CenterByVision extends InstantCommand {
+public class CenterByVision extends Command {
 	private double setPoint;
 	private GripConfiguration<OnyxPipeline> config;
+	private ActByVision actByVision;
 	
     public CenterByVision(double setPoint, GripConfiguration<OnyxPipeline> config) {
         // Use requires() here to declare subsystem dependencies
@@ -22,7 +24,16 @@ public class CenterByVision extends InstantCommand {
 
     // Called once when the command executes
     protected void initialize() {
-    	new ActByVision(setPoint, config, new RotateByAngle(setPoint), RobotMap.angleCalculation).start();
+    	actByVision = new ActByVision(setPoint, config, new RotateByAngle(setPoint), RobotMap.angleCalculation);
+    	actByVision.start();
     }
+
+	@Override
+	protected boolean isFinished() {
+		if(actByVision != null) { 
+			return !actByVision.isRunning();
+		}
+		return false;
+	}
 
 }

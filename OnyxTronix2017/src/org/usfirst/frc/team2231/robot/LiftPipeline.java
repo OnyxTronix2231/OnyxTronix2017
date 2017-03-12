@@ -12,6 +12,7 @@ import java.util.HashMap;
 import org.opencv.core.*;
 import org.opencv.core.Core.*;
 import org.opencv.features2d.FeatureDetector;
+
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
 import org.opencv.objdetect.*;
@@ -43,9 +44,9 @@ public class LiftPipeline implements OnyxPipeline{
 	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-		double[] hslThresholdHue = {58.27338129496404, 97.06484641638225};
-		double[] hslThresholdSaturation = {185.74640287769785, 255.0};
-		double[] hslThresholdLuminance = {158.22841726618705, 255.0};
+		double[] hslThresholdHue = {100.35971223021585, 180.0};
+		double[] hslThresholdSaturation = {197.21223021582736, 255.0};
+		double[] hslThresholdLuminance = {185.74640287769782, 255.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
 		// Step Find_Contours0:

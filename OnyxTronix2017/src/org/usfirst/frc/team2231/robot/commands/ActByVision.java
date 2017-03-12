@@ -46,12 +46,12 @@ public class ActByVision extends Command {
     protected void execute() {
     	Debug.getInstance().log(this, Robot.driveTrain.getError() + "");
     	if(!setPointCommand.isRunning()) {
-			//if(Robot.driveTrain.isVisionOnTarget(m_setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
+			if(Robot.driveTrain.isVisionOnTarget(m_setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
 				isFinished = true;
-			//}
-			//System.out.println("Still centering");
-			//setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
-			//setPointCommand.start();
+			}
+			System.out.println("Still centering");
+			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
+			setPointCommand.start();
     	}
     }
 
