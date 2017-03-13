@@ -12,8 +12,6 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.GearDeliver;
-import org.usfirst.frc.team2231.robot.commands.TimeOut;
 import org.usfirst.frc.team2231.robot.commands.TriggerGearDelivery;
 
 import edu.wpi.first.wpilibj.DigitalInput;

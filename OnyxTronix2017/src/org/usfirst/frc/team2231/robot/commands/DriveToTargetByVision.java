@@ -4,11 +4,8 @@ import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 
 import Configuration.GripConfiguration;
-import GripVision.DistanceCalculation;
 import OnyxTronix.OnyxPipeline;
-import vision.PIDVisionSourceType;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *

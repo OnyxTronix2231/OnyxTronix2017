@@ -16,12 +16,10 @@ package org.usfirst.frc.team2231.robot.subsystems;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.GearBlockerAxisControl;
 
-import OnyxTronix.Debug;
-
 import com.ctre.CANTalon;
 
+import OnyxTronix.Debug;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

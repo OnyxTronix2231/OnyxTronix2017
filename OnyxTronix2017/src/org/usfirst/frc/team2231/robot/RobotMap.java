@@ -16,25 +16,24 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
 import com.ctre.CANTalon;
 
-import OnyxTronix.OnyxTronixPIDController;
-import OnyxTronix.PIDBalancer;
+import Configuration.CameraConfiguration;
+import Configuration.GripConfiguration;
+import Configuration.TargetConfiguration;
 import GripVision.AngleCalculation;
 import GripVision.DistanceCalculation;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
-import Configuration.CameraConfiguration;
-import Configuration.GripConfiguration;
-import Configuration.TargetConfiguration;
+import OnyxTronix.OnyxTronixPIDController;
+import OnyxTronix.PIDBalancer;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**

@@ -11,14 +11,16 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import org.usfirst.frc.team2231.robot.Buttons.Button;
-import org.usfirst.frc.team2231.robot.subsystems.Collector;
+import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
-import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
+import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 
 import OnyxTronix.Debug;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,9 +29,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2231.robot.commands.*;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -88,11 +87,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Rotation PID I", DriveTrain.ROTATION_PID_I);
         SmartDashboard.putNumber("Rotation PID D", DriveTrain.ROTATION_PID_D);
         SmartDashboard.putNumber("Rotation PID F", DriveTrain.ROTATION_PID_F);
-        
-        SmartDashboard.putNumber("Balance PID P", DriveTrain.BALANCE_PID_P);
-        SmartDashboard.putNumber("Balance PID I", DriveTrain.BALANCE_PID_I);
-        SmartDashboard.putNumber("Balance PID D", DriveTrain.BALANCE_PID_D);
-        SmartDashboard.putNumber("Balance PID F", DriveTrain.BALANCE_PID_F);
+//        
+//        SmartDashboard.putNumber("Balance PID P", DriveTrain.BALANCE_PID_P);
+//        SmartDashboard.putNumber("Balance PID I", DriveTrain.BALANCE_PID_I);
+//        SmartDashboard.putNumber("Balance PID D", DriveTrain.BALANCE_PID_D);
+//        SmartDashboard.putNumber("Balance PID F", DriveTrain.BALANCE_PID_F);
         
         autonomousChooser = new SendableChooser<>();
         autonomousChooser.addDefault("Center autonomous", new AutonomousCenterGearDeliver());
@@ -130,7 +129,9 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+    	if(autonomousChooser.getSelected() != null) autonomousChooser.getSelected().cancel();
+        
+        SmartDashboard.putBoolean("Reverse climber direction", false);
     }
 
     /**
@@ -155,12 +156,12 @@ public class Robot extends IterativeRobot {
         Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
     	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
 
-    	p = SmartDashboard.getNumber("Balance PID P", 0);
-        i = SmartDashboard.getNumber("Balance PID I", 0);
-        d = SmartDashboard.getNumber("Balance PID D", 0);
-        f = SmartDashboard.getNumber("Balance PID F", 0);
-        
-        RobotMap.balancerPIDController.setPID(p, i, d, f);
+//    	p = SmartDashboard.getNumber("Balance PID P", 0);
+//        i = SmartDashboard.getNumber("Balance PID I", 0);
+//        d = SmartDashboard.getNumber("Balance PID D", 0);
+//        f = SmartDashboard.getNumber("Balance PID F", 0);
+//        
+//        RobotMap.balancerPIDController.setPID(p, i, d, f);
         
         p = SmartDashboard.getNumber("Rotation PID P", 0);
         i = SmartDashboard.getNumber("Rotation PID I", 0);

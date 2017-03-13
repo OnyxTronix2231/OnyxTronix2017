@@ -13,7 +13,6 @@ package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
 
-import OnyxTronix.Debug;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

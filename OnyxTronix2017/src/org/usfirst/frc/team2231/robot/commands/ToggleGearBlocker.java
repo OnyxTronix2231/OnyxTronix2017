@@ -12,10 +12,8 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
 /**

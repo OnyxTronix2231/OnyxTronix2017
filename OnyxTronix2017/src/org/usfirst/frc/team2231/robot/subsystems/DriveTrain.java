@@ -11,14 +11,9 @@
 
 package org.usfirst.frc.team2231.robot.subsystems;
 
-import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.commands.DriveByJoystick;
-
-import OnyxTronix.Debug;
-import vision.PIDVisionSourceType;
-import vision.VisionSensor;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -27,15 +22,12 @@ import Configuration.GripConfiguration;
 import GripVision.AngleCalculation;
 import GripVision.GripVisionStrategy;
 import GripVision.VisionSensorGrip;
-import OnyxTronix.Debug;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
 import OnyxTronix.PIDBalancer;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -186,7 +178,7 @@ public class DriveTrain extends Subsystem {
 	public void initDrivePID(double setPoint) {
 		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
-		System.out.println("Is balance initialized: " + balancerPIDController.init(BALANCE_PID_SETPOINT, DRIVE_PID_TOLEEANCE));
+		//System.out.println("Is balance initialized: " + balancerPIDController.init(BALANCE_PID_SETPOINT, DRIVE_PID_TOLEEANCE));
 	}
 	
     public void setOutputRange(double output) {

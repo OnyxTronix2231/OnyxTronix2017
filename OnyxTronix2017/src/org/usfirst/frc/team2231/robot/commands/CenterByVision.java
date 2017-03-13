@@ -5,7 +5,6 @@ import org.usfirst.frc.team2231.robot.RobotMap;
 import Configuration.GripConfiguration;
 import OnyxTronix.OnyxPipeline;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *

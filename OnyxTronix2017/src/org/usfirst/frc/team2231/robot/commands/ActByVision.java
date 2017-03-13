@@ -1,18 +1,13 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 
 import Configuration.GripConfiguration;
-import Configuration.VisionConfiguration;
 import GripVision.GripVisionStrategy;
 import OnyxTronix.Debug;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.SetPointCommand;
-import vision.PIDVisionSourceType;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
