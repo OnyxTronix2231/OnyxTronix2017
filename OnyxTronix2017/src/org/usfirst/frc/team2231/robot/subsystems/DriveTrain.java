@@ -72,7 +72,12 @@ public class DriveTrain extends Subsystem {
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
 	public static final double VISION_LIFT_SETPOINT = 0.8;
-
+	
+	public static final double AUTONOMOUS_ANGLE = 60;
+	public static final double AUTONOMOUS_SIDE_DRIVE = 180;
+	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 180;
+	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 180;
+	
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
     private final CANTalon firstRight = RobotMap.driveTrainFirstRight;
@@ -107,11 +112,11 @@ public class DriveTrain extends Subsystem {
     }
     
     public void switchToStrengthGear() {
-    	shifter.set(Value.kReverse);
+    	shifter.set(Value.kForward);
     }
     
     public void switchToSpeedGear() {
-    	shifter.set(Value.kForward);
+    	shifter.set(Value.kReverse);
     }
 
     public void setSlaveTalons(){

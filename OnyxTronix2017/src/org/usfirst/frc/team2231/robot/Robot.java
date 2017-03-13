@@ -12,7 +12,6 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
-import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
@@ -26,6 +25,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2231.robot.commands.*;
@@ -41,6 +41,7 @@ import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
+    SendableChooser<Command> autonomousChooser;
 
     public static OI oi;
     public static GearBlocker gearBlocker;
@@ -92,6 +93,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Balance PID I", DriveTrain.BALANCE_PID_I);
         SmartDashboard.putNumber("Balance PID D", DriveTrain.BALANCE_PID_D);
         SmartDashboard.putNumber("Balance PID F", DriveTrain.BALANCE_PID_F);
+        
+        autonomousChooser = new SendableChooser<>();
+        autonomousChooser.addDefault("Center autonomous", new AutonomousCenterGearDeliver());
+        autonomousChooser.addObject("Right autonomous", new AutonomousLeftGearDeliver());
+        autonomousChooser.addObject("Left autonomous", new AutonomousLeftGearDeliver());
     }
 
     /**
@@ -108,7 +114,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        //if (autonomousCommand != null) autonomousCommand.start();
+    	if(autonomousChooser.getSelected() != null) autonomousChooser.getSelected().start();
     }
 
     /**
@@ -165,12 +172,14 @@ public class Robot extends IterativeRobot {
 
         
 //        Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
-//    	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
-        Debug.getInstance().log(this, RobotMap.driveTrainGyro.getAngle());
-    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
-    		RobotMap.driveTrainGyro.reset();
-    	}
+////    	Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
+//        Debug.getInstance().log(this, RobotMap.driveTrainGyro.getAngle());
+//    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
+//    		RobotMap.driveTrainGyro.reset();
+//    	}
     	//System.out.println(RobotMap.driveTrainGyro.getAngle());
+
+       
 
     }
 

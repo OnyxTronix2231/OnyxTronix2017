@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonomousGearDeliver extends CommandGroup {
+public class AutonomousCenterGearDeliver extends CommandGroup {
 
-    public AutonomousGearDeliver() {
+    public AutonomousCenterGearDeliver() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -28,7 +28,8 @@ public class AutonomousGearDeliver extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new DriveByDistance(240));
+    	addSequential(new SwitchToSpeedGear());
+    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT));
     	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
     	addParallel(new CloseGearHolder());
     	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));

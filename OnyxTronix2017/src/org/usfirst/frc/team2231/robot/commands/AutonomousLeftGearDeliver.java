@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonomousRightGearDeliver extends CommandGroup {
+public class AutonomousLeftGearDeliver extends CommandGroup {
 
-    public AutonomousRightGearDeliver() {
+    public AutonomousLeftGearDeliver() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -29,8 +29,8 @@ public class AutonomousRightGearDeliver extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new SwitchToSpeedGear());
-    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT));
-    	addSequential(new RotateByAngle(DriveTrain.AUTONOMOUS_ANGLE));
+    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE));
+    	addSequential(new RotateByAngle(-DriveTrain.AUTONOMOUS_ANGLE));
     	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE_TO_LIFT));
     	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
     	addParallel(new CloseGearHolder());
