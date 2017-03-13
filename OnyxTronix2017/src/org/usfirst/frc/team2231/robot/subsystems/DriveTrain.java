@@ -19,7 +19,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 import Configuration.GripConfiguration;
-import GripVision.AngleCalculation;
+import GripVision.LiftAngleCalculation;
 import GripVision.GripVisionStrategy;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
@@ -79,7 +79,7 @@ public class DriveTrain extends Subsystem {
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
-    private final AngleCalculation angleCalculation = RobotMap.angleCalculation;
+    private final LiftAngleCalculation angleCalculation = RobotMap.angleCalculation;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final OnyxTronixPIDController balancerPIDController = RobotMap.balancerPIDController;

@@ -19,7 +19,7 @@ import com.ctre.CANTalon;
 import Configuration.CameraConfiguration;
 import Configuration.GripConfiguration;
 import Configuration.TargetConfiguration;
-import GripVision.AngleCalculation;
+import GripVision.LiftAngleCalculation;
 import GripVision.DistanceCalculation;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
@@ -67,7 +67,7 @@ public class RobotMap {
     public static DigitalInput gearHolderMicroSwitch;
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
-    public static AngleCalculation angleCalculation;
+    public static LiftAngleCalculation angleCalculation;
     public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
     public static VisionSensorGrip visionSensor;
@@ -171,7 +171,7 @@ public class RobotMap {
         tarConfig = new TargetConfiguration(DriveTrain.LIFT_HEIGHT);
         gripLiftConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new LiftPipeline());
         
-        angleCalculation = new AngleCalculation();
+        angleCalculation = new LiftAngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
         visionSensor = new VisionSensorGrip(gearAxisCamera, gripLiftConfig);  
