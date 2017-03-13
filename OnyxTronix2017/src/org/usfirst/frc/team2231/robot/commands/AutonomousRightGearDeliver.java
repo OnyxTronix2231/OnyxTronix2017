@@ -27,7 +27,7 @@ public class AutonomousRightGearDeliver extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new SwitchToSpeedGear());
+    	addSequential(new SwitchToStrengthGear());
     	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT));
     	addSequential(new RotateByAngle(DriveTrain.AUTONOMOUS_ANGLE));
     	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE_TO_LIFT));
@@ -35,6 +35,7 @@ public class AutonomousRightGearDeliver extends CommandGroup {
     	addParallel(new CloseGearHolder());
     	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));
     	addSequential(new DriveByDistance(GearHolder.AUTONOMOUS_REVERSE_DRIVE));
-    	addSequential(new OpenGearHolder());
+    	addParallel(new OpenGearHolder());
+    	addSequential(new SwitchToSpeedGear());
     }
 }

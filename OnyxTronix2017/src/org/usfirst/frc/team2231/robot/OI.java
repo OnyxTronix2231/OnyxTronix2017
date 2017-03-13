@@ -85,9 +85,9 @@ public class OI {
         driveStick = new Joystick(1);
         
         closeShifters = new JoystickButton(driveStick, Button.RB.value());
-        closeShifters.whenPressed(new SwitchToStrengthGear());
+        closeShifters.whenPressed(new SwitchToSpeedGear());
         openShifters = new JoystickButton(driveStick, Button.LB.value());
-        openShifters.whenPressed(new SwitchToSpeedGear());
+        openShifters.whenPressed(new SwitchToStrengthGear());
         deliverGear = new JoystickButton(driveStick, Button.A.value());
         deliverGear.whenPressed(new TeleopGearDeliver());
         driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
