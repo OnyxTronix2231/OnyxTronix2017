@@ -28,9 +28,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class GearBlocker extends Subsystem {
 	public static final double TOLERANCE = 0.0001;
-	public static final double BLOCKER_OPEN_POSIION = 0.1177;
-	public static final double BLOCKER_CLOSE_POSIION = 0.1058;
-	public static final double MOTOR_SPEED = 0.25;
+	public static final double BLOCKER_OPEN_POSIION = 0.115;
+	public static final double BLOCKER_CLOSE_POSIION = 0.115;
+	public static final double MOTOR_OPEN_SPEED = 0.25;	
+	public static final double MOTOR_CLOSE_SPEED = 0.20;
 	
     private final CANTalon motor = RobotMap.gearBlockerMotor;
     private final AnalogPotentiometer potentiometer = RobotMap.gearBlockerPotentiometer;
@@ -47,15 +48,15 @@ public class GearBlocker extends Subsystem {
     
     public void openGearBlocker() {
     	if(potentiometer.get() > BLOCKER_OPEN_POSIION) {
-        	motor.set(MOTOR_SPEED);
+        	motor.set(MOTOR_OPEN_SPEED);
     	}
     }
     
-    public void setGearBlocker(double setPointAngle) {
+    public void setGearBlocker(double setPointAngle, double speed) {
     	if(potentiometer.get() > setPointAngle) {
-        	motor.set(-MOTOR_SPEED);
+        	motor.set(-speed);
     	}else {
-        	motor.set(MOTOR_SPEED);
+        	motor.set(speed);
     	}
     }
     

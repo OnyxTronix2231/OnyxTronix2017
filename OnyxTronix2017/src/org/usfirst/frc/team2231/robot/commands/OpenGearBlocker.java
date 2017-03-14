@@ -30,7 +30,7 @@ public class OpenGearBlocker extends Command {
     
     @Override
     protected void execute() {
-    	Robot.gearBlocker.setGearBlocker(GearBlocker.BLOCKER_OPEN_POSIION);
+    	Robot.gearBlocker.setGearBlocker(GearBlocker.BLOCKER_OPEN_POSIION, GearBlocker.MOTOR_OPEN_SPEED);
     }
 
 	@Override

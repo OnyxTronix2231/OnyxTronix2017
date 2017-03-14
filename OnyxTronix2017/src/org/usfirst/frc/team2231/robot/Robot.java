@@ -13,6 +13,7 @@ package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.AutonomousLine;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
@@ -94,6 +95,8 @@ public class Robot extends IterativeRobot {
         autonomousChooser.addDefault("Center autonomous", new AutonomousCenterGearDeliver());
         autonomousChooser.addObject("Right autonomous", new AutonomousLeftGearDeliver());
         autonomousChooser.addObject("Left autonomous", new AutonomousLeftGearDeliver());
+        autonomousChooser.addObject("Line autonomous", new AutonomousLine());
+        SmartDashboard.putData("Autonomous mode chooser", autonomousChooser);
     }
 
     /**
@@ -111,7 +114,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         //if (autonomousCommand != null) autonomousCommand.start();
-    	if(autonomousChooser.getSelected() != null) autonomousChooser.getSelected().start();
+    	if(autonomousChooser != null && autonomousChooser.getSelected() != null) autonomousChooser.getSelected().start();
     }
 
     /**
@@ -126,7 +129,8 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-    	if(autonomousChooser.getSelected() != null) autonomousChooser.getSelected().cancel();
+    	
+    	if(autonomousChooser != null && autonomousChooser.getSelected() != null) autonomousChooser.getSelected().cancel();
         
         SmartDashboard.putBoolean("Reverse climber direction", false);
     }
@@ -175,10 +179,9 @@ public class Robot extends IterativeRobot {
 //    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
 //    		RobotMap.driveTrainGyro.reset();
 //    	}
-    	//System.out.println(RobotMap.driveTrainGyro.getAngle());
+    	System.out.println(RobotMap.gearBlockerPotentiometer.get());
 
        
-
     }
 
     /**

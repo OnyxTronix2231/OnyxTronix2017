@@ -175,6 +175,5 @@ public class RobotMap {
         distanceCalculation = new DistanceCalculation();
         
         visionSensor = new VisionSensorGrip(gearAxisCamera, gripLiftConfig);  
-        CameraServer.getInstance().startAutomaticCapture();
 	} 
 }

@@ -30,12 +30,12 @@ public class TriggerGearDelivery extends Command {
 //    		}
 //    	}
     	
-    	if(Robot.oi.getButtonStick().getRawAxis(2) >= 0.9) {
-    		Robot.gearHolder.setPistonPosition(Value.kForward);
+    	if(Robot.oi.getButtonStick().getRawAxis(2) >= 0.9 || Robot.oi.getDriveStick().getRawAxis(2) >= 0.9) {
+    		Robot.gearHolder.setPistonPosition(Value.kReverse);
     	}
     	
-    	if(Robot.oi.getButtonStick().getRawAxis(3) >= 0.9) {
-    		Robot.gearHolder.setPistonPosition(Value.kReverse);
+    	if(Robot.oi.getButtonStick().getRawAxis(3) >= 0.9 || Robot.oi.getDriveStick().getRawAxis(2) >= 0.9) {
+    		Robot.gearHolder.setPistonPosition(Value.kForward);
     	}
     }
 

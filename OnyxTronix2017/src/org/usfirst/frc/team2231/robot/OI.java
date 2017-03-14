@@ -80,6 +80,8 @@ public class OI {
     public JoystickButton driveAutoDisabler;
     public JoystickButton switchClimberDirection;
     public JoystickButton deliverGear;
+    public JoystickButton driverCloseGearBlocker;
+    public JoystickButton driverOpenGearBlocker;
     
     public OI() {
         driveStick = new Joystick(1);
@@ -88,10 +90,14 @@ public class OI {
         closeShifters.whenPressed(new SwitchToSpeedGear());
         openShifters = new JoystickButton(driveStick, Button.LB.value());
         openShifters.whenPressed(new SwitchToStrengthGear());
-        deliverGear = new JoystickButton(driveStick, Button.A.value());
-        deliverGear.whenPressed(new TeleopGearDeliver());
-        driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
-        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+//        deliverGear = new JoystickButton(driveStick, Button.A.value());
+//        deliverGear.whenPressed(new TeleopGearDeliver());
+//        driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
+//        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+//        driverOpenGearBlocker = new JoystickButton(driveStick, Button.X.value());
+//        driverOpenGearBlocker.whenPressed(new OpenGearBlocker());
+//        driverCloseGearBlocker = new JoystickButton(driveStick, Button.B.value());
+//        driverCloseGearBlocker.whenPressed(new CloseGearBlocker());
         
       rotateByAngle = new JoystickButton(driveStick, Button.B.value());
       rotateByAngle.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));

@@ -29,7 +29,7 @@ public class CloseGearBlocker extends Command {
     
     @Override
     protected void execute() {
-    	Robot.gearBlocker.setGearBlocker(GearBlocker.BLOCKER_CLOSE_POSIION);
+    	Robot.gearBlocker.setGearBlocker(GearBlocker.BLOCKER_CLOSE_POSIION, GearBlocker.MOTOR_CLOSE_SPEED);
     }
     
     @Override
