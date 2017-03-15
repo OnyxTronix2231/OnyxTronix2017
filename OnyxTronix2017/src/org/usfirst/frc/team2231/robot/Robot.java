@@ -11,9 +11,12 @@
 
 package org.usfirst.frc.team2231.robot;
 
+import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
+import org.usfirst.frc.team2231.robot.commands.AutonomousDriveByTimeOut;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLine;
+import org.usfirst.frc.team2231.robot.commands.DriveByTimeOut;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
@@ -41,6 +44,7 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser<Command> autonomousChooser;
+    SendableChooser<Boolean> isTestModeChooser;
 
     public static OI oi;
     public static GearBlocker gearBlocker;
@@ -96,7 +100,14 @@ public class Robot extends IterativeRobot {
         autonomousChooser.addObject("Right autonomous", new AutonomousLeftGearDeliver());
         autonomousChooser.addObject("Left autonomous", new AutonomousLeftGearDeliver());
         autonomousChooser.addObject("Line autonomous", new AutonomousLine());
+        autonomousChooser.addObject("Drive by time out autonomous", new AutonomousDriveByTimeOut());
+        autonomousChooser.addObject("None", null);
         SmartDashboard.putData("Autonomous mode chooser", autonomousChooser);
+        
+        isTestModeChooser = new SendableChooser<>();
+        isTestModeChooser.addDefault("False", false);
+        isTestModeChooser.addObject("True", true);
+        SmartDashboard.putData("Test mode", isTestModeChooser);
     }
 
     /**
@@ -108,7 +119,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-        Scheduler.getInstance().run();
+    	if (oi.getButtonStick().getRawButton(Button.A.value())) {
+    	Robot.driveTrain.setVisionOperation(RobotMap.gripLiftConfig, RobotMap.angleCalculation);
+    	System.out.println(-Robot.driveTrain.getVisionValueBySetPoint(0));
+    	}
+    	Scheduler.getInstance().run();
     }
 
     public void autonomousInit() {
@@ -124,6 +139,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
     }
     
+    boolean isTestMode = false;
     public void teleopInit() {
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
@@ -132,6 +148,9 @@ public class Robot extends IterativeRobot {
     	
     	if(autonomousChooser != null && autonomousChooser.getSelected() != null) autonomousChooser.getSelected().cancel();
         
+    	if(isTestModeChooser != null && isTestModeChooser.getSelected() != null) 
+    		isTestMode = isTestModeChooser.getSelected();
+
         SmartDashboard.putBoolean("Reverse climber direction", false);
     }
 
@@ -142,7 +161,7 @@ public class Robot extends IterativeRobot {
     boolean isReversed;
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
+        if(isTestMode) { 
         p = SmartDashboard.getNumber("Drive PID P", 0);
         i = SmartDashboard.getNumber("Drive PID I", 0);
         d = SmartDashboard.getNumber("Drive PID D", 0);
@@ -179,9 +198,9 @@ public class Robot extends IterativeRobot {
 //    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
 //    		RobotMap.driveTrainGyro.reset();
 //    	}
+        }
     	System.out.println(RobotMap.gearBlockerPotentiometer.get());
 
-       
     }
 
     /**

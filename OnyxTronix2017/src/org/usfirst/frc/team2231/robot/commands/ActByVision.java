@@ -34,7 +34,8 @@ public class ActByVision extends Command {
     protected void initialize() {
     	Robot.driveTrain.setVisionOperation(config, strategy);
     	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
-    	setPointCommand.start();
+    	System.out.println(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
+    	//setPointCommand.start();
     }
     
     @Override
@@ -45,8 +46,8 @@ public class ActByVision extends Command {
 				isFinished = true;
 			}
 			System.out.println("Still centering");
-			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
-			setPointCommand.start();
+//			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
+//			setPointCommand.start();
     	}
     }
 

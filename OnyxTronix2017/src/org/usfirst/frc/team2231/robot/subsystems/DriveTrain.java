@@ -20,6 +20,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import Configuration.GripConfiguration;
 import GripVision.LiftAngleCalculation;
+import GripVision.BoilerAngleCalculation;
 import GripVision.GripVisionStrategy;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
@@ -70,6 +71,10 @@ public class DriveTrain extends Subsystem {
 	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 180;
 	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 210;
 	public static final double AUTONOMOUS_LINE_DRIVE = 350;
+	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_TIME = 2;
+	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_SPEED = -0.7;
+
+	
 	
     private final CANTalon firstLeft = RobotMap.driveTrainFirstLeft;
     private final CANTalon secondLeft = RobotMap.driveTrainSecondLeft;
@@ -80,7 +85,7 @@ public class DriveTrain extends Subsystem {
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
-    private final LiftAngleCalculation angleCalculation = RobotMap.angleCalculation;
+    private final BoilerAngleCalculation angleCalculation = RobotMap.angleCalculation;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final OnyxTronixPIDController balancerPIDController = RobotMap.balancerPIDController;

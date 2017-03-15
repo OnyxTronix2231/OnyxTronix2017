@@ -20,12 +20,14 @@ import Configuration.CameraConfiguration;
 import Configuration.GripConfiguration;
 import Configuration.TargetConfiguration;
 import GripVision.LiftAngleCalculation;
+import GripVision.BoilerAngleCalculation;
 import GripVision.DistanceCalculation;
 import GripVision.VisionSensorGrip;
 import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
 import OnyxTronix.PIDBalancer;
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -67,15 +69,16 @@ public class RobotMap {
     public static DigitalInput gearHolderMicroSwitch;
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
-    public static LiftAngleCalculation angleCalculation;
+    public static BoilerAngleCalculation angleCalculation;
     public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
     public static VisionSensorGrip visionSensor;
-    public static AxisCamera gearAxisCamera;
-    public static AxisCamera boilerAxisCamera;
+//    public static AxisCamera gearAxisCamera;
+//    public static AxisCamera boilerAxisCamera;
     public static DistanceCalculation distanceCalculation;
     public static PIDBalancer pidBalancer;
     public static OnyxTronixPIDController balancerPIDController;
+    public static UsbCamera usbCamera;
     
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
@@ -157,10 +160,11 @@ public class RobotMap {
         gearHolderMicroSwitch = new DigitalInput(0);
         LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
         
-        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
-        
-        gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
-        
+//        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
+//        
+//        gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
+        usbCamera = CameraServer.getInstance().startAutomaticCapture();
+        usbCamera.setResolution(480, 640);
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
         
@@ -171,9 +175,9 @@ public class RobotMap {
         tarConfig = new TargetConfiguration(DriveTrain.LIFT_HEIGHT);
         gripLiftConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new LiftPipeline());
         
-        angleCalculation = new LiftAngleCalculation();
+        angleCalculation = new BoilerAngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
-        visionSensor = new VisionSensorGrip(gearAxisCamera, gripLiftConfig);  
+        visionSensor = new VisionSensorGrip(usbCamera, gripLiftConfig);  
 	} 
 }

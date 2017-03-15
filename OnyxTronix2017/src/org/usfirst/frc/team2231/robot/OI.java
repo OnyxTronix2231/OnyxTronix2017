@@ -82,7 +82,7 @@ public class OI {
     public JoystickButton deliverGear;
     public JoystickButton driverCloseGearBlocker;
     public JoystickButton driverOpenGearBlocker;
-    
+    public JoystickButton visionTest;
     public OI() {
         driveStick = new Joystick(1);
         
@@ -98,9 +98,8 @@ public class OI {
 //        driverOpenGearBlocker.whenPressed(new OpenGearBlocker());
 //        driverCloseGearBlocker = new JoystickButton(driveStick, Button.B.value());
 //        driverCloseGearBlocker.whenPressed(new CloseGearBlocker());
-        
-      rotateByAngle = new JoystickButton(driveStick, Button.B.value());
-      rotateByAngle.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
+//        visionTest = new JoystickButton(driveStick, Button.B.value());
+//      visionTest.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
         
         buttonStick = new Joystick(0);
         

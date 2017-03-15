@@ -39,7 +39,7 @@ public class Climber extends Subsystem {
     }
     public void climbRope() {
     	if(Math.abs(Robot.oi.getButtonStick().getRawAxis(1)) > SENSITIVITY_VALUE){
-    		double speed = climbDirection * Math.abs(Robot.oi.getButtonStick().getRawAxis(1)) * 0.8;
+    		double speed = climbDirection * Math.abs(Robot.oi.getButtonStick().getRawAxis(1));
     		firstMotor.set(speed);
     		secondMotor.set(speed);
     	} else {

@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearBlocker extends Subsystem {
 	public static final double TOLERANCE = 0.0001;
 	public static final double BLOCKER_OPEN_POSIION = 0.115;
-	public static final double BLOCKER_CLOSE_POSIION = 0.115;
+	public static final double BLOCKER_CLOSE_POSIION = 0.104;
 	public static final double MOTOR_OPEN_SPEED = 0.25;	
 	public static final double MOTOR_CLOSE_SPEED = 0.20;
 	
