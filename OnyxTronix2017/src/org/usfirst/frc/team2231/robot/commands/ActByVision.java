@@ -34,8 +34,8 @@ public class ActByVision extends Command {
     protected void initialize() {
     	Robot.driveTrain.setVisionOperation(config, strategy);
     	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
-    	System.out.println(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
-    	//setPointCommand.start();
+    	//System.out.println(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
+    	setPointCommand.start();
     }
     
     @Override

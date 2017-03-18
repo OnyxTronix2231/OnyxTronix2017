@@ -199,7 +199,7 @@ public class Robot extends IterativeRobot {
 //    		RobotMap.driveTrainGyro.reset();
 //    	}
         }
-    	System.out.println(RobotMap.gearBlockerPotentiometer.get());
+//    	System.out.println(RobotMap.gearBlockerPotentiometer.get());
 
     }
 

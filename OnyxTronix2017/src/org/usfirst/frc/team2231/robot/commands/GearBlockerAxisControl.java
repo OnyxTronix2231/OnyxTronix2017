@@ -22,8 +22,14 @@ public class GearBlockerAxisControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.oi.getButtonStick().getRawAxis(5)) > 0.15){
-    		RobotMap.gearBlockerMotor.set(0.65 * Robot.oi.getButtonStick().getRawAxis(5));
+    	double speed = Robot.oi.getButtonStick().getRawAxis(5);
+    	if(Math.abs(speed) > 0.15){
+    		if(speed < 0) {
+    			RobotMap.gearBlockerMotor.set(0.4 * speed);
+    		}
+    		else {
+    			RobotMap.gearBlockerMotor.set(0.65 * speed);
+    		}
     	} else {
     		RobotMap.gearBlockerMotor.set(0);
     	}

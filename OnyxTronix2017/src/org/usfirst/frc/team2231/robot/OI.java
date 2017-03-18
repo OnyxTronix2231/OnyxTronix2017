@@ -98,8 +98,8 @@ public class OI {
 //        driverOpenGearBlocker.whenPressed(new OpenGearBlocker());
 //        driverCloseGearBlocker = new JoystickButton(driveStick, Button.B.value());
 //        driverCloseGearBlocker.whenPressed(new CloseGearBlocker());
-//        visionTest = new JoystickButton(driveStick, Button.B.value());
-//      visionTest.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
+        visionTest = new JoystickButton(driveStick, Button.B.value());
+      visionTest.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
         
         buttonStick = new Joystick(0);
         

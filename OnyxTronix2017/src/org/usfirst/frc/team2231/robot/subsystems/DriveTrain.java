@@ -85,7 +85,7 @@ public class DriveTrain extends Subsystem {
     private final OnyxTronixPIDController rotationPidControllerRight = RobotMap.driveTrainRotationRightPIDController;
     private final OnyxTronixPIDController rotationPidControllerLeft = RobotMap.driveTrainRotationLeftPIDController;
     private final VisionSensorGrip visionSensor = RobotMap.visionSensor;
-    private final BoilerAngleCalculation angleCalculation = RobotMap.angleCalculation;
+    private final LiftAngleCalculation angleCalculation = RobotMap.angleCalculation;
     private final OnyxTronixPIDController driveLeftPIDController = RobotMap.driveTrainDriveLeftPIDController;
     private final OnyxTronixPIDController driveRightPIDController = RobotMap.driveTrainDriveRightPIDController;
     private final OnyxTronixPIDController balancerPIDController = RobotMap.balancerPIDController;

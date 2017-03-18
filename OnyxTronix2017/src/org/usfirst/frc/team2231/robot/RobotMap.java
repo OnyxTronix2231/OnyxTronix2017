@@ -69,7 +69,7 @@ public class RobotMap {
     public static DigitalInput gearHolderMicroSwitch;
     public static GripConfiguration<OnyxPipeline> gripBoilerConfig;
     public static GripConfiguration<OnyxPipeline> gripLiftConfig;
-    public static BoilerAngleCalculation angleCalculation;
+    public static LiftAngleCalculation angleCalculation;
     public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
     public static VisionSensorGrip visionSensor;
@@ -78,7 +78,7 @@ public class RobotMap {
     public static DistanceCalculation distanceCalculation;
     public static PIDBalancer pidBalancer;
     public static OnyxTronixPIDController balancerPIDController;
-    public static UsbCamera usbCamera;
+    public static AxisCamera axisCamera;
     
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
@@ -87,7 +87,7 @@ public class RobotMap {
         gearBlockerPotentiometer = new AnalogPotentiometer(1);
         LiveWindow.addActuator("GearBlocker", "Potentiometer", gearBlockerPotentiometer);
         
-        driveTrainFirstLeft = new CANTalon(0);
+        driveTrainFirstLeft = new CANTalon(7);
         LiveWindow.addActuator("DriveTrain", "FirstLeft", driveTrainFirstLeft);
         driveTrainFirstLeft.configEncoderCodesPerRev(360);
         driveTrainFirstLeft.reverseSensor(true);
@@ -163,21 +163,22 @@ public class RobotMap {
 //        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
 //        
 //        gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
-        usbCamera = CameraServer.getInstance().startAutomaticCapture();
-        usbCamera.setResolution(480, 640);
+        axisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
+        CameraServer.getInstance().startAutomaticCapture();
+//        usbCamera.setResolution(480, 640);
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
         
         camConfig = new CameraConfiguration(DriveTrain.ANGLE_TO_FLOOR, DriveTrain.CAMERA_HEIGHT, 
-        									DriveTrain.VERTICAL_APERTURE_ANGLE, DriveTrain.HORIZONTAL_APERTURE_ANGLE);
+        									DriveTrain.VERTICAL_APERTURE_ANGLE, DriveTrain.VERTICAL_APERTURE_ANGLE);
         tarConfig = new TargetConfiguration(DriveTrain.BOILER_HEIGHT);
         gripBoilerConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new BoilerPipeline());
         tarConfig = new TargetConfiguration(DriveTrain.LIFT_HEIGHT);
         gripLiftConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new LiftPipeline());
         
-        angleCalculation = new BoilerAngleCalculation();
+        angleCalculation = new LiftAngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
-        visionSensor = new VisionSensorGrip(usbCamera, gripLiftConfig);  
+        visionSensor = new VisionSensorGrip(axisCamera, gripLiftConfig);  
 	} 
 }
