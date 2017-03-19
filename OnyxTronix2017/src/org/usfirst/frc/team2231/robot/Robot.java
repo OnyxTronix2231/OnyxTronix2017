@@ -16,7 +16,6 @@ import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousDriveByTimeOut;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLine;
-import org.usfirst.frc.team2231.robot.commands.DriveByTimeOut;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
