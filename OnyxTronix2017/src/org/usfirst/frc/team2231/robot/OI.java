@@ -21,7 +21,8 @@ import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.commands.TeleopGearDeliver;
-import org.usfirst.frc.team2231.robot.commands.ToggleGearHolder;
+import org.usfirst.frc.team2231.robot.subsystems.Collector;
+import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -98,17 +99,15 @@ public class OI {
 //        driverOpenGearBlocker.whenPressed(new OpenGearBlocker());
 //        driverCloseGearBlocker = new JoystickButton(driveStick, Button.B.value());
 //        driverCloseGearBlocker.whenPressed(new CloseGearBlocker());
-        visionTest = new JoystickButton(driveStick, Button.B.value());
-      visionTest.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
+//        visionTest = new JoystickButton(driveStick, Button.B.value());
+//        visionTest.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
         
         buttonStick = new Joystick(0);
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
-        collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(buttonStick, Button.Y.value());
-        toggleGearHold.whenPressed(new ToggleGearHolder());
+        collectBalls.whileHeld(new CollectBalls(Collector.SPEED));
         load = new JoystickButton(buttonStick, Button.RB.value());
-        load.whileHeld(new StartTrigger(1));
+        load.whileHeld(new StartTrigger(Trigger.SPEED));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
         openGearBlocker = new JoystickButton(buttonStick, Button.X.value());

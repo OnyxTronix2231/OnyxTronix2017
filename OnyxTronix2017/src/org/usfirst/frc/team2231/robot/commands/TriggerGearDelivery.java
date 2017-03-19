@@ -15,7 +15,6 @@ public class TriggerGearDelivery extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearHolder);
-    	command = new GearDeliver();
     }
 
     // Called just before this Command runs the first time
@@ -24,12 +23,6 @@ public class TriggerGearDelivery extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.gearHolder.isGearInPlace()){
-//    		if(!command.isRunning()){
-//    			command.start();
-//    		}
-//    	}
-    	
     	if(Robot.oi.getButtonStick().getRawAxis(2) >= 0.9 || Robot.oi.getDriveStick().getRawAxis(2) >= 0.9) {
     		Robot.gearHolder.setPistonPosition(Value.kReverse);
     	}
