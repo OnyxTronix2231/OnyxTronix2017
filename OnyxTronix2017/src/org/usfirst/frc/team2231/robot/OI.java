@@ -13,6 +13,7 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
+import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
@@ -59,46 +60,25 @@ public class OI {
 
 
     public JoystickButton collectBalls;
-    public JoystickButton toggleGearHold;
     public JoystickButton openGearBlocker;
     public JoystickButton closeGearBlocker;
     public JoystickButton shoot;
     public JoystickButton load;
-    public JoystickButton test;
     public Joystick buttonStick;
-    public JoystickButton rotateByAngle;
-    public JoystickButton openShifters;
-    public JoystickButton closeShifters;
-    public JoystickButton driveByDistance;
+    public JoystickButton switchToStrengthGear;
+    public JoystickButton switchToSpeedGear;
     public Joystick driveStick;
-    public JoystickButton boilerCenterByVision;
-    public JoystickButton liftCenterByVision;
-    public JoystickButton boilerDriveByVision;
-    public JoystickButton liftDriveByVision;
     public JoystickButton driveAutoDisabler;
-    public JoystickButton switchClimberDirection;
-    public JoystickButton deliverGear;
-    public JoystickButton driverCloseGearBlocker;
-    public JoystickButton driverOpenGearBlocker;
-    public JoystickButton visionTest;
     public OI() {
         driveStick = new Joystick(1);
         
-        closeShifters = new JoystickButton(driveStick, Button.RB.value());
-        closeShifters.whenPressed(new SwitchToSpeedGear());
-        openShifters = new JoystickButton(driveStick, Button.LB.value());
-        openShifters.whenPressed(new SwitchToStrengthGear());
-//        deliverGear = new JoystickButton(driveStick, Button.A.value());
-//        deliverGear.whenPressed(new TeleopGearDeliver());
-//        driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
-//        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
-//        driverOpenGearBlocker = new JoystickButton(driveStick, Button.X.value());
-//        driverOpenGearBlocker.whenPressed(new OpenGearBlocker());
-//        driverCloseGearBlocker = new JoystickButton(driveStick, Button.B.value());
-//        driverCloseGearBlocker.whenPressed(new CloseGearBlocker());
-//        visionTest = new JoystickButton(driveStick, Button.B.value());
-//        visionTest.whenPressed(new CenterByVision(0, RobotMap.gripLiftConfig));
-        
+        switchToSpeedGear = new JoystickButton(driveStick, Button.RB.value());
+        switchToSpeedGear.whenPressed(new SwitchToSpeedGear());
+        switchToStrengthGear = new JoystickButton(driveStick, Button.LB.value());
+        switchToStrengthGear.whenPressed(new SwitchToStrengthGear());
+        driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
+        driveAutoDisabler.whenPressed(new DriveAutoDisabler());
+       
         buttonStick = new Joystick(0);
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
