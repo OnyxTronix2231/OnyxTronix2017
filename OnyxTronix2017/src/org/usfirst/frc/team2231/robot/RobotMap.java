@@ -71,7 +71,7 @@ public class RobotMap {
     public static OnyxTronixPIDController driveTrainDriveLeftPIDController;
     public static OnyxTronixPIDController driveTrainDriveRightPIDController;
     public static VisionSensorGrip visionSensor;
-//    public static AxisCamera gearAxisCamera;
+    public static AxisCamera liftAxisCamera;
 //    public static AxisCamera boilerAxisCamera;
     public static DistanceCalculation distanceCalculation;
     public static PIDBalancer pidBalancer;
@@ -159,11 +159,9 @@ public class RobotMap {
         LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
         
 //        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
-//        
-//        gearAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
-        axisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
+        liftAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
+        
         CameraServer.getInstance().startAutomaticCapture();
-//        usbCamera.setResolution(480, 640);
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
         
@@ -177,6 +175,6 @@ public class RobotMap {
         angleCalculation = new LiftAngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
-        visionSensor = new VisionSensorGrip(axisCamera, gripLiftConfig);  
+        visionSensor = new VisionSensorGrip(axisCamera, gripLiftConfig, angleCalculation);  
 	} 
 }

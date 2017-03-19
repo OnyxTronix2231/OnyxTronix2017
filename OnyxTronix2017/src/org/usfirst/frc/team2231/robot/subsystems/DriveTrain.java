@@ -216,8 +216,8 @@ public class DriveTrain extends Subsystem {
     	visionSensor.setStrategy(strategy);
     }
     
-    public double getVisionValueBySetPoint(double setPoint) {
-    	return visionSensor.getValueBySetPoint(setPoint);
+    public double getVisionErrorBySetPoint(double setPoint) {
+    	return visionSensor.getErrorBySetPoint(setPoint);
     }
     
     public double getError() {
@@ -225,7 +225,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isVisionOnTarget(double setPoint) {
-    	return Math.abs(Robot.driveTrain.getVisionValueBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
+    	return Math.abs(Robot.driveTrain.getVisionErrorBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
     }
 }
 
