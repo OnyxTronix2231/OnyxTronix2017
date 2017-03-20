@@ -25,7 +25,7 @@ public class DriveToTargetByVision extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	actByVision = new ActByVision(setPoint, config, new DriveByDistance(setPoint), RobotMap.distanceCalculation);
+    	actByVision = new ActByVision(setPoint, config, new DriveByDistance(setPoint), RobotMap.distanceCalculation, false);
     }
 
 	@Override

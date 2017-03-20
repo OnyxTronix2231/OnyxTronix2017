@@ -13,27 +13,29 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ActByVision extends Command {
-	private double m_setPoint;
+	private double setPoint;
 	private GripConfiguration<OnyxPipeline> config;
 	private SetPointCommand setPointCommand;
 	private boolean isFinished = false;
 	private GripVisionStrategy strategy;
-	
+	private boolean isContinues;
+
     public ActByVision(double setPoint, GripConfiguration<OnyxPipeline> config,
-    					  SetPointCommand setPointCommand, GripVisionStrategy strategy) {
+    					  SetPointCommand setPointCommand, GripVisionStrategy strategy, boolean isContinues) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.config = config;
-    	m_setPoint = setPoint;
+    	this.setPoint = setPoint;
     	this.setPointCommand = setPointCommand;
     	this.strategy = strategy;
+    	this.isContinues = isContinues;
     }
  
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
     	Robot.driveTrain.setVisionOperation(config, strategy);
-    	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(m_setPoint));
+    	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
     	setPointCommand.start();
     }
     
@@ -41,12 +43,12 @@ public class ActByVision extends Command {
     protected void execute() {
     	Debug.getInstance().log(this, Robot.driveTrain.getError() + "");
     	if(!setPointCommand.isRunning()) {
-			if(Robot.driveTrain.isVisionOnTarget(m_setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
+			if(!isContinues || Robot.driveTrain.isVisionOnTarget(setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
 				isFinished = true;
 			}
-			System.out.println("Still centering");
-//			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionValueBySetPoint(m_setPoint));
-//			setPointCommand.start();
+			System.out.println("Processing image...");
+			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
+			setPointCommand.start();
     	}
     }
 
