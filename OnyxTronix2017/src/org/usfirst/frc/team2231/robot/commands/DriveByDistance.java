@@ -11,12 +11,14 @@ import OnyxTronix.SetPointCommand;
  */
 public class DriveByDistance extends SetPointCommand {
 	
-    public DriveByDistance(double setPoint) {
+    public DriveByDistance(double setPoint, boolean isSubCommand) {
     	super(setPoint);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.setPoint = setPoint;
-    	requires(Robot.driveTrain);
+    	if(isSubCommand) {
+    		requires(Robot.driveTrain);
+    	}
     }
 
     // Called just before this Command runs the first time

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2231.robot.commands;
 
+import org.usfirst.frc.team2231.robot.RobotMap;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 
@@ -28,12 +29,10 @@ public class AutonomousCenterGearDeliver extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new SwitchToStrengthGear());
-    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT));
+    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT, false));
+    	addSequential(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
+    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTERED_DRIVE_TO_LIFT, false));
     	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
-    	addParallel(new CloseGearHolder());
-    	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));
-    	addSequential(new DriveByDistance(GearHolder.AUTONOMOUS_REVERSE_DRIVE));
-    	addParallel(new OpenGearHolder());
-    	addSequential(new SwitchToSpeedGear());
+    	addSequential(new AtonomouseGearDelivery());
     }
 }

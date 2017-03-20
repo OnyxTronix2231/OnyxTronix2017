@@ -63,12 +63,13 @@ public class DriveTrain extends Subsystem {
 	public static final double BALANCE_PID_TOLEEANCE = 0.005;
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
-	public static final double VISION_LIFT_SETPOINT = 0.8;
+	public static final double VISION_LIFT_SETPOINT = 0;
 	
 	public static final double AUTONOMOUS_ANGLE = 60;
 	public static final double AUTONOMOUS_SIDE_DRIVE = 282;
 	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 180;
 	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 210;
+	public static final double AUTONOMOUS_CENTERED_DRIVE_TO_LIFT = 50;
 	public static final double AUTONOMOUS_LINE_DRIVE = 350;
 	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_TIME = 2;
 	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_SPEED = -0.7;

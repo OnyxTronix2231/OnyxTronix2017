@@ -23,11 +23,13 @@ import edu.wpi.first.wpilibj.PIDSourceType;
  */
 public class RotateByAngle extends SetPointCommand {
 
-    public RotateByAngle(double setPoint) {
+    public RotateByAngle(double setPoint, boolean isSubCommand) {
     	super(setPoint);
     	this.setPoint = Robot.driveTrain.getEfficientAngle(setPoint);
     	System.out.println(setPoint);
-        requires(Robot.driveTrain);
+    	if(!isSubCommand) {
+    		requires(Robot.driveTrain);
+    	}
 
     }
 

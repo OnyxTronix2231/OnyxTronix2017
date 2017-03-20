@@ -27,7 +27,7 @@ public class AutonomousLine extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new SwitchToStrengthGear());
-    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_LINE_DRIVE));
+    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_LINE_DRIVE, false));
     	addSequential(new SwitchToSpeedGear());
     }
 }
