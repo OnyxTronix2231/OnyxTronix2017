@@ -49,11 +49,11 @@ public class DriveTrain extends Subsystem {
     public static final double LIFT_HEIGHT = 20; //In meter.
     public static final double VERTICAL_APERTURE_ANGLE = 35;
     public static final double HORIZONTAL_APERTURE_ANGLE = 67;
-	public static final double DRIVE_PID_P = 0.06;
+	public static final double DRIVE_PID_P = 0.1;
 	public static final double DRIVE_PID_I = 0.001;
-	public static final double DRIVE_PID_D = 4;
+	public static final double DRIVE_PID_D = 3;
 	public static final double DRIVE_PID_F = 0.12;
-	public static final double DRIVE_PID_TOLEEANCE = 0.5;
+	public static final double DRIVE_PID_TOLEEANCE = 0.1;
 	public static final double DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE = 1;
 	public static final double DRIVE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_P = 0;
@@ -63,10 +63,10 @@ public class DriveTrain extends Subsystem {
 	public static final double BALANCE_PID_TOLEEANCE = 0.005;
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
-	public static final double VISION_LIFT_SETPOINT = 0;
+	public static final double VISION_LIFT_SETPOINT = 0.120;
 	
 	public static final double AUTONOMOUS_ANGLE = 60;
-	public static final double AUTONOMOUS_SIDE_DRIVE = 282;
+	public static final double AUTONOMOUS_SIDE_DRIVE = 232;
 	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 180;
 	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 210;
 	public static final double AUTONOMOUS_CENTERED_DRIVE_TO_LIFT = 50;
@@ -119,10 +119,12 @@ public class DriveTrain extends Subsystem {
 
     public void setSlaveTalons(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
-    	secondRight.changeControlMode(TalonControlMode.Follower);    	
     	secondLeft.set(firstLeft.getDeviceID());
+    	secondRight.changeControlMode(TalonControlMode.Follower);    	
     	secondRight.set(firstRight.getDeviceID());
-    	firstLeft.setInverted(true);
+    	firstLeft.changeControlMode(TalonControlMode.Follower);
+    	firstLeft.set(firstRight.getDeviceID());
+    	firstLeft.reverseOutput(true);
     }
     
     public void setRotateSlaveTalons(){
@@ -150,7 +152,8 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isDriveOnTarget(){
-    	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
+    	//return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
+    	return driveRightPIDController.onTarget();
     }
     
     public double getEfficientAngle(double angle) {
@@ -158,7 +161,7 @@ public class DriveTrain extends Subsystem {
     	if (angle >= 180) {
     		angle -= 360;
     	} 
-    	return angle;
+    	return -angle;
     }
     
     public void resetSlaveTalons() {
@@ -182,7 +185,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDrivePID(double setPoint) {
-		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+//		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		//System.out.println("Is balance initialized: " + balancerPIDController.init(BALANCE_PID_SETPOINT, DRIVE_PID_TOLEEANCE));
 	}

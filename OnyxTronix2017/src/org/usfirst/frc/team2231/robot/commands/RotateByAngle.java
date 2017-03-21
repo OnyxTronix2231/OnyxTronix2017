@@ -22,19 +22,18 @@ import edu.wpi.first.wpilibj.PIDSourceType;
  *
  */
 public class RotateByAngle extends SetPointCommand {
-
+	
     public RotateByAngle(double setPoint, boolean isSubCommand) {
     	super(setPoint);
     	this.setPoint = Robot.driveTrain.getEfficientAngle(setPoint);
-    	System.out.println(setPoint);
     	if(!isSubCommand) {
     		requires(Robot.driveTrain);
     	}
-
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	isFinished = false;
     	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.setRotateSlaveTalons();
@@ -45,16 +44,12 @@ public class RotateByAngle extends SetPointCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Left Output: " + RobotMap.driveTrainRotationLeftPIDController.get());
-    	System.out.println("Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
+    	Debug.getInstance().log(this, "Left Output: " + RobotMap.driveTrainRotationLeftPIDController.get());
+    	Debug.getInstance().log(this, "Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
     	
-    	System.out.println("Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
-    	System.out.println("Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return Robot.driveTrain.isRotateOnTarget();
+    	Debug.getInstance().log(this, "Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
+    	Debug.getInstance().log(this, "Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
+    	isFinished = Robot.driveTrain.isRotateOnTarget();
     }
 
     // Called once after isFinished returns true

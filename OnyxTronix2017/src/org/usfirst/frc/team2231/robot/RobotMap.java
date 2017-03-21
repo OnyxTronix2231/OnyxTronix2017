@@ -76,7 +76,6 @@ public class RobotMap {
     public static DistanceCalculation distanceCalculation;
     public static PIDBalancer pidBalancer;
     public static OnyxTronixPIDController balancerPIDController;
-    public static AxisCamera axisCamera;
     
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
@@ -87,7 +86,7 @@ public class RobotMap {
         
         driveTrainFirstLeft = new CANTalon(7);
         LiveWindow.addActuator("DriveTrain", "FirstLeft", driveTrainFirstLeft);
-        driveTrainFirstLeft.configEncoderCodesPerRev(360);
+        driveTrainFirstLeft.configEncoderCodesPerRev(300);
         driveTrainFirstLeft.reverseSensor(true);
         
         driveTrainSecondLeft = new CANTalon(1);
@@ -119,7 +118,7 @@ public class RobotMap {
         driveTrainRotationLeftPIDController = new OnyxTronixPIDController(DriveTrain.ROTATION_PID_P, DriveTrain.ROTATION_PID_I, DriveTrain.ROTATION_PID_D, DriveTrain.ROTATION_PID_F, driveTrainGyro, driveTrainFirstLeft, DriveTrain.ROTATION_ABSOLUTE_TOLERANCE);
         driveTrainRotationLeftPIDController.setOutputRange(-1, 1);      
      
-       driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft, DriveTrain.DRIVE_PID_TOLEEANCE);
+       driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
        driveTrainDriveLeftPIDController.setOutputRange(-1, 1);
         
        driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
@@ -175,6 +174,6 @@ public class RobotMap {
         angleCalculation = new LiftAngleCalculation();
         distanceCalculation = new DistanceCalculation();
         
-        visionSensor = new VisionSensorGrip(axisCamera, gripLiftConfig, angleCalculation);  
+        visionSensor = new VisionSensorGrip(liftAxisCamera, gripLiftConfig, angleCalculation);  
 	} 
 }

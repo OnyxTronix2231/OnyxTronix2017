@@ -16,13 +16,14 @@ public class DriveByDistance extends SetPointCommand {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.setPoint = setPoint;
-    	if(isSubCommand) {
+    	if(!isSubCommand) {
     		requires(Robot.driveTrain);
     	}
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("Driving");
     	Robot.driveTrain.resetEncoders();
     	Robot.driveTrain.changePIDType();
     	Robot.driveTrain.setSlaveTalons();
@@ -36,11 +37,7 @@ public class DriveByDistance extends SetPointCommand {
     	
     	Debug.getInstance().log(this, "Left Error: " + RobotMap.driveTrainDriveLeftPIDController.getError());
     	Debug.getInstance().log(this, "Right Error: " + RobotMap.driveTrainDriveRightPIDController.getError());
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return Robot.driveTrain.isDriveOnTarget();
+    	isFinished = Robot.driveTrain.isDriveOnTarget();
     }
 
     // Called once after isFinished returns true

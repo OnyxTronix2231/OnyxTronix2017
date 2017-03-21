@@ -16,6 +16,7 @@ import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousDriveByTimeOut;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLine;
+import org.usfirst.frc.team2231.robot.commands.AutonomousRightGearDeliver;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
@@ -89,7 +90,7 @@ public class Robot extends IterativeRobot {
         
         autonomousChooser = new SendableChooser<>();
         autonomousChooser.addDefault("Center autonomous", new AutonomousCenterGearDeliver());
-        autonomousChooser.addObject("Right autonomous", new AutonomousLeftGearDeliver());
+        autonomousChooser.addObject("Right autonomous", new AutonomousRightGearDeliver());
         autonomousChooser.addObject("Left autonomous", new AutonomousLeftGearDeliver());
         autonomousChooser.addObject("Line autonomous", new AutonomousLine());
         autonomousChooser.addObject("Drive by time out autonomous", new AutonomousDriveByTimeOut());
@@ -173,11 +174,12 @@ public class Robot extends IterativeRobot {
 	        
 	        Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
 	        Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
-	        Debug.getInstance().log(this, RobotMap.driveTrainGyro.getAngle());
+	        //Debug.getInstance().log(this, RobotMap.driveTrainGyro.getAngle());
 	    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
-	    		RobotMap.driveTrainGyro.reset();
+	    		RobotMap.driveTrainFirstLeft.setPosition(0);
+	    		RobotMap.driveTrainFirstRight.setPosition(0);
 	    	}
-		    System.out.println("Potentiometer: " + RobotMap.gearBlockerPotentiometer.get());
+		   // System.out.println("Potentiometer: " + RobotMap.gearBlockerPotentiometer.get());
 	    }
     }
 

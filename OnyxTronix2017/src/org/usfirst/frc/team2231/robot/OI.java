@@ -11,6 +11,7 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
+import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
@@ -20,6 +21,7 @@ import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
+import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -69,6 +71,7 @@ public class OI {
     public JoystickButton switchToSpeedGear;
     public Joystick driveStick;
     public JoystickButton driveAutoDisabler;
+    public JoystickButton visionCenter; 
     public OI() {
         driveStick = new Joystick(1);
         
@@ -78,7 +81,8 @@ public class OI {
         switchToStrengthGear.whenPressed(new SwitchToStrengthGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
-       
+        visionCenter = new JoystickButton(driveStick, Button.A.value());
+        visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
         buttonStick = new Joystick(0);
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());

@@ -19,6 +19,7 @@ public class ActByVision extends Command {
 	private boolean isFinished = false;
 	private GripVisionStrategy strategy;
 	private boolean isContinues;
+	private boolean hasStarted = false;
 
     public ActByVision(double setPoint, GripConfiguration<OnyxPipeline> config,
     					  SetPointCommand setPointCommand, GripVisionStrategy strategy, boolean isContinues) {
@@ -34,21 +35,26 @@ public class ActByVision extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	isFinished = false;
+    	hasStarted = false;
     	Robot.driveTrain.setVisionOperation(config, strategy);
     	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
     	setPointCommand.start();
+    	hasStarted = true;
     }
     
     @Override
     protected void execute() {
     	Debug.getInstance().log(this, Robot.driveTrain.getError() + "");
-    	if(!setPointCommand.isRunning()) {
+    	if(hasStarted && setPointCommand.isFinished()) {
 			if(!isContinues || Robot.driveTrain.isVisionOnTarget(setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
 				isFinished = true;
+				System.out.println("Act finished");
+			} else {
+				System.out.println("Processing image...");
+				setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
+				setPointCommand.start();
 			}
-			System.out.println("Processing image...");
-			setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
-			setPointCommand.start();
     	}
     }
 
