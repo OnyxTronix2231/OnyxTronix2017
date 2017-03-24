@@ -165,7 +165,7 @@ public class RobotMap {
         TargetConfiguration tarConfig;
         
         camConfig = new CameraConfiguration(DriveTrain.ANGLE_TO_FLOOR, DriveTrain.CAMERA_HEIGHT, 
-        									DriveTrain.VERTICAL_APERTURE_ANGLE, DriveTrain.VERTICAL_APERTURE_ANGLE);
+        									DriveTrain.HORIZONTAL_APERTURE_ANGLE, DriveTrain.VERTICAL_APERTURE_ANGLE);
         tarConfig = new TargetConfiguration(DriveTrain.BOILER_HEIGHT);
         gripBoilerConfig = new GripConfiguration<OnyxPipeline>(camConfig, tarConfig, new BoilerPipeline());
         tarConfig = new TargetConfiguration(DriveTrain.LIFT_HEIGHT);
