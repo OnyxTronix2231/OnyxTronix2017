@@ -46,7 +46,7 @@ public class ActByVision extends Command {
     @Override
     protected void execute() {
     	Debug.getInstance().log(this, Robot.driveTrain.getError() + "");
-    	if(hasStarted && setPointCommand.isFinished()) {
+	if(hasStarted && setPointCommand.isFinished() && !setPointCommand.isRunning()) {
 			if(!isContinues || Robot.driveTrain.isVisionOnTarget(setPoint)) { //vision calc is not accurate, doing calculation until the vision is on target 
 				isFinished = true;
 				System.out.println("Act finished");
