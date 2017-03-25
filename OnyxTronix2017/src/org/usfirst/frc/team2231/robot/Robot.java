@@ -175,7 +175,7 @@ public class Robot extends IterativeRobot {
 	        Debug.getInstance().log(this, RobotMap.driveTrainFirstLeft.getPosition());
 	        Debug.getInstance().log(this, RobotMap.driveTrainFirstRight.getPosition());
 	        //Debug.getInstance().log(this, RobotMap.driveTrainGyro.getAngle());
-	    	if(Robot.oi.driveStick.getRawButton(Button.RB.value())) {
+	    	if(Robot.oi.driveStick.getRawButton(Button.B.value())) {
 	    		RobotMap.driveTrainFirstLeft.setPosition(0);
 	    		RobotMap.driveTrainFirstRight.setPosition(0);
 	    	}

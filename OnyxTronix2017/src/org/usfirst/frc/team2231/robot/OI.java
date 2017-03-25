@@ -16,6 +16,7 @@ import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
+import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
@@ -72,6 +73,7 @@ public class OI {
     public Joystick driveStick;
     public JoystickButton driveAutoDisabler;
     public JoystickButton visionCenter; 
+    public JoystickButton rotate;
     public OI() {
         driveStick = new Joystick(1);
         
@@ -83,6 +85,9 @@ public class OI {
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
         visionCenter = new JoystickButton(driveStick, Button.A.value());
         visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
+        rotate = new JoystickButton(driveStick, Button.Y.value());
+        rotate.whenPressed(new RotateByAngle(60, false));
+        
         buttonStick = new Joystick(0);
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());

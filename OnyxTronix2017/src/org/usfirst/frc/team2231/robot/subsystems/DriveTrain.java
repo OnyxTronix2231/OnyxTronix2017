@@ -38,10 +38,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double ROTATION_PID_P = 0.002;
+	public static final double ROTATION_PID_P = 0.004;
 	public static final double ROTATION_PID_I = 0.00001;
-	public static final double ROTATION_PID_D = 0.035;
-	public static final double ROTATION_PID_F = 0.25;
+	public static final double ROTATION_PID_D = 0.003;
+	public static final double ROTATION_PID_F = 0.150;
 	public static final double ROTATION_ABSOLUTE_TOLERANCE = 1;
 	public static final double ANGLE_TO_FLOOR = 31;
     public static final double CAMERA_HEIGHT = 40; //In meter.
@@ -63,16 +63,16 @@ public class DriveTrain extends Subsystem {
 	public static final double BALANCE_PID_TOLEEANCE = 0.005;
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
-	public static final double VISION_LIFT_SETPOINT = -0.179;
+	public static final double VISION_LIFT_SETPOINT = 0.1;
 	
-	public static final double AUTONOMOUS_ANGLE = 60;
+	public static final double AUTONOMOUS_ANGLE = 61;
 	public static final double AUTONOMOUS_SIDE_DRIVE = 232;
 	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 180;
-	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 210;
-	public static final double AUTONOMOUS_CENTERED_DRIVE_TO_LIFT = 50;
+	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 130;
+	public static final double AUTONOMOUS_CENTERED_DRIVE_TO_LIFT = 120;
 	public static final double AUTONOMOUS_LINE_DRIVE = 350;
 	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_TIME = 2;
-	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_SPEED = -0.7;
+	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_SPEED = -0.13;
 
 	
 	
@@ -122,9 +122,9 @@ public class DriveTrain extends Subsystem {
     	secondLeft.set(firstLeft.getDeviceID());
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
     	secondRight.set(firstRight.getDeviceID());
-    	firstLeft.changeControlMode(TalonControlMode.Follower);
-    	firstLeft.set(firstRight.getDeviceID());
-    	firstLeft.reverseOutput(true);
+//    	firstLeft.changeControlMode(TalonControlMode.Follower);
+//    	firstLeft.set(firstRight.getDeviceID());
+    	firstLeft.setInverted(true);
     }
     
     public void setRotateSlaveTalons(){
@@ -152,8 +152,8 @@ public class DriveTrain extends Subsystem {
     }
     
     public boolean isDriveOnTarget(){
-    	//return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
-    	return driveRightPIDController.onTarget();
+    	return driveLeftPIDController.onTarget() && driveRightPIDController.onTarget();
+    	//return driveRightPIDController.onTarget();
     }
     
     public double getEfficientAngle(double angle) {
@@ -185,7 +185,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void initDrivePID(double setPoint) {
-//		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
+		System.out.println("Is left initialized: " + driveLeftPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		System.out.println("Is right initialized: " + driveRightPIDController.init(setPoint, DRIVE_PID_TOLEEANCE));
 		//System.out.println("Is balance initialized: " + balancerPIDController.init(BALANCE_PID_SETPOINT, DRIVE_PID_TOLEEANCE));
 	}
