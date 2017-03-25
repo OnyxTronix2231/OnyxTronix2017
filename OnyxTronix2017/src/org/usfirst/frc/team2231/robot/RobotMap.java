@@ -28,6 +28,7 @@ import OnyxTronix.PIDBalancer;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -76,6 +77,7 @@ public class RobotMap {
     public static DistanceCalculation distanceCalculation;
     public static PIDBalancer pidBalancer;
     public static OnyxTronixPIDController balancerPIDController;
+    public static DigitalInput gearBlockerMicroSwitch;
     
     public static void init() {
         gearBlockerMotor = new CANTalon(9);
@@ -156,6 +158,10 @@ public class RobotMap {
         
         gearHolderMicroSwitch = new DigitalInput(0);
         LiveWindow.addSensor("Gear Holder", "MicroSwitch", gearHolderMicroSwitch);
+        
+        gearBlockerMicroSwitch = new DigitalInput(1);
+        LiveWindow.addSensor("GearBlocker", "MicroSwitch", gearBlockerMicroSwitch);
+
         
 //        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
         liftAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");

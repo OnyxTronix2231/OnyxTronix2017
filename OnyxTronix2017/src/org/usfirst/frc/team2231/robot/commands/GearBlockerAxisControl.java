@@ -25,7 +25,11 @@ public class GearBlockerAxisControl extends Command {
     	double speed = Robot.oi.getButtonStick().getRawAxis(5);
     	if(Math.abs(speed) > 0.15){
     		if(speed < 0) {
-    			RobotMap.gearBlockerMotor.set(0.4 * speed);
+    			if(!RobotMap.gearBlockerMicroSwitch.get()) {
+    				RobotMap.gearBlockerMotor.set(0.4 * speed);
+    			} else {
+    				RobotMap.gearBlockerMotor.set(0);
+    			}
     		}
     		else {
     			RobotMap.gearBlockerMotor.set(0.65 * speed);
