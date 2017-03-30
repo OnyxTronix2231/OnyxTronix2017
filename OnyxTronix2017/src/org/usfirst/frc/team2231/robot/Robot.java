@@ -45,6 +45,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser<Command> autonomousChooser;
     SendableChooser<Boolean> testModeChooser;
+    public static SendableChooser<String> gearBlockerPosChooser;
 
     public static OI oi;
     public static GearBlocker gearBlocker;
@@ -59,6 +60,12 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	System.out.println("set");
+    	gearBlockerPosChooser = new SendableChooser<>();
+        gearBlockerPosChooser.addDefault("DOWN", "DOWN");
+        gearBlockerPosChooser.addObject("UP", "UP");
+        SmartDashboard.putData("Gear blocker pos", gearBlockerPosChooser);
+        
     	RobotMap.init();
     	
         gearBlocker = new GearBlocker();
@@ -179,8 +186,15 @@ public class Robot extends IterativeRobot {
 	    		RobotMap.driveTrainFirstLeft.setPosition(0);
 	    		RobotMap.driveTrainFirstRight.setPosition(0);
 	    	}
-		    System.out.println("Potentiometer: " + RobotMap.gearBlockerPotentiometer.get());
+		   // System.out.println("Potentiometer: " + RobotMap.gearBlockerPotentiometer.get());
 	    }
+        
+        RobotMap.driveTrainFirstLeft.getPosition();
+        RobotMap.driveTrainFirstRight.getPosition();
+        RobotMap.driveTrainSecondRight.getPosition();
+        RobotMap.driveTrainSecondLeft.getPosition();
+//        System.out.println(RobotMap.driveTrainGyro.getAngle());
+
     }
 
     /**

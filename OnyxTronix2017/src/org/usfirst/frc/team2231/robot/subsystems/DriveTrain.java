@@ -38,11 +38,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	public static final double ROTATION_PID_P = 0.004;
-	public static final double ROTATION_PID_I = 0.00001;
+	public static final double ROTATION_PID_P = 0.003;
+	public static final double ROTATION_PID_I = 0.000;
 	public static final double ROTATION_PID_D = 0.003;
-	public static final double ROTATION_PID_F = 0.150;
-	public static final double ROTATION_ABSOLUTE_TOLERANCE = 1;
+	public static final double ROTATION_PID_F = 0.240;
+	public static final double ROTATION_ABSOLUTE_TOLERANCE = 1.5;
 	public static final double ANGLE_TO_FLOOR = 31;
     public static final double CAMERA_HEIGHT = 40; //In meter.
     public static final double BOILER_HEIGHT = 70; //In meter.
@@ -63,12 +63,12 @@ public class DriveTrain extends Subsystem {
 	public static final double BALANCE_PID_TOLEEANCE = 0.005;
 	public static final double BALANCE_PID_DEFAULT_OUTPUT_RANGE = 1;
 	public static final double BALANCE_PID_SETPOINT = 1;
-	public static final double VISION_LIFT_SETPOINT = 0.1;
+	public static final double VISION_LIFT_SETPOINT = -0.2;
 	
-	public static final double AUTONOMOUS_ANGLE = 61;
-	public static final double AUTONOMOUS_SIDE_DRIVE = 232;
-	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 180;
-	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 130;
+	public static final double AUTONOMOUS_ANGLE = 50;
+	public static final double AUTONOMOUS_SIDE_DRIVE = 150;
+	public static final double AUTONOMOUS_SIDE_DRIVE_TO_LIFT = 250;
+	public static final double AUTONOMOUS_CENTER_DRIVE_TO_LIFT = 250;
 	public static final double AUTONOMOUS_CENTERED_DRIVE_TO_LIFT = 120;
 	public static final double AUTONOMOUS_LINE_DRIVE = 350;
 	public static final double AUTONOMOUS_DRIVE_BY_TIME_OUT_TIME = 2;
@@ -102,7 +102,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(stick.getRawAxis(1), stick.getRawAxis(4));
+    	robotDrive.arcadeDrive(stick.getRawAxis(1) * 2, stick.getRawAxis(4) * 2);
     }
     
     public void arcadeDrive(double moveValue, double rotateValue){
@@ -195,9 +195,11 @@ public class DriveTrain extends Subsystem {
     	driveRightPIDController.setOutputRange(-output, output);
     }
     
-    public void initRotatePID(double setPoint) {
-    	rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
-    	rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
+    public void initRotatePID(double setPoint, boolean isTankRotation) {
+    	if(isTankRotation){
+    		rotationPidControllerLeft.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
+    	}
+    		rotationPidControllerRight.init(setPoint, ROTATION_ABSOLUTE_TOLERANCE);
     }
     
     public void setPIDSetPoint(double setPoint) {
@@ -211,8 +213,14 @@ public class DriveTrain extends Subsystem {
     	balancerPIDController.stop();
     }
     
-    public boolean isRotateOnTarget(){
-    	return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
+    public boolean isRotateOnTarget(boolean isTankRotation){
+    	//return rotationPidControllerRight.onTarget() && rotationPidControllerLeft.onTarget();
+    	boolean onTraget = true;
+    	if(isTankRotation) {
+    		onTraget = rotationPidControllerLeft.onTarget();
+    	}
+    	onTraget = onTraget && rotationPidControllerRight.onTarget();
+    	return onTraget;
     }
     
     public void setVisionOperation(GripConfiguration<OnyxPipeline> config, GripVisionStrategy strategy) {

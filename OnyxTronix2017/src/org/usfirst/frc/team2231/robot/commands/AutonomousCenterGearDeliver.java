@@ -29,9 +29,9 @@ public class AutonomousCenterGearDeliver extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new SwitchToStrengthGear());
-    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT, false));
-    	addSequential(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
-    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTERED_DRIVE_TO_LIFT, false));
+//    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_CENTER_DRIVE_TO_LIFT, false));
+//    	addSequential(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
+    	addParallel(new DriveByDistance(280, false));
     	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
     	addSequential(new AtonomouseGearDelivery());
     }

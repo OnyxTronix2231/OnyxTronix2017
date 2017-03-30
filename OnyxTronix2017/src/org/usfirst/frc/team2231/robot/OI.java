@@ -63,6 +63,7 @@ public class OI {
 
 
     public JoystickButton collectBalls;
+    public JoystickButton unloadBalls;
     public JoystickButton openGearBlocker;
     public JoystickButton closeGearBlocker;
     public JoystickButton shoot;
@@ -92,6 +93,8 @@ public class OI {
         
         collectBalls = new JoystickButton(buttonStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(Collector.SPEED));
+        unloadBalls = new JoystickButton(buttonStick, Button.Y.value());
+        unloadBalls.whileHeld(new CollectBalls(-Collector.SPEED));
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(Trigger.SPEED));
         shoot = new JoystickButton(buttonStick, Button.LB.value());

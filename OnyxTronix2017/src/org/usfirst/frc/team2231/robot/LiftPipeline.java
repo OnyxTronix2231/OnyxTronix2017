@@ -40,9 +40,12 @@ public class LiftPipeline implements OnyxPipeline{
 	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-		double[] hslThresholdHue = {0, 180.0};
-		double[] hslThresholdSaturation = {0, 255.0};
-		double[] hslThresholdLuminance = {191, 255.0};
+		double[] hslThresholdHue = {57, 180};
+		double[] hslThresholdSaturation = {186, 255.0};
+		double[] hslThresholdLuminance = {87, 227.0};
+//		double[] hslThresholdHue = {31, 65};
+//		double[] hslThresholdSaturation = {67, 255.0};
+//		double[] hslThresholdLuminance = {37, 114.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
 		// Step Find_Contours0:

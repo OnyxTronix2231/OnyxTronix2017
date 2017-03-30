@@ -27,7 +27,7 @@ public class CenterByVision extends Command {
     // Called once when the command executes
     protected void initialize() {
     	started = false;
-    	actByVision = new ActByVision(setPoint, config, new RotateByAngle(setPoint, true), RobotMap.angleCalculation, true);
+    	actByVision = new ActByVision(setPoint, config, new RotateByAngleVision(setPoint, true), RobotMap.angleCalculation, true);
     	actByVision.start();
     	started = true;
     }

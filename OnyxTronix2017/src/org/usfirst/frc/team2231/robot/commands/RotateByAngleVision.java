@@ -21,9 +21,9 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 /**
  *
  */
-public class RotateByAngle extends SetPointCommand {
+public class RotateByAngleVision extends SetPointCommand {
 	
-    public RotateByAngle(double setPoint, boolean isSubCommand) {
+    public RotateByAngleVision(double setPoint, boolean isSubCommand) {
     	super(setPoint);
     	this.setPoint = Robot.driveTrain.getEfficientAngle(setPoint);
     	if(!isSubCommand) {
@@ -37,7 +37,7 @@ public class RotateByAngle extends SetPointCommand {
     	Robot.driveTrain.resetGyro();
     	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.setRotateSlaveTalons();
-    	Robot.driveTrain.initRotatePID(setPoint, true);
+    	Robot.driveTrain.initRotatePID(setPoint, false);
     	Debug.getInstance().log(this, "Angle set point: " + setPoint + "");
     	System.out.println("Angle set point: " + setPoint);
     }
@@ -49,14 +49,14 @@ public class RotateByAngle extends SetPointCommand {
 //    	
 //    	Debug.getInstance().log(this, "Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
 //    	Debug.getInstance().log(this, "Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
-    	System.out.println( "Left Output: " + RobotMap.driveTrainRotationLeftPIDController.get());
-    	System.out.println( "Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
-    	System.out.println( "Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
-    	System.out.println( "Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
+//    	System.out.println( "Left Output: " + RobotMap.driveTrainRotationLeftPIDController.get());
+//    	System.out.println( "Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
+//    	System.out.println( "Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
+//    	System.out.println( "Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
 
     	
     	
-    	isFinished = Robot.driveTrain.isRotateOnTarget(true);
+    	isFinished = Robot.driveTrain.isRotateOnTarget(false);
     }
 
     // Called once after isFinished returns true

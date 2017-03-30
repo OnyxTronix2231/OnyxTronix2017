@@ -110,7 +110,7 @@ public class RobotMap {
         
         driveTrainGyroSPI = new ADXRS450_Gyro();
         LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyroSPI);
-        
+
         driveTrainGyro = new AnalogGyro(0);
        // driveTrainGyro.setSensitivity(0.0001);
         
@@ -147,7 +147,7 @@ public class RobotMap {
         gearHolderUpperPiston = new DoubleSolenoid(0, 4, 5);
         LiveWindow.addActuator("Gear Holder", "Piston", gearHolderLowerPiston);
         
-        shooterUpperWheel = new CANTalon(7);
+        shooterUpperWheel = new CANTalon(15);
         LiveWindow.addActuator("Shooter", "UpperWheel", shooterUpperWheel);
         
         shooterLowerWheel = new CANTalon(6);
