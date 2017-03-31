@@ -239,5 +239,9 @@ public class DriveTrain extends Subsystem {
     public boolean isVisionOnTarget(double setPoint) {
     	return Math.abs(Robot.driveTrain.getVisionErrorBySetPoint(setPoint)) < DriveTrain.ROTATION_ABSOLUTE_TOLERANCE;
     }
+    
+    public int getNumberOfVisionParticles() {
+    	return visionSensor.getNumberOfParticles();
+    }
 }
 
