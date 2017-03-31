@@ -9,8 +9,10 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import OnyxTronix.OnyxPipeline;
@@ -40,6 +42,17 @@ public class LiftPipeline implements OnyxPipeline{
 	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
+		/** testing image rotate **/	 
+		
+		Point src_center = new Point(hslThresholdInput.cols()/2.0F, hslThresholdInput.rows()/2.0F);
+		Mat rot_mat = Imgproc.getRotationMatrix2D(src_center, 90, 1.0);
+		Mat dst = null;
+		Imgproc.warpAffine(hslThresholdInput, dst, rot_mat, hslThresholdInput.size());
+		hslThresholdInput.release();
+		rot_mat.release();
+		hslThresholdInput = dst;
+		Imgcodecs.imwrite( "/home/lvuser/visionTest.jpg", hslThresholdInput);	 
+		 /************/
 		double[] hslThresholdHue = {57, 180};
 		double[] hslThresholdSaturation = {186, 255.0};
 		double[] hslThresholdLuminance = {87, 227.0};
@@ -216,9 +229,5 @@ public class LiftPipeline implements OnyxPipeline{
 			outputContours.add(mopHull);
 		}
 	}
-
-
-
-
 }
 
