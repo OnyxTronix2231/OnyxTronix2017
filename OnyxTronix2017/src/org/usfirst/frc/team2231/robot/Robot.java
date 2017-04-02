@@ -22,6 +22,7 @@ import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
+import org.usfirst.frc.team2231.robot.subsystems.GearLift;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
 import org.usfirst.frc.team2231.robot.subsystems.Trigger;
 
@@ -53,6 +54,7 @@ public class Robot extends IterativeRobot {
     public static Collector collector;
     public static Climber climber;
     public static GearHolder gearHolder;
+    public static GearLift gearLift;
     public static Shooter shooter;
     public static Trigger trigger;
     /**
@@ -75,6 +77,7 @@ public class Robot extends IterativeRobot {
         gearHolder = new GearHolder();
         shooter = new Shooter();
         trigger = new Trigger();
+        gearLift = new GearLift();
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
