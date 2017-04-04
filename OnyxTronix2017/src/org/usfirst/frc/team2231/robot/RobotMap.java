@@ -60,7 +60,7 @@ public class RobotMap {
 	public static OnyxTronixPIDController driveTrainRotationLeftPIDController;
     public static CANTalon climberMotor;
     public static DoubleSolenoid driveTrainShifter;
-//    public static DoubleSolenoid gearHolderUpperPiston;
+    public static DoubleSolenoid gearHolderUpperPiston;
     public static DoubleSolenoid gearHolderLowerPiston;
     public static DoubleSolenoid gearLiftPiston;
     public static CANTalon shooterUpperWheel;
@@ -109,8 +109,8 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
         
-        driveTrainGyroSPI = new ADXRS450_Gyro();
-        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyroSPI);
+        //driveTrainGyroSPI = new ADXRS450_Gyro();
+        //LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyroSPI);
 
         driveTrainGyro = new AnalogGyro(0);
        // driveTrainGyro.setSensitivity(0.0001);
