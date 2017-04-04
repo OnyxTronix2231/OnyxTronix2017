@@ -15,12 +15,14 @@ import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
+import org.usfirst.frc.team2231.robot.commands.LowerGearLift;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
 import org.usfirst.frc.team2231.robot.commands.SwitchToSpeedGear;
 import org.usfirst.frc.team2231.robot.commands.SwitchToStrengthGear;
+import org.usfirst.frc.team2231.robot.commands.UpperGearLift;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2231.robot.subsystems.Trigger;
@@ -64,8 +66,8 @@ public class OI {
 
     public JoystickButton collectBalls;
     public JoystickButton unloadBalls;
-    public JoystickButton openGearBlocker;
-    public JoystickButton closeGearBlocker;
+    public JoystickButton lowerGearLift;
+    public JoystickButton upperGearLift;
     public JoystickButton shoot;
     public JoystickButton load;
     public Joystick buttonStick;
@@ -99,10 +101,10 @@ public class OI {
         load.whileHeld(new StartTrigger(Trigger.SPEED));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
-        openGearBlocker = new JoystickButton(buttonStick, Button.X.value());
-        openGearBlocker.whenPressed(new OpenGearBlocker());
-        closeGearBlocker = new JoystickButton(buttonStick, Button.B.value());
-        closeGearBlocker.whenPressed(new CloseGearBlocker());
+        lowerGearLift = new JoystickButton(buttonStick, Button.X.value());
+        lowerGearLift.whenPressed(new LowerGearLift());
+        upperGearLift = new JoystickButton(buttonStick, Button.B.value());
+        upperGearLift.whenPressed(new UpperGearLift());
     }
 
     public Joystick getButtonStick() {
