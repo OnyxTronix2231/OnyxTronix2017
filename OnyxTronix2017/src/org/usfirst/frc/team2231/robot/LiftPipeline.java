@@ -84,6 +84,8 @@ public class LiftPipeline implements OnyxPipeline{
 		// Step Convex_Hulls0:
 		ArrayList<MatOfPoint> convexHullsContours = filterContoursOutput;
 		convexHulls(convexHullsContours, convexHullsOutput);
+		
+		source0.release();
 
 	}
 
