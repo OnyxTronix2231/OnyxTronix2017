@@ -28,13 +28,15 @@ public class AutonomousLeftGearDeliver extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new SwitchToSpeedGear());
+    	addSequential(new SwitchToStrengthGear());
+    	addSequential(new CloseGearHolder());
+    	addSequential(new UpperGearLift());
     	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE, false));
     	addSequential(new SwitchToStrengthGear());
     	addSequential(new RotateByAngle(-DriveTrain.AUTONOMOUS_ANGLE, false));
     	addSequential(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
-    	addParallel(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE_TO_LIFT, false));
-    	addSequential(new DriveUntilGearInPlace(DriveTrain.DRIVE_PID_AUTONOMOUS_OUTPUT_RANGE));
+    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE_TO_LIFT, false));
+    	addSequential(new OpenGearHolder());
     	addSequential(new AtonomouseGearDelivery());
     }
 }
