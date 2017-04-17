@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2231.robot.commands;
 
+import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -26,10 +27,7 @@ public class AtonomouseGearDelivery extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new CloseGearHolder());
-    	addSequential(new TimeOut(GearHolder.OPEN_TIME_OUT));
-    	addSequential(new DriveByDistance(GearHolder.AUTONOMOUS_REVERSE_DRIVE, false));
-    	addParallel(new OpenGearHolder());
-    	addSequential(new SwitchToSpeedGear());
+    	addSequential(new RotateByAngle(5, false));
+    	addSequential(new DriveByDistance(15, false));
     }
 }
