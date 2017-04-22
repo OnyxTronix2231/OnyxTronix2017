@@ -1,15 +1,13 @@
 package org.usfirst.frc.team2231.robot.commands;
 
-import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutonomousDriveByTimeOut extends CommandGroup {
+public class AtonomouseSimpleCenterGear extends CommandGroup {
 
-    public AutonomousDriveByTimeOut() {
+    public AtonomouseSimpleCenterGear() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -26,9 +24,14 @@ public class AutonomousDriveByTimeOut extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-//    	addSequential(new SwitchToStrengthGear());
-    	addSequential(new DriveByTimeOut(DriveTrain.AUTONOMOUS_DRIVE_BY_TIME_OUT_TIME, DriveTrain.AUTONOMOUS_DRIVE_BY_TIME_OUT_SPEED, 0));
-//    	addSequential(new SwitchToSpeedGear());
-
+    	addSequential(new OpenGearHolder());
+    	addSequential(new SwitchToSpeedGear());
+    	addSequential(new UpperGearLift());
+//    	addSequential(new DriveByTimeOut(0.5, 1, 0));
+    	addSequential(new TimeOut(0.5));
+    	addSequential(new DriveByDistance(185, false));
+//    	addSequential(new DriveByDistance(30, false));
+    	addSequential(new CloseGearHolder());
+    	addSequential(new AtonomouseGearDelivery());
     }
 }

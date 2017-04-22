@@ -84,16 +84,16 @@ public class OI {
     public OI() {
         driveStick = new Joystick(1);
         
-        switchToSpeedGear = new JoystickButton(driveStick, Button.RB.value());
+        switchToSpeedGear = new JoystickButton(driveStick, Button.LB.value());
         switchToSpeedGear.whenPressed(new SwitchToSpeedGear());
-        switchToStrengthGear = new JoystickButton(driveStick, Button.LB.value());
+        switchToStrengthGear = new JoystickButton(driveStick, Button.RB.value());
         switchToStrengthGear.whenPressed(new SwitchToStrengthGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
-        visionCenter = new JoystickButton(driveStick, Button.A.value());
-        visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
+//        visionCenter = new JoystickButton(driveStick, Button.A.value());
+//        visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
         rotate = new JoystickButton(driveStick, Button.Y.value());
-        rotate.whenPressed(new RotateByAngle(60, false));
+        rotate.whenPressed(new RotateByAngle(-43, false));
         
         buttonStick = new Joystick(0);
         
@@ -109,10 +109,6 @@ public class OI {
         lowerGearLift.whenPressed(new LowerGearLift());
         upperGearLift = new JoystickButton(buttonStick, Button.Y.value()); // <---
         upperGearLift.whenPressed(new UpperGearLift());
-        openGearHolder = new JoystickButton(buttonStick, Button.B.value()); 
-        openGearHolder.whenPressed(new OpenGearHolder());
-        closeGearHolder = new JoystickButton(buttonStick, Button.X.value()); 
-        closeGearHolder.whenPressed(new CloseGearHolder());
     }
 
     public Joystick getButtonStick() {

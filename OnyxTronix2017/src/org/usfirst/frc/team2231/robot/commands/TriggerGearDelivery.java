@@ -30,6 +30,16 @@ public class TriggerGearDelivery extends Command {
     	if(Robot.oi.getButtonStick().getRawAxis(3) >= 0.9) {
     		Robot.gearHolder.setPistonPosition(Value.kReverse);
     	}
+    	
+    	if(Robot.oi.getDriveStick().getRawAxis(3) >= 0.9) {
+    		Robot.gearHolder.setPistonPosition(Value.kForward);
+    	}
+    	
+    	if(Robot.oi.getDriveStick().getRawAxis(2) >= 0.9) {
+    		Robot.gearHolder.setPistonPosition(Value.kReverse);
+    	}
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

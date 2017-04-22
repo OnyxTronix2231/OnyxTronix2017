@@ -27,7 +27,8 @@ public class AtonomouseGearDelivery extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new RotateByAngle(5, false));
-    	addSequential(new DriveByDistance(15, false));
+//    	addSequential(new RotateByAngle(5, false));
+    	addSequential(new DriveByDistance(-50, false));
+    	addSequential(new SwitchToStrengthGear());
     }
 }
