@@ -12,6 +12,7 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
+import org.usfirst.frc.team2231.robot.commands.AtonomouseSimpleCenterGear;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousDriveByTimeOut;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
@@ -105,6 +106,7 @@ public class Robot extends IterativeRobot {
         autonomousChooser.addObject("Line autonomous", new AutonomousLine());
         autonomousChooser.addObject("Drive by time out autonomous", new AutonomousDriveByTimeOut());
         autonomousChooser.addObject("None", null);
+        autonomousChooser.addObject("Simple Center autonomous", new AtonomouseSimpleCenterGear());
         SmartDashboard.putData("Autonomous mode chooser", autonomousChooser);
         
         testModeChooser = new SendableChooser<>();

@@ -28,8 +28,7 @@ public class GearHolder extends Subsystem {
 	public static final double DRIVE_GEAR_TIME_OUT = 3;
 	public static final double AUTONOMOUS_REVERSE_DRIVE = -60;
 	public static final double AUTONOMOUS_DRIVE = 150;
-	private final DoubleSolenoid lowerPiston = RobotMap.gearHolderLowerPiston;    
-    //private final DoubleSolenoid upperPiston = RobotMap.gearHolderUpperPiston;
+	private final DoubleSolenoid catchPiston = RobotMap.gearHolderLowerPiston;    
     private final DigitalInput microSwitch = RobotMap.gearHolderMicroSwitch;
 
     // Put methods for controlling this subsystem
@@ -41,8 +40,7 @@ public class GearHolder extends Subsystem {
     }
     
     public void setPistonPosition(Value value) {
-    	lowerPiston.set(value);
-    	//upperPiston.set(value);
+    	catchPiston.set(value);
     }
     
     public boolean isPegInGear() {

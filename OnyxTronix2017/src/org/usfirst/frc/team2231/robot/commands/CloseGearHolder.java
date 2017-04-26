@@ -25,6 +25,6 @@ public class CloseGearHolder extends InstantCommand {
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearHolder.setPistonPosition(Value.kForward);
+    	Robot.gearHolder.setPistonPosition(Value.kReverse);
     }
 }

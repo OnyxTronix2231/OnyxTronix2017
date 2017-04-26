@@ -18,6 +18,6 @@ public class UpperGearLift extends InstantCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearLift.setPistonPosition(Value.kReverse);
+    	Robot.gearLift.setPistonPosition(Value.kForward);
     }
 }

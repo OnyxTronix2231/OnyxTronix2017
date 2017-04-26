@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveByTimeOut extends Command {
 	private double speed;
-	
-    public DriveByTimeOut(double timeOut, double speed) {
+	private double rotate;
+
+    public DriveByTimeOut(double timeOut, double speed, double rotate) {
     	super(timeOut);
     	this.speed = speed;
+    	this.rotate = rotate;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
@@ -21,7 +23,8 @@ public class DriveByTimeOut extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.driveTrainRobotDrive.arcadeDrive(speed, 0);
+    	System.out.println("time drive");
+    	RobotMap.driveTrainRobotDrive.arcadeDrive(speed, rotate);
     }
 
     // Called repeatedly when this Command is scheduled to run

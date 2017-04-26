@@ -24,12 +24,22 @@ public class TriggerGearDelivery extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.getButtonStick().getRawAxis(2) >= 0.9) {
-    		Robot.gearHolder.setPistonPosition(Value.kReverse);
+    		Robot.gearHolder.setPistonPosition(Value.kForward);
     	}
     	
     	if(Robot.oi.getButtonStick().getRawAxis(3) >= 0.9) {
+    		Robot.gearHolder.setPistonPosition(Value.kReverse);
+    	}
+    	
+    	if(Robot.oi.getDriveStick().getRawAxis(3) >= 0.9) {
     		Robot.gearHolder.setPistonPosition(Value.kForward);
     	}
+    	
+    	if(Robot.oi.getDriveStick().getRawAxis(2) >= 0.9) {
+    		Robot.gearHolder.setPistonPosition(Value.kReverse);
+    	}
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

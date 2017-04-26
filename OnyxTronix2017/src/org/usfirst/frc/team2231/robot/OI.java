@@ -13,10 +13,12 @@ package org.usfirst.frc.team2231.robot;
 import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.CenterByVision;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
+import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
 import org.usfirst.frc.team2231.robot.commands.CollectBalls;
 import org.usfirst.frc.team2231.robot.commands.DriveAutoDisabler;
 import org.usfirst.frc.team2231.robot.commands.LowerGearLift;
 import org.usfirst.frc.team2231.robot.commands.OpenGearBlocker;
+import org.usfirst.frc.team2231.robot.commands.OpenGearHolder;
 import org.usfirst.frc.team2231.robot.commands.RotateByAngle;
 import org.usfirst.frc.team2231.robot.commands.Shoot;
 import org.usfirst.frc.team2231.robot.commands.StartTrigger;
@@ -68,6 +70,8 @@ public class OI {
     public JoystickButton unloadBalls;
     public JoystickButton lowerGearLift;
     public JoystickButton upperGearLift;
+    public JoystickButton openGearHolder;
+    public JoystickButton closeGearHolder;
     public JoystickButton shoot;
     public JoystickButton load;
     public Joystick buttonStick;
@@ -80,30 +84,30 @@ public class OI {
     public OI() {
         driveStick = new Joystick(1);
         
-        switchToSpeedGear = new JoystickButton(driveStick, Button.RB.value());
+        switchToSpeedGear = new JoystickButton(driveStick, Button.LB.value());
         switchToSpeedGear.whenPressed(new SwitchToSpeedGear());
-        switchToStrengthGear = new JoystickButton(driveStick, Button.LB.value());
+        switchToStrengthGear = new JoystickButton(driveStick, Button.RB.value());
         switchToStrengthGear.whenPressed(new SwitchToStrengthGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
-        visionCenter = new JoystickButton(driveStick, Button.A.value());
-        visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
+//        visionCenter = new JoystickButton(driveStick, Button.A.value());
+//        visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
         rotate = new JoystickButton(driveStick, Button.Y.value());
-        rotate.whenPressed(new RotateByAngle(60, false));
+        rotate.whenPressed(new RotateByAngle(-43, false));
         
         buttonStick = new Joystick(0);
         
-        collectBalls = new JoystickButton(buttonStick, Button.A.value());
-        collectBalls.whileHeld(new CollectBalls(Collector.SPEED));
-        unloadBalls = new JoystickButton(buttonStick, Button.Y.value());
-        unloadBalls.whileHeld(new CollectBalls(-Collector.SPEED));
+        //collectBalls = new JoystickButton(buttonStick, Button.A.value());
+        //collectBalls.whileHeld(new CollectBalls(Collector.SPEED));
+        //unloadBalls = new JoystickButton(buttonStick, Button.Y.value());
+        //unloadBalls.whileHeld(new CollectBalls(-Collector.SPEED));
         load = new JoystickButton(buttonStick, Button.RB.value());
         load.whileHeld(new StartTrigger(Trigger.SPEED));
         shoot = new JoystickButton(buttonStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
-        lowerGearLift = new JoystickButton(buttonStick, Button.X.value());
+        lowerGearLift = new JoystickButton(buttonStick, Button.A.value()); // <---
         lowerGearLift.whenPressed(new LowerGearLift());
-        upperGearLift = new JoystickButton(buttonStick, Button.B.value());
+        upperGearLift = new JoystickButton(buttonStick, Button.Y.value()); // <---
         upperGearLift.whenPressed(new UpperGearLift());
     }
 

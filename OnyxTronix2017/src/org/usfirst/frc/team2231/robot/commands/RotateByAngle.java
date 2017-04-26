@@ -50,7 +50,7 @@ public class RotateByAngle extends SetPointCommand {
 //    	Debug.getInstance().log(this, "Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
 //    	Debug.getInstance().log(this, "Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
     	System.out.println( "Left Output: " + RobotMap.driveTrainRotationLeftPIDController.get());
-    	System.out.println( "Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
+     	System.out.println( "Right Output: " + RobotMap.driveTrainRotationRightPIDController.get());
     	System.out.println( "Left Error: " + RobotMap.driveTrainRotationLeftPIDController.getError());
     	System.out.println( "Right Error: " + RobotMap.driveTrainRotationRightPIDController.getError());
 

@@ -26,6 +26,7 @@ import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
 import OnyxTronix.PIDBalancer;
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -60,7 +61,7 @@ public class RobotMap {
 	public static OnyxTronixPIDController driveTrainRotationLeftPIDController;
     public static CANTalon climberMotor;
     public static DoubleSolenoid driveTrainShifter;
-//    public static DoubleSolenoid gearHolderUpperPiston;
+    public static DoubleSolenoid gearHolderUpperPiston;
     public static DoubleSolenoid gearHolderLowerPiston;
     public static DoubleSolenoid gearLiftPiston;
     public static CANTalon shooterUpperWheel;
@@ -109,8 +110,8 @@ public class RobotMap {
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
         
-        driveTrainGyroSPI = new ADXRS450_Gyro();
-        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyroSPI);
+        //driveTrainGyroSPI = new ADXRS450_Gyro();
+        //LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyroSPI);
 
         driveTrainGyro = new AnalogGyro(0);
        // driveTrainGyro.setSensitivity(0.0001);
@@ -124,7 +125,7 @@ public class RobotMap {
        driveTrainDriveLeftPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstLeft, driveTrainFirstLeft, DriveTrain.DRIVE_PID_TOLEEANCE);
        driveTrainDriveLeftPIDController.setOutputRange(-1, 1);
         
-       driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
+       driveTrainDriveRightPIDController = new OnyxTronixPIDController(DriveTrain.DRIVE_PID_P, DriveTrain.DRIVE_PID_I, DriveTrain.DRIVE_PID_D, DriveTrain.DRIVE_PID_F + 0.03, driveTrainFirstRight, driveTrainFirstRight, DriveTrain.DRIVE_PID_TOLEEANCE);
        driveTrainDriveRightPIDController.setOutputRange(-1, 1);
        
        pidBalancer = new PIDBalancer(driveTrainDriveLeftPIDController, driveTrainDriveRightPIDController);
@@ -169,8 +170,9 @@ public class RobotMap {
         
 //        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
         liftAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
-        
-        CameraServer.getInstance().startAutomaticCapture();
+        liftAxisCamera.setResolution(320, 240);
+        UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
+        usbCamera.setResolution(240, 180);
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
         
