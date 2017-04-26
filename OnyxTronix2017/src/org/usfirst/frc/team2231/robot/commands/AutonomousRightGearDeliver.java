@@ -31,10 +31,10 @@ public class AutonomousRightGearDeliver extends CommandGroup {
     	addSequential(new SwitchToSpeedGear());
     	addSequential(new OpenGearHolder());
     	addSequential(new UpperGearLift());
-    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE, false));
+    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_RIGHT_DRIVE, false));
     	addSequential(new RotateByAngle(DriveTrain.AUTONOMOUS_ANGLE, false));
     	//addSequential(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
-    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_SIDE_DRIVE_TO_LIFT, false), 3);
+    	addSequential(new DriveByDistance(DriveTrain.AUTONOMOUS_RIGHT_DRIVE_TO_LIFT, false), 3);
     	addSequential(new SwitchToStrengthGear());
 
     	addSequential(new CloseGearHolder());
