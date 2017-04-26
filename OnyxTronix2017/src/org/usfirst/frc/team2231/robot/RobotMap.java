@@ -26,6 +26,7 @@ import OnyxTronix.OnyxPipeline;
 import OnyxTronix.OnyxTronixPIDController;
 import OnyxTronix.PIDBalancer;
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -169,8 +170,9 @@ public class RobotMap {
         
 //        boilerAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.23");
         liftAxisCamera = CameraServer.getInstance().addAxisCamera("10.22.31.12");
-        
-        CameraServer.getInstance().startAutomaticCapture();
+        liftAxisCamera.setResolution(320, 240);
+        UsbCamera usbCamera = CameraServer.getInstance().startAutomaticCapture();
+        usbCamera.setResolution(240, 180);
         CameraConfiguration camConfig;
         TargetConfiguration tarConfig;
         
