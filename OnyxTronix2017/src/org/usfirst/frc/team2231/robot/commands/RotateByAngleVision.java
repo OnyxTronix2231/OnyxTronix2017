@@ -12,7 +12,6 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
-import org.usfirst.frc.team2231.robot.RobotMap;
 
 import OnyxTronix.Debug;
 import OnyxTronix.SetPointCommand;
