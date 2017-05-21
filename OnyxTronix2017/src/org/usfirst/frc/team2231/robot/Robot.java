@@ -21,7 +21,6 @@ import org.usfirst.frc.team2231.robot.commands.AutonomousRightGearDeliver;
 import org.usfirst.frc.team2231.robot.subsystems.Climber;
 import org.usfirst.frc.team2231.robot.subsystems.Collector;
 import org.usfirst.frc.team2231.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2231.robot.subsystems.GearBlocker;
 import org.usfirst.frc.team2231.robot.subsystems.GearHolder;
 import org.usfirst.frc.team2231.robot.subsystems.GearLift;
 import org.usfirst.frc.team2231.robot.subsystems.Shooter;
