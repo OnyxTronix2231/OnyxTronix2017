@@ -50,7 +50,6 @@ public class Robot extends IterativeRobot {
     public static SendableChooser<String> gearBlockerPosChooser;
 
     public static OI oi;
-    public static GearBlocker gearBlocker;
     public static DriveTrain driveTrain;
     public static Collector collector;
     public static Climber climber;
@@ -70,9 +69,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Gear blocker pos", gearBlockerPosChooser);
         
     	RobotMap.init();
-    	
-        gearBlocker = new GearBlocker();
-        driveTrain = new DriveTrain();
+
+    	driveTrain = new DriveTrain();
         collector = new Collector();
         climber = new Climber();
         gearHolder = new GearHolder();
