@@ -29,6 +29,6 @@ public class AtonomouseGearDelivery extends CommandGroup {
         // arm.
 //    	addSequential(new RotateByAngle(5, false));
     	addSequential(new DriveByDistance(-50, false));
-    	addSequential(new SwitchToStrengthGear());
+    	addSequential(new SwitchToSpeedGear());
     }
 }

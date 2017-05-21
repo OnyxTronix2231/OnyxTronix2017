@@ -28,14 +28,14 @@ public class AutonomousCenterGearDeliver extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new OpenGearHolder());
-    	addSequential(new SwitchToSpeedGear());
+    	addSequential(new CloseGearHolder());
+    	addSequential(new SwitchToStrengthGear());
     	addSequential(new UpperGearLift());
 //    	addSequential(new DriveByTimeOut(0.5, 1, 0));
     	addSequential(new TimeOut(0.5));
     	addSequential(new DriveByDistance(185, false));
 //    	addSequential(new DriveByDistance(30, false));
-    	addSequential(new CloseGearHolder());
+    	addSequential(new OpenGearHolder());
     	addSequential(new AtonomouseGearDelivery());
     }
 }
