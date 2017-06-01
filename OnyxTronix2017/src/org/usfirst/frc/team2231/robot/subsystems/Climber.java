@@ -13,7 +13,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.Robot;
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.ClimbRope;
+import org.usfirst.frc.team2231.robot.commands.ClimbRopeByAxis;
 
 import com.ctre.CANTalon;
 
@@ -33,7 +33,7 @@ public class Climber extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        setDefaultCommand(new ClimbRope());
+        setDefaultCommand(new ClimbRopeByAxis());
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }

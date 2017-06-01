@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TriggerGearDelivery extends Command {
+public class GearPistonPosByAxis extends Command {
 	private Command command;
 	
-    public TriggerGearDelivery() {
+    public GearPistonPosByAxis() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearHolder);

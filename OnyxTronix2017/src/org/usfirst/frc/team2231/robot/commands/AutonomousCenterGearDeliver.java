@@ -27,10 +27,8 @@ public class AutonomousCenterGearDeliver extends CommandGroup {
     	addSequential(new CloseGearHolder());
     	addSequential(new SwitchToStrengthGear());
     	addSequential(new UpperGearLift());
-//    	addSequential(new DriveByTimeOut(0.5, 1, 0));
     	addSequential(new TimeOut(0.5));
     	addSequential(new DriveByDistance(185, false));
-//    	addSequential(new DriveByDistance(30, false));
     	addSequential(new OpenGearHolder());
     	addSequential(new AtonomouseGearDelivery());
     }

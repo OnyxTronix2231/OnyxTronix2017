@@ -12,7 +12,6 @@
 package org.usfirst.frc.team2231.robot;
 
 import org.usfirst.frc.team2231.robot.Buttons.Button;
-import org.usfirst.frc.team2231.robot.commands.AtonomouseSimpleCenterGear;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCenterGearDeliver;
 import org.usfirst.frc.team2231.robot.commands.AutonomousDriveByTimeOut;
 import org.usfirst.frc.team2231.robot.commands.AutonomousLeftGearDeliver;
@@ -46,8 +45,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser<Command> autonomousChooser;
     SendableChooser<Boolean> testModeChooser;
-    public static SendableChooser<String> gearBlockerPosChooser;
-
+    
     public static OI oi;
     public static DriveTrain driveTrain;
     public static Collector collector;
@@ -60,13 +58,7 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    public void robotInit() {
-    	System.out.println("set");
-    	gearBlockerPosChooser = new SendableChooser<>();
-        gearBlockerPosChooser.addDefault("DOWN", "DOWN");
-        gearBlockerPosChooser.addObject("UP", "UP");
-        SmartDashboard.putData("Gear blocker pos", gearBlockerPosChooser);
-        
+    public void robotInit() {        
     	RobotMap.init();
 
     	driveTrain = new DriveTrain();
@@ -103,7 +95,6 @@ public class Robot extends IterativeRobot {
         autonomousChooser.addObject("Line autonomous", new AutonomousLine());
         autonomousChooser.addObject("Drive by time out autonomous", new AutonomousDriveByTimeOut());
         autonomousChooser.addObject("None", null);
-        autonomousChooser.addObject("Simple Center autonomous", new AtonomouseSimpleCenterGear());
         SmartDashboard.putData("Autonomous mode chooser", autonomousChooser);
         
         testModeChooser = new SendableChooser<>();

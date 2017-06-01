@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClimbRope extends Command {
-    public ClimbRope() {
+public class ClimbRopeByAxis extends Command {
+    public ClimbRopeByAxis() {
     	requires(Robot.climber);
     }
 

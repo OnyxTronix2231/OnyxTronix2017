@@ -12,7 +12,7 @@
 package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
-import org.usfirst.frc.team2231.robot.commands.TriggerGearDelivery;
+import org.usfirst.frc.team2231.robot.commands.GearPistonPosByAxis;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -36,7 +36,7 @@ public class GearHolder extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new TriggerGearDelivery());
+    	setDefaultCommand(new GearPistonPosByAxis());
     }
     
     public void setPistonPosition(Value value) {
