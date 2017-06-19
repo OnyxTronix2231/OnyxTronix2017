@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ActByVision extends Command {
 	private double setPoint;
+	private double error;
 	private GripConfiguration<OnyxPipeline> config;
 	private SetPointCommand setPointCommand;
 	private boolean isFinished = false;
@@ -38,7 +39,8 @@ public class ActByVision extends Command {
     	isFinished = false;
     	hasStarted = false;
     	Robot.driveTrain.setVisionOperation(config, strategy);
-    	setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
+    	error = -Robot.driveTrain.getVisionErrorBySetPoint(setPoint);
+    	setPointCommand.setSetPoint(error);
     	setPointCommand.start();
     	hasStarted = true;
     }
@@ -52,8 +54,9 @@ public class ActByVision extends Command {
 				System.out.println("Act finished");
 			} else {
 				System.out.println("Processing image...");
-				setPointCommand.setSetPoint(-Robot.driveTrain.getVisionErrorBySetPoint(setPoint));
-				setPointCommand.start();
+				error = -Robot.driveTrain.getVisionErrorBySetPoint(setPoint);
+		    	setPointCommand.setSetPoint(error);
+		    	setPointCommand.start();
 			}
     	}
     }
@@ -61,5 +64,10 @@ public class ActByVision extends Command {
     @Override
 	protected boolean isFinished() {
 		return isFinished;
+	}
+    
+    @Override
+    protected void interrupted() {
+    	setPointCommand.cancel();
 	}
 }

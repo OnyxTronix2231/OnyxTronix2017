@@ -82,21 +82,17 @@ public class OI {
         switchToStrengthGear.whenPressed(new SwitchToStrengthGear());
         driveAutoDisabler = new JoystickButton(driveStick, Button.X.value());
         driveAutoDisabler.whenPressed(new DriveAutoDisabler());
-//        visionCenter = new JoystickButton(driveStick, Button.A.value());
-//        visionCenter.whenPressed(new CenterByVision(DriveTrain.VISION_LIFT_SETPOINT, RobotMap.gripLiftConfig));
-        rotate = new JoystickButton(driveStick, Button.Y.value());
-        rotate.whenPressed(new RotateByAngle(-43, false));
         
         buttonStick = new Joystick(0);
         
-        //collectBalls = new JoystickButton(buttonStick, Button.A.value());
-        //collectBalls.whileHeld(new CollectBalls(Collector.SPEED));
-        //unloadBalls = new JoystickButton(buttonStick, Button.Y.value());
-        //unloadBalls.whileHeld(new CollectBalls(-Collector.SPEED));
-        load = new JoystickButton(buttonStick, Button.RB.value());
-        load.whileHeld(new StartTrigger(Trigger.SPEED));
-        shoot = new JoystickButton(buttonStick, Button.LB.value());
-        shoot.whileHeld(new Shoot());
+//        collectBalls = new JoystickButton(buttonStick, Button.A.value());
+//        collectBalls.whileHeld(new CollectBalls(Collector.SPEED));
+//        unloadBalls = new JoystickButton(buttonStick, Button.Y.value());
+//        unloadBalls.whileHeld(new CollectBalls(-Collector.SPEED));
+//        load = new JoystickButton(buttonStick, Button.RB.value());
+//        load.whileHeld(new StartTrigger(Trigger.SPEED));
+//        shoot = new JoystickButton(buttonStick, Button.LB.value());
+//        shoot.whileHeld(new Shoot());
         lowerGearLift = new JoystickButton(buttonStick, Button.A.value()); // <---
         lowerGearLift.whenPressed(new LowerGearLift());
         upperGearLift = new JoystickButton(buttonStick, Button.Y.value()); // <---
