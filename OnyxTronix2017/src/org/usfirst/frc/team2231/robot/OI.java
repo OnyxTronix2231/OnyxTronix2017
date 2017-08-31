@@ -82,14 +82,19 @@ public class OI {
         
         buttonStick = new Joystick(0);
         
-        collectBalls = new JoystickButton(buttonStick, Button.A.value());
+        collectBalls = new JoystickButton(driveStick, Button.A.value());
         collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(buttonStick, Button.X.value());
+        toggleGearHold = new JoystickButton(driveStick, Button.X.value());
         toggleGearHold.whenPressed(new ToggleGearHold());
-        load = new JoystickButton(buttonStick, Button.RB.value());
+        load = new JoystickButton(driveStick, Button.RB.value());
         load.whileHeld(new StartTrigger(1));
-        shoot = new JoystickButton(buttonStick, Button.LB.value());
+        shoot = new JoystickButton(driveStick, Button.LB.value());
         shoot.whileHeld(new Shoot());
+        
+        toggleGearHold = new JoystickButton(driveStick, Button.Y.value());
+        toggleGearHold.whenPressed(new OpenGearHolder());
+        toggleGearHold = new JoystickButton(driveStick, Button.B.value());
+        toggleGearHold.whenPressed(new OpenGearBlocker());
 
 
         // SmartDashboard Buttons

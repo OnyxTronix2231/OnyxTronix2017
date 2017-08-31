@@ -15,7 +15,7 @@ package org.usfirst.frc.team2231.robot.subsystems;
 
 import org.usfirst.frc.team2231.robot.RobotMap;
 
-import OnyxTronix.Debug;
+//import OnyxTronix.Debug;
 
 import com.ctre.CANTalon;
 
@@ -54,7 +54,7 @@ public class GearBlocker extends Subsystem {
     }
     
     public boolean isOnTarget(double setPointAngle) {
-    	Debug.getInstance().log(this, "Error: " + (setPointAngle - potentiometer.get()));
+    	//Debug.getInstance().log(this, "Error: " + (setPointAngle - potentiometer.get()));
     	return Math.abs(setPointAngle - potentiometer.get()) < TOLERANCE;
     }
 
