@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="OnyxTronix2017/src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/NIMRO/wpilib/java/current/lib/WPILib.jar" sourcepath="C:/Users/NIMRO/wpilib/java/current/lib/WPILib-sources.jar"/>
-	<classpathentry kind="output" path="OnyxTronix2017/bin"/>
-</classpath>
