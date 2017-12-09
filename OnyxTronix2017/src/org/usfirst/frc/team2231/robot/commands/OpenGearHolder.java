@@ -20,14 +20,15 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  *
  */
 public class OpenGearHolder extends InstantCommand {
-
-    public OpenGearHolder() {
+	private boolean state;
+    public OpenGearHolder(boolean state) {
+    	this.state = state;
         requires(Robot.gearHolder);
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearHolder.setGearHolderPosition(Value.kForward);
+    	Robot.gearHolder.setGearHolderPosition(Value.kForward, this.state);
     }
 
 }

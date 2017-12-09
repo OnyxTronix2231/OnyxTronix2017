@@ -29,11 +29,14 @@ public class StartTrigger extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.triggerWheel.set(m_maxSpeed);
+    	//RobotMap.triggerWheel.set(-m_maxSpeed);
+    	//RobotMap.triggerWheel2.set(-m_maxSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	RobotMap.triggerWheel.set(m_maxSpeed);
+    	RobotMap.triggerWheel2.set(m_maxSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -44,6 +47,7 @@ public class StartTrigger extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	RobotMap.triggerWheel.set(0);
+    	RobotMap.triggerWheel2.set(0);
     }
 
     // Called when another command which requires one or more of the same

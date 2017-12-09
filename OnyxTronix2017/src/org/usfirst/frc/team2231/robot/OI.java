@@ -10,7 +10,6 @@
 
 package org.usfirst.frc.team2231.robot;
 
-import org.usfirst.frc.team2231.robot.Buttons.Button;
 import org.usfirst.frc.team2231.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team2231.robot.commands.CloseGearBlocker;
 import org.usfirst.frc.team2231.robot.commands.CloseGearHolder;
@@ -71,30 +70,57 @@ public class OI {
     public JoystickButton openShifters;
     public JoystickButton closeShifters;
     public Joystick driveStick;
+    public JoystickButton climb;
+    public JoystickButton reverseClimb;
 
     public OI() {
         driveStick = new Joystick(1);
-        
-        closeShifters = new JoystickButton(driveStick, Button.Start.value());
-        closeShifters.whenPressed(new SwitchToStrengthGear());
-        openShifters = new JoystickButton(driveStick, Button.Back.value());
-        openShifters.whenPressed(new SwitchToSpeedGear());
-        
         buttonStick = new Joystick(0);
         
-        collectBalls = new JoystickButton(driveStick, Button.A.value());
+        
+        // Drive Controller
+        closeShifters = new JoystickButton(driveStick, 10);
+        closeShifters.whenPressed(new SwitchToStrengthGear());
+        openShifters = new JoystickButton(driveStick, 9);
+        openShifters.whenPressed(new SwitchToSpeedGear());
+        
+        collectBalls = new JoystickButton(driveStick, 5);
         collectBalls.whileHeld(new CollectBalls(1));
-        toggleGearHold = new JoystickButton(driveStick, Button.X.value());
-        toggleGearHold.whenPressed(new ToggleGearHold());
-        load = new JoystickButton(driveStick, Button.RB.value());
-        load.whileHeld(new StartTrigger(1));
-        shoot = new JoystickButton(driveStick, Button.LB.value());
+        toggleGearHold = new JoystickButton(driveStick, 4);
+        toggleGearHold.whenPressed(new ToggleGearHold(false));
+        climb = new JoystickButton(driveStick, 6);
+        climb.whileHeld(new StartTrigger(1));
+        reverseClimb = new JoystickButton(driveStick, 1);
+        reverseClimb.whileHeld(new StartTrigger(-1));
+        shoot = new JoystickButton(driveStick, 2);
         shoot.whileHeld(new Shoot());
         
-        toggleGearHold = new JoystickButton(driveStick, Button.Y.value());
-        toggleGearHold.whenPressed(new OpenGearHolder());
-        toggleGearHold = new JoystickButton(driveStick, Button.B.value());
-        toggleGearHold.whenPressed(new OpenGearBlocker());
+        toggleGearHold = new JoystickButton(driveStick, 3);
+        toggleGearHold.whenPressed(new ToggleGearHold(true));
+        
+        
+        // Button Controller
+        closeShifters = new JoystickButton(buttonStick, 10);
+        closeShifters.whenPressed(new SwitchToStrengthGear());
+        openShifters = new JoystickButton(buttonStick, 9);
+        openShifters.whenPressed(new SwitchToSpeedGear());
+        
+        collectBalls = new JoystickButton(buttonStick, 5);
+        collectBalls.whileHeld(new CollectBalls(1));
+        toggleGearHold = new JoystickButton(buttonStick, 4);
+        toggleGearHold.whenPressed(new ToggleGearHold(false));
+        climb = new JoystickButton(buttonStick, 6);
+        climb.whileHeld(new StartTrigger(1));
+        reverseClimb = new JoystickButton(buttonStick, 1);
+        reverseClimb.whileHeld(new StartTrigger(-1));
+        shoot = new JoystickButton(buttonStick, 2);
+        shoot.whileHeld(new Shoot());
+        
+        toggleGearHold = new JoystickButton(buttonStick, 3);
+        toggleGearHold.whenPressed(new ToggleGearHold(true));
+        
+        //toggleGearHold = new JoystickButton(driveStick, Button.B.value());
+        //toggleGearHold.whenPressed(new OpenGearBlocker());
 
 
         // SmartDashboard Buttons
@@ -102,8 +128,8 @@ public class OI {
         SmartDashboard.putData("DriveByJoystick", new DriveByJoystick());
         SmartDashboard.putData("OpenShifters", new SwitchToSpeedGear());
         SmartDashboard.putData("CloseShifters", new SwitchToStrengthGear());
-        SmartDashboard.putData("OpenGearHolderPiston", new OpenGearHolder());
-        SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolder());
+        SmartDashboard.putData("OpenGearHolderPiston", new OpenGearHolder(false));
+        SmartDashboard.putData("CloseGearHolderPiston", new CloseGearHolder(false));
         SmartDashboard.putData("OpenGearBlockerPiston", new OpenGearBlocker());
         SmartDashboard.putData("CloseGearBlockerPiston", new CloseGearBlocker());
     }

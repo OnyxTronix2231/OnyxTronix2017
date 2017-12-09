@@ -32,9 +32,10 @@ public class GearHolder extends Subsystem {
         // Set the default command for a subsystem here.
     }
     
-    public void setGearHolderPosition(Value value) {
-    	lowerPiston.set(value);
-    	upperPiston.set(value);
+    public void setGearHolderPosition(Value value, boolean state) {
+    	if (state)
+    		lowerPiston.set(value);
+    	else
+    		upperPiston.set(value);
     }
 }
-

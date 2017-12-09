@@ -12,6 +12,7 @@
 package org.usfirst.frc.team2231.robot.commands;
 
 import org.usfirst.frc.team2231.robot.Robot;
+import org.usfirst.frc.team2231.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -30,7 +31,14 @@ public class DriveByJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	RobotMap.driveTrainFirstLeft.set(0.05 * RobotMap.driveTrainFirstRight.get());
+    	RobotMap.driveTrainFirstLeft.set(0.05 * RobotMap.driveTrainFirstRight.get());
     	Robot.driveTrain.arcadeDrive(Robot.oi.getDriveStick());
+    	
+//    	System.out.println("First Left Value : "+ RobotMap.driveTrainFirstLeft.get());
+//    	System.out.println("Second Left Value : "+ RobotMap.driveTrainSecondLeft.get());
+//    	System.out.println("First Right Value : "+ RobotMap.driveTrainFirstRight.get());
+//    	System.out.println("Second Right Value : "+ RobotMap.driveTrainSecondRight.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -21,12 +21,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  *
  */
 public class CloseGearHolder extends InstantCommand {
-    public CloseGearHolder() {
+	private boolean state;
+    public CloseGearHolder(boolean state) {
+    	this.state = state;
         requires(Robot.gearHolder);
     }
 
     // Called once when this command runs
     protected void initialize() {
-    	Robot.gearHolder.setGearHolderPosition(Value.kReverse);
+    	Robot.gearHolder.setGearHolderPosition(Value.kReverse, this.state);
     }
 }

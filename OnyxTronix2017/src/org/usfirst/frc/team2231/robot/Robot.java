@@ -51,7 +51,6 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	RobotMap.init();
-    	
         gearBlocker = new GearBlocker();
         driveTrain = new DriveTrain();
         collector = new Collector();
@@ -95,6 +94,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	shooter.startShoot();
         Scheduler.getInstance().run();
     }
 

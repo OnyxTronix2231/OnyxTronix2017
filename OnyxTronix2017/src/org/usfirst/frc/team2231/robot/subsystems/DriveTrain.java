@@ -45,7 +45,15 @@ public class DriveTrain extends Subsystem {
     }
     
     public void arcadeDrive(Joystick stick){
-    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), stick.getRawAxis(4));
+    	double rotateValue = stick.getRawAxis(4);
+    	final double LIMIT_VAL = 0.2;
+    	if(this.firstLeft.get() > 0 && this.secondLeft.get() > 0 && this.firstRight.get() < 0 && this.secondRight.get() < 0) {
+    		rotateValue += LIMIT_VAL;
+    	}
+    	else if (this.firstLeft.get() < 0 && this.secondLeft.get() < 0 && this.firstRight.get() > 0 && this.secondRight.get() > 0) {
+    		rotateValue -= LIMIT_VAL;
+		}
+    	robotDrive.arcadeDrive(stick.getY(Hand.kLeft), rotateValue);
     }
     public void switchToStrengthGear() {
     	shifter.set(Value.kReverse);

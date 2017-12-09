@@ -11,7 +11,9 @@ public class Buttons {
 		Back(7),
 		Start(8),
 		LeftAxis(9),
-		RightAxis(10);
+		RightAxis(10),
+		LT(11),
+		RT(12);
 		
 		private final int value;
 	    Button(int value) {
